@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Softdev</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+      <%= csrf_meta_tags %>
 </head>
+
 <body>
 
-<%= yield %>
+  <!-- This space reserved for flash messages. -->
+  <div class="container">
+    <p class="notice">
+      <%= notice %>
+    </p>
+    <p class="alert">
+      <%= alert %>
+    </p>
+  </div>
+  <!-- End of Reserved Space :D -->
+  <%= yield %>
 
 </body>
+
 </html>
