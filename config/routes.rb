@@ -1,8 +1,19 @@
 Rails.application.routes.draw do
+  get 'user/view'
 
-  resources :users
+  get 'user/new'
 
-  resources :employees
+  get 'user/index'
+
+  get 'user/edit'
+
+  get 'user/view'
+
+  get 'user/index'
+
+  get 'user/new'
+
+  get 'user/edit'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
