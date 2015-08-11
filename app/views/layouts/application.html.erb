@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>SoftdevIMgtTafc</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
+
+<div id="flash_messages">
+  <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, class: name %>
+  <% end %>
+</div>
 
 <%= render "shared/navbar" %>
 
 <div class="container">
-
-  <%= yield :content %>
-
+  <div class="col-md-2">
+    <!-- sidebar thingies (if sidebar is to be implemented)-->
+  </div>
+  <div class="col-md-8">
+    <%= yield %>
+  </div>
+  <div class="col-md-2">
+    <!-- sidebar thingies (if sidebar is to be implemented)-->
+  </div>
 </div>
 
-<footer class="footer">
-  <div class="container">
-    <hr class="alert-info">
-    <p class="pull-right"><a href="#" class="text-muted"><span class="glyphicon glyphicon-chevron-up"
-                                                               aria-hidden="true"></span> Back to top</a></p>
-  </div>
-</footer>
+<%= render "shared/footer" %>
 
 </body>
+
 </html>
