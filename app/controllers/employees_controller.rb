@@ -1,18 +1,18 @@
 class EmployeesController < ApplicationController
   def index
-    @employees = Employees.all
+    @employees = Employee.all
   end
 
   def show
-    @employee = Employees.find(params[:id])
+    @employee = Employee.find(params[:id])
   end
 
   def new
-    @employee = Employees.new
+    @employee = Employee.new
   end
 
   def create
-    Employees.create(employee_params)
+    Employee.create(employee_params)
 
     redirect_to '/employees'
   end
