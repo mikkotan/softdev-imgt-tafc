@@ -1,2 +1,2 @@
-class Employees < ActiveRecord::Base
+class Employee < ActiveRecord::Base
 end
