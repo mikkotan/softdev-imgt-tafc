@@ -1,0 +1,54 @@
+[33mcommit aaa12b6ba801da893ba148255e335fd045414d33[m
+Author: Anfernee Joan Ng <starjirachi1@yahoo.com>
+Date:   Tue Aug 11 16:21:29 2015 +0800
+
+    tinloa lhog michael =.=
+
+[33mcommit f07eac86f80477511d6df0754eb251ae19c8474d[m
+Author: Anfernee Joan Ng <starjirachi1@yahoo.com>
+Date:   Tue Aug 11 16:02:33 2015 +0800
+
+    Rehashed the whole thing
+
+[33mcommit ee0312e6c87a9f125c646fc583641fad6e4b86ec[m
+Author: Anfernee Joan Ng <starjirachi1@yahoo.com>
+Date:   Tue Aug 11 12:15:56 2015 +0800
+
+    fixed some stuff...let's not use devise T_T Authlogic nlg
+
+[33mcommit 2fed040dd45a1c42499ad1217a0b80e45b4f364c[m
+Author: Anfernee Joan Ng <starjirachi1@yahoo.com>
+Date:   Tue Aug 11 12:13:30 2015 +0800
+
+    Redoed...
+
+[33mcommit 71d8204221499534a47fa4ede22d698ff6654441[m
+Merge: b71ca30 8826b00
+Author: Michael Rasheed Tan <m_rasheed_tan@yahoo.com>
+Date:   Tue Aug 11 11:06:05 2015 +0800
+
+    Merge branch 'master' of https://bitbucket.org/penguindynamics/softdev-i-mgt-tafc
+
+[33mcommit b71ca30058c8c57b355eb5af775989150c3ef144[m
+Author: Michael Rasheed Tan <m_rasheed_tan@yahoo.com>
+Date:   Tue Aug 11 11:00:16 2015 +0800
+
+    Employee add feature.
+
+[33mcommit 45195ef7292deedc45e5aeafc5e4d8abf0ef7a60[m
+Author: Michael Rasheed Tan <m_rasheed_tan@yahoo.com>
+Date:   Tue Aug 11 10:50:05 2015 +0800
+
+    pre-try
+
+[33mcommit 8826b0029451a57866ee13e13dc491af2e03e9af[m
+Author: Anfernee Joan Ng <starjirachi1@yahoo.com>
+Date:   Tue Aug 11 05:21:13 2015 +0800
+
+    Edited Gemfile, People must run bundle install / bundle update, Added Devise Gem
+
+[33mcommit a582269b3b3771e351b8453f61894152356a302a[m
+Author: Michael Rasheed Tan <m_rasheed_tan@yahoo.com>
+Date:   Mon Aug 10 19:37:38 2015 +0800
+
+    INITIATE
