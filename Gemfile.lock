@@ -42,8 +42,13 @@ GEM
       activesupport (>= 3.2)
       request_store (~> 1.0)
       scrypt (>= 1.2, < 3.0)
+    autoprefixer-rails (5.2.1.1)
+      execjs
+      json
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.2.0.2)
+      sass (~> 3.2)
     builder (3.2.2)
     byebug (5.0.0)
       columnize (= 0.9.0)
@@ -59,6 +64,7 @@ GEM
     erubis (2.7.0)
     execjs (2.5.2)
     ffi (1.9.10)
+    ffi (1.9.10-x86-mingw32)
     ffi-compiler (0.1.3)
       ffi (>= 1.0.0)
       rake
@@ -82,6 +88,8 @@ GEM
     minitest (5.8.0)
     multi_json (1.11.2)
     nokogiri (1.6.6.2)
+      mini_portile (~> 0.6.0)
+    nokogiri (1.6.6.2-x86-mingw32)
       mini_portile (~> 0.6.0)
     rack (1.6.4)
     rack-test (0.6.3)
@@ -135,6 +143,7 @@ GEM
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
     sqlite3 (1.3.10)
+    sqlite3 (1.3.10-x86-mingw32)
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
@@ -142,6 +151,8 @@ GEM
       coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2015.6)
+      tzinfo (>= 1.0.0)
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
@@ -153,9 +164,12 @@ GEM
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   authlogic
+  autoprefixer-rails
+  bootstrap-sass (~> 3.2.0)
   byebug
   coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)
@@ -166,6 +180,7 @@ DEPENDENCIES
   spring
   sqlite3
   turbolinks
+  tzinfo-data
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
 
