@@ -1,15 +1,11 @@
 Rails.application.routes.draw do
   root 'users#index'
 
-  get 'users' => 'users#index'
+  resources :users
 
-  get 'users/new' => 'users#new', as: 'user_new'
-
-  post 'users/create' => 'users#create'
-
-  get 'users/:id/edit' => 'users#edit'
-
-  get 'users/:id' => 'users#show'
+  # Hi! I'm anpeng and I'll put some references here. :D
+  # get '/patients/:id', to: 'patients#show', as: 'patient'
+  # <%= link_to 'Patient Record', patient_path(@patient) %>
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
