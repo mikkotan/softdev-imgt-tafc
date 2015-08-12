@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @users = User.all
   end
@@ -12,10 +14,17 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   def update
+    @user = current_user
+    if @user.update(user_params)
+      flash[:notice] = 'Successfully updated profile.'
+      redirect_to root_url
+    else
+      render action: 'edit'
+    end
   end
 
   def create
