@@ -16,6 +16,6 @@ RSpec.describe User, type: :model do
   end
 
   it 'has its password encrypted in database' do
-    expect('abcd').not_to eq User.find_by(username: 'anpeng').crypted_password
+    expect('abcd').not_to eq User.find_by(username: 'anpeng').password_hash
   end
 end
