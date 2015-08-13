@@ -1,43 +1,40 @@
 <h1>Users#edit</h1>
 <p>Find me in app/views/users/edit.html.erb</p>
-
 <%= form_for @user, url: {action: 'update'} do |f| %>
-    <% if @user.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-          <ul>
-            <% @user.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
-
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-
-    <%= f.label :username %>
-    <%= f.text_field :username %>
-
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-
-    <%= f.label :role %>
-    <%= f.radio_button :role, 'owner', :checked => true %>
-    <%= label :role, 'owner' %>
-    <%= f.radio_button :role, 'manager' %>
-    <%= label :role, 'manager' %>
-    <%= f.radio_button :role, 'employee' %>
-    <%= label :role, 'employee' %>
-
-    <div class="actions">
-      <%= f.submit 'Update User' %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
+  <% end %>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %>
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  <% unless can? :manage, User %>
+    <%= f.label :old_password %>
+    <%= f.password_field :old_password %>
+  <% end %>
+  <%= f.label :password, 'New Password' %>
+  <%= f.password_field :password %>
+  <%= f.label :password_confirmation, 'New Password' %>
+  <%= f.password_field :password_confirmation %>
+  <% if can? :manage, User %>
+    <%= f.label :role %>
+    <%= f.radio_button :role, 'owner', :checked => (@user.role == 'owner' ? true : false) %>
+    <%= label :role, 'owner' %>
+    <%= f.radio_button :role, 'manager', :checked => (@user.role == 'manager' ? true : false) %>
+    <%= label :role, 'manager' %>
+    <%= f.radio_button :role, 'employee', :checked => (@user.role == 'employee' ? true : false) %>
+    <%= label :role, 'employee' %>
+  <% end %>
+  <div class="actions">
+    <%= f.submit 'Update User' %>
+  </div>
 <% end %>

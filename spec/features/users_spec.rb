@@ -41,4 +41,7 @@ RSpec.feature 'User CRUD thingy', type: :feature do
 
     expect(page).to have_text 'User successfully created.'
   end
+
+  scenario 'Owner edits Employee' do
+  end
 end
