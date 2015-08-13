@@ -12,18 +12,18 @@
       <ul class="nav navbar-nav">
         <!-- add functionalies that can be done by user here-->
         <div id="user_nav">
-
+          <% if current_user %>
+            <%= link_to "Edit profile", edit_user_path(current_user) %>
+            <%= link_to "Logout", logout_path %>
+          <% else %>
+            <%= link_to "Register", new_user_path %>
+            <%= link_to "Log in", login_path %>
+          <% end %>
         </div>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <% if current_user %>
-            <li><%= link_to "Edit profile", edit_user_path(:current) %></li>
-            <li><%= link_to "Logout", logout_path %></li>
-        <% else %>
-            <li><%= link_to "Register", new_user_path %></li>
-            <li><%= link_to "Log in", login_path %></li>
-        <% end %>
-        <li><%= current_user ? "Logged in as #{current_user.username}" : "" %></li>
+        <!-- add current logged in user here-->
+        <%= current_user ? "Logged in as #{current_user.username}" : "" %>
       </ul>
     </div>
   </div>
