@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  get 'login' => 'user_sessions#new', as: 'login'
+  get 'login' => 'sessions#new', as: 'login'
 
-  post 'login' => 'user_sessions#create'
+  post 'login' => 'sessions#create', as: 'check_login'
 
-  get 'logout' => 'user_sessions#destroy', as: 'logout'
+  get 'logout' => 'sessions#destroy', as: 'logout'
 
   root 'users#index'
 

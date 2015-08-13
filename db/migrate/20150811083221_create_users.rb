@@ -5,8 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :last_name
       t.string :username
       t.string :role
-      t.string :crypted_password
-      t.string :persistence_token
+      t.string :password_hash
       t.string :password_salt
 
       t.timestamps null: false

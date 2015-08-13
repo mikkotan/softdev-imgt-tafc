@@ -14,7 +14,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'tzinfo-data'
-gem 'authlogic'
+gem 'bcrypt-ruby', require: 'bcrypt'
 gem 'cancancan'
 
 # CSS
