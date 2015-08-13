@@ -39,7 +39,6 @@ RSpec.feature 'User CRUD thingy', type: :feature do
     choose 'user_role_owner'
     click_button 'Create User'
 
-    sleep(5.minutes)
     expect(page).to have_text 'User successfully created.'
   end
 end
