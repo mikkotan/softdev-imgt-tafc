@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
 
-  attr_accessor :password, :password_hash
+  attr_accessor :password
   before_save :encrypt_password
 
   validates_confirmation_of :password

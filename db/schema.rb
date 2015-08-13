@@ -18,11 +18,10 @@ ActiveRecord::Schema.define(version: 20150811083221) do
     t.string   "last_name"
     t.string   "username"
     t.string   "role"
-    t.string   "crypted_password"
-    t.string   "persistence_token"
+    t.string   "password_hash"
     t.string   "password_salt"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
 end
