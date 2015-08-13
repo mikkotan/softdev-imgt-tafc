@@ -10,17 +10,18 @@
 
 <body>
 
-  <div id="flash_messages">
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, class: name %>
-        <% end %>
-  </div>
+
 
   <%= render "shared/navbar" %>
 
+
     <div class="container">
       <div class="col-md-2">
-        <!-- sidebar thingies (if sidebar is to be implemented)-->
+        <div id="flash_messages">
+          <% flash.each do |name, msg| %>
+              <%= content_tag :div, msg, class: name %>
+          <% end %>
+        </div>
       </div>
       <div class="col-md-8">
         <%= yield %>
@@ -28,8 +29,8 @@
       <div class="col-md-2">
         <!-- sidebar thingies (if sidebar is to be implemented)-->
       </div>
-    </div>
 
+    </div>
     <%= render "shared/footer" %>
 
 </body>

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-offset">
+<nav class="navbar navbar-default navbar-static-top navbar-offset">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -12,18 +12,18 @@
       <ul class="nav navbar-nav">
         <!-- add functionalies that can be done by user here-->
         <div id="user_nav">
-          <% if current_user %>
-            <%= link_to "Edit profile", edit_user_path(current_user) %>
-            <%= link_to "Logout", logout_path %>
-          <% else %>
-            <%= link_to "Register", new_user_path %>
-            <%= link_to "Log in", login_path %>
-          <% end %>
+
         </div>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <!-- add current logged in user here-->
-        <%= current_user ? "Logged in as #{current_user.username}" : "" %>
+        <% if current_user %>
+            <li class="navbar-text"><%= current_user ? "Logged in as #{current_user.username}" : "" %></li>
+            <li><%= link_to (raw(("<i class='glyphicon glyphicon-edit'></i>") + " Edit Profile")), edit_user_path(current_user) %></li>
+            <li><%= link_to (raw(("<i class='glyphicon glyphicon-log-out'></i>") + " Log-out")), logout_path %></li>
+        <% else %>
+            <li><%= link_to (raw(("<i class='glyphicon glyphicon-pencil'></i>") + " Register")), new_user_path %></li>
+            <li><%= link_to (raw(("<i class='glyphicon glyphicon-log-in'></i>") + " Log-in")), login_path %></li>
+        <% end %>
       </ul>
     </div>
   </div>
