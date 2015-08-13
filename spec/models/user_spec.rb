@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  before(:all) do
+  before(:each) do
     @user = User.new(password: 'abcd',
                      username: 'anpeng',
                      password_confirmation: 'abcd',

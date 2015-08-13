@@ -1,4 +1,7 @@
 require 'rails_helper'
+require 'database_cleaner'
+
+DatabaseCleaner.strategy = :truncation
 
 # visit('page_url') # navigate to page
 # click_link('id_of_link') # click link by id
@@ -13,6 +16,9 @@ require 'rails_helper'
 
 RSpec.feature 'User CRUD thingy', type: :feature do
   before(:all) do
+    # then, whenever you need to clean the DB
+    DatabaseCleaner.clean
+
     visit '/login'
 
     @user = User.new(password: 'pulitzer',

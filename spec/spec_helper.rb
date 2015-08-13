@@ -88,11 +88,3 @@ RSpec.configure do |config|
   #   # as the one that triggered the failure.
   #   Kernel.srand config.seed
 end
-
-# Capybara.register_driver :selenium do |app|
-#   profile = Selenium::WebDriver::Firefox::Profile.new
-#   Capybara::Selenium::Driver.new(app, profile: profile)
-# end
-# Capybara.default_wait_time = 10
-# Capybara.current_driver = :selenium
-# Capybara.app_host = 'http://localhost:3000'
