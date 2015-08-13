@@ -1,27 +1,31 @@
 <h1>UserSessions#new</h1>
 <p>Find me in app/views/user_sessions/new.html.erb</p>
 <%= form_for @user_session, url: {action: 'create'} do |form| %>
-  <% if @user_session.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user_session.errors.count, "error") %> prohibited you from logging in:</h2>
-      <ul>
-        <% @user_session.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+    <% if @user_session.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user_session.errors.count, "error") %> prohibited you from logging in:</h2>
+          <ul>
+            <% @user_session.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div class="form-group">
+        <%= form.label :username, "Username" %>
+        <%= form.text_field :username, class: "form-control" %>
+
+        <%= form.label :password, "Password" %>
+        <%= form.password_field :password, class: "form-control" %>
+      </div>
+      <div>
+        <%= form.submit "Log in", class: "btn btn-primary btn-lg pull-right btn-block" %>
+      </div>
+
     </div>
-  <% end %>
-  <ul class="formList">
-    <li>
-      <%= form.label :username, "Username" %>
-      <%= form.text_field :username %>
-    </li>
-    <li>
-      <%= form.label :password, "Password" %>
-      <%= form.password_field :password %>
-    </li>
-    <li>
-      <%= form.submit "Submit" %>
-    </li>
-  </ul>
+    <div class="col-md-2"></div>
+
 <% end %>
