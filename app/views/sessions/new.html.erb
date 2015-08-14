@@ -1,19 +1,15 @@
 <h1>Sessions#new</h1>
 <p>Find me in app/views/sessions/new.html.erb</p>
 <%= form_tag check_login_path do %>
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-      <div class="form-group">
-        <%= label_tag :username, "Username" %>
-        <%= text_field_tag :username ,nil, class: "form-control" %>
+    <div class="form-group">
+      <%= label_tag :username, "Username" %>
+      <%= text_field_tag :username, nil, class: "form-control" %>
 
-        <%= label_tag :password, "Password" %>
-        <%= password_field_tag :password ,nil, class: "form-control" %>
-      </div>
-      <div class="col-md-4 pull-right">
-        <%= submit_tag "Log in", class: "btn btn-primary btn-lg pull-right btn-block" %>
-      </div>
+      <%= label_tag :password, "Password" %>
+      <%= password_field_tag :password, nil, class: "form-control" %>
     </div>
-    <div class="col-md-2"></div>
+    <div class="col-md-4 pull-right">
+      <%= submit_tag "Log in", class: "btn btn-primary btn-lg pull-right btn-block" %>
+    </div>
 
 <% end %>

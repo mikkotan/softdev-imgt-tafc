@@ -1,2 +1,48 @@
 <h1>Users#edit</h1>
 <p>Find me in app/views/users/edit.html.erb</p>
+<%= form_for @user, url: {action: 'update'} do |f| %>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, class: "form-control" %>
+
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, class: "form-control" %>
+
+      <%= f.label :username %>
+      <%= f.text_field :username, class: "form-control" %>
+
+      <% unless can? :manage, User %>
+          <%= f.label :old_password %>
+          <%= f.password_field :old_password, class: "form-control" %>
+      <% end %>
+
+      <%= f.label :password, 'New Password' %>
+      <%= f.password_field :password, class: "form-control" %>
+
+      <%= f.label :password_confirmation, 'New Password Confirm' %>
+      <%= f.password_field :password_confirmation, class: "form-control" %>
+
+      <% if can? :manage, User %>
+          <%= f.label :role %>
+          <%= f.radio_button :role, 'owner', :checked => (@user.role == 'owner' ? true : false), class: "radio-inline" %>
+          <%= label :role, 'owner' %>
+          <%= f.radio_button :role, 'manager', :checked => (@user.role == 'manager' ? true : false), class: "radio-inline" %>
+          <%= label :role, 'manager' %>
+          <%= f.radio_button :role, 'employee', :checked => (@user.role == 'employee' ? true : false), class: "radio-inline" %>
+          <%= label :role, 'employee' %>
+      <% end %>
+    </div>
+    <div class="actions col-md-6 pull-right">
+      <%= f.submit "Update User", class: "btn btn-primary btn-md btn-block" %>
+    </div>
+<% end %>

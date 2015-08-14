@@ -1,8 +1,6 @@
 require 'rails_helper'
 require 'database_cleaner'
 
-DatabaseCleaner.strategy = :truncation
-
 # visit('page_url') # navigate to page
 # click_link('id_of_link') # click link by id
 # click_link('link_text') # click link by link text
@@ -16,23 +14,18 @@ DatabaseCleaner.strategy = :truncation
 
 RSpec.feature 'User CRUD thingy', type: :feature do
   before(:all) do
-    # then, whenever you need to clean the DB
-    DatabaseCleaner.clean
-
+    User.create(password: 'pulitzer',
+                username: 'starjirachi1',
+                password_confirmation: 'pulitzer',
+                first_name: 'Anfernee',
+                last_name: 'Ng',
+                role: 'owner')
     visit '/login'
 
-    @user = User.new(password: 'pulitzer',
-                     username: 'starjirachi1',
-                     password_confirmation: 'pulitzer',
-                     first_name: 'Anfernee',
-                     last_name: 'Ng',
-                     role: 'owner')
-    @user.save
+    fill_in 'username', with: 'starjirachi1'
+    fill_in 'password', with: 'pulitzer'
 
-    fill_in 'user_session_username', with: 'starjirachi1'
-    fill_in 'user_session_password', with: 'pulitzer'
-
-    click_button 'Submit'
+    click_button 'Log In'
   end
 
   scenario 'Owner creates an Employee' do
@@ -47,5 +40,8 @@ RSpec.feature 'User CRUD thingy', type: :feature do
     click_button 'Create User'
 
     expect(page).to have_text 'User successfully created.'
+  end
+
+  scenario 'Owner edits Employee' do
   end
 end

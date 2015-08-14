@@ -2,42 +2,44 @@
 <p>Find me in app/views/users/new.html.erb</p>
 
 <%= form_for @user, url: {action: 'create'} do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, class: "form-control" %>
+
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, class: "form-control" %>
+
+      <%= f.label :username %>
+      <%= f.text_field :username, class: "form-control" %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: "form-control" %>
+
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, class: "form-control" %>
+
+      <%= f.label :role %>
+      <%= f.radio_button :role, 'owner', :checked => true, class: "radio-inline" %>
+      <%= label :role, 'owner' %>
+      <%= f.radio_button :role, 'manager', class: "radio-inline" %>
+      <%= label :role, 'manager' %>
+      <%= f.radio_button :role, 'employee', class: "radio-inline" %>
+      <%= label :role, 'employee' %>
     </div>
-  <% end %>
+    <div class="actions col-md-6 pull-right">
+      <%= f.submit "Create User", class: "btn btn-primary btn-md btn-block" %>
+    </div>
 
-  <%= f.label :first_name %>
-  <%= f.text_field :first_name %>
 
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name %>
-
-  <%= f.label :username %>
-  <%= f.text_field :username %>
-
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
-
-  <%= f.label :role %>
-  <%= f.radio_button :role, 'owner', :checked => true %>
-  <%= label :role, 'owner' %>
-  <%= f.radio_button :role, 'manager' %>
-  <%= label :role, 'manager' %>
-  <%= f.radio_button :role, 'employee' %>
-  <%= label :role, 'employee' %>
-
-  <div class="actions">
-    <%= f.submit 'Create User' %>
-  </div>
 <% end %>
