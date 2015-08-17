@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
       redirect_to root_url, notice: 'Logged In!'
     else
       flash[:alert] = 'Invalid Username or Password!'
+      @username = post_params[:username]
       render 'new'
     end
   end

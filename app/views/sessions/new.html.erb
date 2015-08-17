@@ -3,7 +3,7 @@
 <%= form_tag check_login_path do %>
     <div class="form-group">
       <%= label_tag :username, "Username" %>
-      <%= text_field_tag :username, nil, class: "form-control" %>
+      <%= text_field_tag :username, @username, class: "form-control" %>
 
       <%= label_tag :password, "Password" %>
       <%= password_field_tag :password, nil, class: "form-control" %>
