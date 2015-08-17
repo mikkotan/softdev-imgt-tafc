@@ -13,7 +13,7 @@ class Ability
     elsif user.role == 'employee'
       # employee
       can :read, :all
-      can [:edit, :update], User, id: user.id
+      can [:edit, :update, :change_password, :update_password], User, id: user.id
     else
       # guest
       can :read, :all

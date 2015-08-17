@@ -9,7 +9,15 @@ Rails.application.routes.draw do
 
   resources :users
 
+
   resources :clients
+
+  get 'users/:id/change_password' => 'users#change_password', as: 'change_password'
+
+  patch 'users/:id/change_password' => 'users#update_password'
+
+  put 'users/:id/change_password' => 'users#update_password'
+
 
   # Hi! I'm anpeng and I'll put some references here. :D
   # get '/patients/:id', to: 'patients#show', as: 'patient'
