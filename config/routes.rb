@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   resources :users
 
+  resources :clients
+
   # Hi! I'm anpeng and I'll put some references here. :D
   # get '/patients/:id', to: 'patients#show', as: 'patient'
   # <%= link_to 'Patient Record', patient_path(@patient) %>
