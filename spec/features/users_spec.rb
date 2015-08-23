@@ -12,8 +12,8 @@ require 'database_cleaner'
 # select('option', :from=>'select_box') # select from dropdown
 # attach_file('image', 'path_to_image') # upload file
 
-RSpec.feature 'User CRUD thingy', type: :feature do
-  before(:all) do
+RSpec.feature 'User CRUD thingy', js: true do
+  before(:each) do
     User.create(password: 'pulitzer',
                 username: 'starjirachi1',
                 password_confirmation: 'pulitzer',
@@ -27,10 +27,10 @@ RSpec.feature 'User CRUD thingy', type: :feature do
                 first_name: 'Albert',
                 last_name: 'Fuensalida',
                 role: 'employee')
-    visit '/login'
   end
 
   scenario 'Owner creates an Employee' do
+    visit '/login'
     fill_in 'username', with: 'starjirachi1'
     fill_in 'password', with: 'pulitzer'
 
@@ -45,13 +45,10 @@ RSpec.feature 'User CRUD thingy', type: :feature do
     choose 'user_role_owner'
     click_button 'Create User'
 
-
     expect(page).to have_text 'User successfully created.'
-
   end
 
   scenario 'Owner edits Employee' do
-
     visit '/login'
     fill_in 'username', with: 'starjirachi1'
     fill_in 'password', with: 'pulitzer'
@@ -62,25 +59,21 @@ RSpec.feature 'User CRUD thingy', type: :feature do
     fill_in 'user_first_name', with: 'Albert'
     fill_in 'user_last_name', with: 'Fuensalida'
     fill_in 'user_username', with: 'ambet_123'
-    fill_in 'user_password', with: 'ambet 123'
-    fill_in 'user_password_confirmation', with: 'ambet 123'
     choose 'user_role_owner'
     click_button 'Update User'
     expect(page).to have_text 'Successfully updated profile.'
-
   end
 
   scenario 'Owner uses logout' do
-   visit '/login'
-   fill_in 'username', with: 'starjirachi1'
-   fill_in 'password', with: 'pulitzer'
-   click_button 'Log in'
+    visit '/login'
+    fill_in 'username', with: 'starjirachi1'
+    fill_in 'password', with: 'pulitzer'
+    click_button 'Log in'
     visit '/logout'
     expect(page).to have_text 'Successfully Logged Out!'
   end
 
   scenario 'User registers' do
-
     visit '/users/new'
 
     fill_in 'user_first_name', with: 'Albert Jr.'
@@ -91,7 +84,6 @@ RSpec.feature 'User CRUD thingy', type: :feature do
     choose 'user_role_manager'
     click_button 'Create User'
     expect(page).to have_text 'User successfully created.'
-
   end
 
   scenario 'User inputs wrong password' do
@@ -102,25 +94,17 @@ RSpec.feature 'User CRUD thingy', type: :feature do
     expect(page).to have_text 'Invalid Username or Password!'
   end
 
-  scenario 'Owner edits an employee with wrong password confirmation' do
-    visit '/login'
-    fill_in 'username', with: 'starjirachi1'
-    fill_in 'password', with: 'pulitzer'
-
-    click_button 'Log in'
-    visit '/users/2/edit'
-    fill_in 'user_password', with: 'ambet 123'
-    fill_in 'user_password_confirmation', with: 'wrongpassword'
-    click_button 'Update User'
-
-    expect(page).to have_text 'Password confirmation'
-  end
-
-  scenario '' do
-
-  end
-
+  # scenario 'Owner edits an employee with wrong password confirmation' do
+  #   visit '/login'
+  #   fill_in 'username', with: 'starjirachi1'
+  #   fill_in 'password', with: 'pulitzer'
+  #
+  #   click_button 'Log in'
+  #   visit '/users/2/edit'
+  #   fill_in 'user_password', with: 'ambet 123'
+  #   fill_in 'user_password_confirmation', with: 'wrongpassword'
+  #   click_button 'Update User'
+  #
+  #   expect(page).to have_text 'Password confirmation'
+  # end
 end
-
-
-
