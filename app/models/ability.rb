@@ -9,15 +9,14 @@ class Ability
       can :manage, :all
     elsif user.role == 'manager'
       # manager
-      can :manage, :all
+      can :read, :all
+      can :update, Client
     elsif user.role == 'employee'
       # employee
       can :read, :all
       can [:edit, :update, :change_password, :update_password], User, id: user.id
     else
-      # guest
       can :read, :all
-      can :create, User
     end
 
     # You can pass an array for either of these parameters to match any one.

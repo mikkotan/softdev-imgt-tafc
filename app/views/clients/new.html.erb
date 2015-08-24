@@ -23,6 +23,9 @@
       <%= f.label :representative %>
       <%= f.text_field :representative, class: "form-control" %>
 
+      <%= f.label :user_id %>
+      <%= f.select :user_id, employees.collect {|employee| ["#{employee.last_name}, #{employee.first_name}", employee.id]}, class: "form-control" %>
+
       <%= f.label :address %>
       <%= f.text_area :address, class: "form-control" %>
 
@@ -34,7 +37,6 @@
 
       <%= f.label :tin_num %>
       <%= f.text_field :tin_num, class: "form-control" %>
-
 
       <%= f.label :status %>
       <%= f.radio_button :status, 'Active', :checked => true, class: "radio-inline" %>

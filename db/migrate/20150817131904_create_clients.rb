@@ -9,6 +9,7 @@ class CreateClients < ActiveRecord::Migration
       t.string :email
       t.string :tin_num
       t.string :status
+      t.belongs_to :user, index: true
 
       t.timestamps null: false
     end
