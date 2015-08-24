@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id]) 
+    @user = User.find(params[:id])
   end
 
   def update
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
 
   def update_password
     @user = User.find(params[:id])
-    if User.authenticate(@user.username, params[:user][:old_password]) || can?(:manage, User)
+    if User.authenticate(@user.email, params[:user][:old_password]) || can?(:manage, User)
       if @user.update(user_params)
         flash[:notice] = 'Successfully updated password.'
         redirect_to root_url
@@ -72,11 +72,11 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:last_name, :first_name, :username, :role, :password, :password_confirmation)
+    params.require(:user).permit(:last_name, :first_name, :email, :role, :password, :password_confirmation)
   end
 
   def edit_user_params
-    params.require(:user).permit(:last_name, :first_name, :username, :role)
+    params.require(:user).permit(:last_name, :first_name, :email, :role)
   end
 
   def password_params

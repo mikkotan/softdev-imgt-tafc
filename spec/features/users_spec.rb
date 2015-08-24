@@ -15,13 +15,13 @@ require 'database_cleaner'
 RSpec.feature 'User CRUD', js: true do
   before(:each) do
     User.create(password: 'pulitzer',
-                username: 'starjirachi1',
+                email: 'starjirachi1@yahoo.com',
                 password_confirmation: 'pulitzer',
                 first_name: 'Anfernee',
                 last_name: 'Ng',
                 role: 'owner')
     User.create(password: 'aaaaaaaa',
-                username: 'tawoako',
+                email: 'tawoako@hooray.com',
                 password_confirmation: 'aaaaaaaa',
                 first_name: 'John',
                 last_name: 'Peterson',
@@ -30,7 +30,7 @@ RSpec.feature 'User CRUD', js: true do
 
   scenario 'Create User' do
     visit '/login'
-    fill_in 'username', with: 'starjirachi1'
+    fill_in 'email', with: 'starjirachi1@yahoo.com'
     fill_in 'password', with: 'pulitzer'
 
     click_button 'Log in'
@@ -38,7 +38,7 @@ RSpec.feature 'User CRUD', js: true do
 
     fill_in 'user_first_name', with: 'Keia Joy'
     fill_in 'user_last_name', with: 'Harder'
-    fill_in 'user_username', with: 'keia123'
+    fill_in 'user_email', with: 'keia123@gmail.com'
     fill_in 'user_password', with: 'aaaaaaaa'
     fill_in 'user_password_confirmation', with: 'aaaaaaaa'
     choose 'user_role_owner'
@@ -49,18 +49,18 @@ RSpec.feature 'User CRUD', js: true do
 
   scenario 'Read User' do
     visit '/login'
-    fill_in 'username', with: 'starjirachi1'
+    fill_in 'email', with: 'starjirachi1@yahoo.com'
     fill_in 'password', with: 'pulitzer'
 
     click_button 'Log in'
 
     click_link 'Peterson, John'
-    expect(page).to have_text 'Username: tawoako'
+    expect(page).to have_text 'Email: tawoako@hooray.com'
   end
 
   scenario 'Delete User' do
     visit '/login'
-    fill_in 'username', with: 'starjirachi1'
+    fill_in 'email', with: 'starjirachi1@yahoo.com'
     fill_in 'password', with: 'pulitzer'
 
     click_button 'Log in'
@@ -69,12 +69,12 @@ RSpec.feature 'User CRUD', js: true do
     end
     page.driver.browser.switch_to.alert.accept
 
-    expect(page).to_not have_text 'Username: tawoako'
+    expect(page).to_not have_text 'Email: tawoako'
   end
 
   scenario 'Edit User' do
     visit '/login'
-    fill_in 'username', with: 'starjirachi1'
+    fill_in 'email', with: 'starjirachi1@yahoo.com'
     fill_in 'password', with: 'pulitzer'
 
     click_button 'Log in'
@@ -84,11 +84,11 @@ RSpec.feature 'User CRUD', js: true do
 
     fill_in 'user_first_name', with: 'Keia Joy'
     fill_in 'user_last_name', with: 'Harder'
-    fill_in 'user_username', with: 'keia123'
+    fill_in 'user_email', with: 'keia123@gmail.com'
     choose 'user_role_employee'
     click_button 'Update User'
 
-    expect(page).to have_text 'Username: keia123'
+    expect(page).to have_text 'Email: keia123@gmail.com'
     expect(page).to have_text 'Harder, Keia Joy'
     expect(page).to have_text 'Successfully updated profile.'
     expect(page).to have_text 'employee'

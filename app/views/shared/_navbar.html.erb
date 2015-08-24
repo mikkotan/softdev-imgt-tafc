@@ -18,7 +18,7 @@
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
             <!-- add view profile here -->
-            <li class="navbar-brand" href="#"><%= current_user ? "Logged in as #{current_user.username}" : "" %></li>
+            <li class="navbar-brand" href="#"><%= current_user ? "Logged in as #{current_user.email}" : "" %></li>
 
 
             <li class="dropdown">

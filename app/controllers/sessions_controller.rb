@@ -3,14 +3,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.authenticate(params[:username], params[:password])
+    user = User.authenticate(params[:email], params[:password])
 
     if user
       session[:user_id] = user.id
       redirect_to root_url, notice: 'Logged In!'
     else
-      flash[:alert] = 'Invalid Username or Password!'
-      @username = post_params[:username]
+      flash[:alert] = 'Invalid Email or Password!'
+      @email = post_params[:email]
       render 'new'
     end
   end
@@ -23,6 +23,6 @@ class SessionsController < ApplicationController
   private
 
   def post_params
-    params.permit(:username, :password)
+    params.permit(:email, :password)
   end
 end
