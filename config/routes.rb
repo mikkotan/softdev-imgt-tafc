@@ -5,6 +5,10 @@ Rails.application.routes.draw do
 
   get 'logout' => 'sessions#destroy', as: 'logout'
 
+  get 'employees' => 'users#employees', as: 'employees'
+
+  get 'employees/:id' => 'users#show_employee', as: 'show_employee'
+
   root 'users#index'
 
   resources :users

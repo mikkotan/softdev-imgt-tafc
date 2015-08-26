@@ -5,6 +5,14 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def employees
+    @employees = User.where("role = 'employee'").order(created_at: :desc)
+  end
+
+  def show_employee
+    @employee = User.find(params[:id])
+  end
+
   def show
     @user = User.find(params[:id])
   end
