@@ -1,9 +1,9 @@
 <h1>Users#index</h1>
 <p>Find me in app/views/users/index.html.erb</p>
-<% @users.each do |user| %>
 
-    <h3 class="text-capitalize"><%= "#{user.last_name}, #{user.first_name}" %></h3>
-    <div class="pull-right">
+<% @users.each do |user| %>
+    <%= link_to raw("<h3 class='text-capitalize'>#{user.last_name}, #{user.first_name}</h3>"), user %>
+    <div id="btns_<%= user.id %>" class="pull-right">
       <% if can? :edit, user %>
         <%= link_to raw("<button class='btn btn-info btn-sm'  role='button'><i class='glyphicon glyphicon-edit'></i> Edit Profile</button>"), edit_user_path(user) %>
       <% end %>
@@ -15,7 +15,7 @@
       <% end %>
     </div>
     <p>
-      Username: <%= user.username %>
+      Email: <%= user.email %>
     </p>
     Role:
     <p class="<%= user.role %>text">
