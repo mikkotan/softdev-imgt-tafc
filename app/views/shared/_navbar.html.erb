@@ -28,9 +28,10 @@
                 <li><%= link_to raw("<i class='glyphicon glyphicon-lock'></i> Change Password</button>"), change_password_path(current_user)%></li>
               </ul>
             </li>
+            <li><%= link_to raw("<i class='glyphicon glyphicon-pencil'></i> New User"), new_user_path %></li>
+            <li><%= link_to raw("<i class='glyphicon glyphicon-plus'></i> Add Client"), new_client_path %></li>
             <li><%= link_to raw("<i class='glyphicon glyphicon-log-out'></i> Log-out"), logout_path %></li>
         <% else %>
-            <li><%= link_to raw("<i class='glyphicon glyphicon-pencil'></i> Register"), new_user_path %></li>
             <li><%= link_to raw("<i class='glyphicon glyphicon-log-in'></i> Log-in"), login_path %></li>
         <% end %>
       </ul>

@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   def show_employee
     @employee = User.find(params[:id])
+    @clients = Client.where('user_id =  ? ', params[:id])
   end
 
   def show
@@ -51,7 +52,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:notice] = 'User successfully created.'
-      session[:user_id] ||= @user.id
       redirect_to users_path
     else
       render :new
