@@ -1,10 +1,11 @@
 <h5>Your are currently viewing the profile of <%= @employee.email %></h5>
 
-<h3 class="text-capitalize"><%= "#{@employee.last_name}, #{@employee.first_name}" %></h3>
+<strong><h3 class="text-capitalize"><%= "#{@employee.last_name}, #{@employee.first_name}" %></h3></strong>
+<hr>
 
 <% @clients.each do |user| %>
 
-    <h3 class="text-capitalize"><%= "#{user.company_name}" %></h3>
+    <h4 class="text-capitalize"><%= "#{user.company_name}" %></h4>
     <!--<div class="pull-right">-->
       <!--<% if can? :show_employee, user %>-->
           <!--<%= link_to raw("<button class='btn btn-info btn-sm'  role='button'><i class='glyphicon glyphicon-edit'></i> Details </button>"), show_employee_path(user) %>-->

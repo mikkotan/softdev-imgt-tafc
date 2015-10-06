@@ -13,7 +13,12 @@
     </p>
     Status:
     <p class="<%= client.status %>text">
-      <%= client.status %>
+      <% if client.status == "Active" %>
+        <span style="color:green"><i class="glyphicon glyphicon-ok"></i><%= client.status %></span>
+      <% else %>
+        <span style="color:red"><i class="glyphicon glyphicon-remove"></i><%= client.status %></span>
+      <% end %>
+
     </p>
     Employee In-charge: <%= client.user.email %>
     <hr>
