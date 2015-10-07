@@ -1,4 +1,4 @@
-class ClientsController < ApplicationController
+ class ClientsController < ApplicationController
   def index
     @clients = Client.all
   end
