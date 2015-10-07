@@ -1,7 +1,7 @@
 <h1>Clients#edit</h1>
 <p>Find me in app/views/clients/edit.html.erb</p>
 
-<%= form_for @client, url: {action: 'edit'} do |f| %>
+<%= form_for @client, url: {action: 'update'} do |f| %>
     <% if @client.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@client.errors.count, "error") %> prohibited this user from being saved:</h2>
