@@ -23,5 +23,6 @@ module SoftdevIMgtTafc
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.assets.paths << "#{Rails}/vendor/assets/fonts"
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
   end
 end
