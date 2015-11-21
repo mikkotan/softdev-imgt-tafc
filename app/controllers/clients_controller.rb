@@ -46,6 +46,9 @@
     end
   end
 
+  def assign
+  end
+
 
   private
 

@@ -11,8 +11,11 @@ Rails.application.routes.draw do
 
   root 'users#index'
 
+  get 'users/:id/clients' => 'users#clients'
+
   resources :users
 
+  get 'clients/assign'
 
   resources :clients
 

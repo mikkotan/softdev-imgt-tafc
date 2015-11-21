@@ -77,6 +77,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def clients
+    @clients = User.find(params[:id]).clients
+  end
+
   private
 
   def user_params
