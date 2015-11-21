@@ -1,60 +1,60 @@
-<h1>Clients#new</h1>
-<p>Find me in app/views/clients/new.html.erb</p>
-
 <%= form_for @client, url: {action: 'create'} do |f| %>
-<% if @client.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(@client.errors.count, "error") %>
-    prohibited this user from being saved:</h2>
+  <% if @client.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@client.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-  <ul>
-    <% @client.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
-<div class="form-group">
-  <%= f.label :company_name %>
-  <%= f.text_field :company_name, class: "form-control" %>
-</div>
-<div class="form-group">
-  <%= f.label :owner %>
-  <%= f.text_field :owner, class: "form-control" %>
-</div>
-<div class="form-group">
-  <%= f.label :representative %>
-  <%= f.text_field :representative, class: "form-control" %>
-</div>
-<div class="form-group">
-  <%= f.label :user_id %>
-  <%= f.select :user_id , employees.collect {|employee| ["#{employee.last_name}, #{employee.first_name}", employee.id]}, { },  { class: 'form-control' }%>
-</div>
-<div class="form-group">
-  <%= f.label :address %>
-  <%= f.text_area :address, class: "form-control" %>
-</div>
-<div class="form-group">
-  <%= f.label :tel_num %>
-  <%= f.text_field :tel_num, class: "form-control" %>
-</div>
-<div class="form-group">
-  <%= f.label :email %>
-  <%= f.text_field :email, class: "form-control" %>
-</div>
-<div class="form-group">
-  <%= f.label :tin_num %>
-  <%= f.text_field :tin_num, class: "form-control" %>
-</div>
-<div class="form-group">
-  <%= f.label :status, 'Status:'%>
-  <%= f.radio_button :status, 'Active', :checked => true, class: "radio-inline" %>
-  <%= label :role, 'active' %>
-  <%= f.radio_button :status, 'Inactive', class: "radio-inline" %>
-  <%= label :role, 'inactive' %>
-</div>
-<div class="actions col-md-6 pull-right">
-  <%= f.submit "Create Client", class: "btn btn-primary btn-md btn-block" %>
-</div>
+    <ul>
+      <% @client.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
 
+  <div class="form-group">
+    <%= f.label :company_name %>
+    <%= f.text_field :company_name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :owner %>
+    <%= f.text_field :owner, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :representative %>
+    <%= f.text_field :representative, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :user_id %>
+    <%= f.select :user_id, employees.collect do |employee|
+      ["#{employee.last_name}, #{employee.first_name}", employee.id]
+      end
+      , { }
+      , {class: 'form-control'} %>
+  </div>
+  <div class="form-group">
+    <%= f.label :address %>
+    <%= f.text_area :address, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :tel_num %>
+    <%= f.text_field :tel_num, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.text_field :email, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :tin_num %>
+    <%= f.text_field :tin_num, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :status, 'Status:'%>
+    <%= f.radio_button :status, 'Active', :checked => true, class: "radio-inline" %>
+    <%= label :role, 'active' %>
+    <%= f.radio_button :status, 'Inactive', class: "radio-inline" %>
+    <%= label :role, 'inactive' %>
+  </div>
+  <div class="actions col-md-6 pull-right">
+    <%= f.submit "Create Client", class: "btn btn-primary btn-md btn-block" %>
+  </div>
 <% end %>

@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     redirect_to root_url, notice: 'Successfully Logged Out!'
-    #toastr.success('Successfully Logged Out!')
+    # toastr.success('Successfully Logged Out!')
   end
 
   private

@@ -25,7 +25,6 @@ Rails.application.routes.draw do
 
   put 'users/:id/change_password' => 'users#update_password'
 
-
   # Hi! I'm anpeng and I'll put some references here. :D
   # get '/patients/:id', to: 'patients#show', as: 'patient'
   # <%= link_to 'Patient Record', patient_path(@patient) %>
