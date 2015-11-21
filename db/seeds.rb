@@ -27,6 +27,7 @@ user = User.create(password: 'password',
                    first_name: 'Keia Joy',
                    last_name: 'Harder',
                    role: 'employee')
+                   
 Client.create(company_name: 'ACME Inc.',
               owner: 'Kalbo',
               representative: 'Michael',

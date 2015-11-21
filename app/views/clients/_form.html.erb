@@ -1,0 +1,57 @@
+<%= form_for form_model, url: {action: action} do |f| %>
+  <% if form_model.errors.any? %>
+    <%= render "shared/error_messages", locals: {form_model: form_model} %>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :company_name %>
+    <%= f.text_field :company_name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :owner %>
+    <%= f.text_field :owner, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :representative %>
+    <%= f.text_field :representative, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :user_id %>
+    <%= f.select :user_id, employees.collect {|employee| ["#{employee.last_name}, #{employee.first_name}", employee.id]}, { },  { class: 'form-control' } %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :address %>
+    <%= f.text_area :address, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :tel_num %>
+    <%= f.text_field :tel_num, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.text_field :email, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :tin_num %>
+    <%= f.text_field :tin_num, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :status, 'Status:'%>
+    <%= f.radio_button :status, 'Active', :checked => true, class: "radio-inline" %>
+    <%= label :role, 'active' %>
+    <%= f.radio_button :status, 'Inactive', class: "radio-inline" %>
+    <%= label :role, 'inactive' %>
+  </div>
+
+  <div class="actions col-md-6 pull-right">
+    <%= f.submit action.capitalize + " Client", class: "btn btn-primary btn-md btn-block" %>
+  </div>
+<% end %>
