@@ -11,3 +11,25 @@
 .employeetext {
   color: #3498db;
 }
+
+#new_user input.error
+{
+	background-color: pink;
+	background-position: 379px 3px;
+	outline: none;
+}
+#new_user input.required
+{
+	background-color: #ed2d2d;
+	background-position: 379px -29px;
+}
+#new_user input.valid
+{
+	background-color: #fff;
+	background-position: 379px -61px;
+}
+#new_user input:required:valid
+{
+	background-color: #fff;
+	background-position: 379px -61px;
+}

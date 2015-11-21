@@ -7,7 +7,7 @@
     <div class="pull-right">
       <%= link_to raw("<button class='btn btn-info btn-sm'  role='button'><i class='glyphicon glyphicon-briefcase'></i> Details</button>"), client_path(client) %>
       <%= link_to raw("<button class='btn btn-info btn-sm'  role='button'><i class='glyphicon glyphicon-edit'></i> Edit Client</button>"), edit_client_path(client) %>
-      <%= link_to raw("<button class='btn btn-danger btn-sm'  role='button'><i class='glyphicon glyphicon-remove'></i> Destroy</button>"), client, method: :delete, data: {confirm: 'Are you sure?'} %>
+      <%= link_to raw("<button class='btn btn-danger btn-sm'  role='button'><i class='glyphicon glyphicon-remove'></i> Delete</button>"), client, method: :delete, data: {confirm: 'Are you sure?'} %>
     </div>
     <p>
       Owner: <%= client.owner %>
@@ -15,9 +15,9 @@
     Status:
     <p class="<%= client.status %>text">
       <% if client.status == "Active" %>
-        <span style="color:green"><i class="glyphicon glyphicon-ok"></i><%= client.status %></span>
+          <span style="color:green"><i class="glyphicon glyphicon-ok"></i><%= client.status %></span>
       <% else %>
-        <span style="color:red"><i class="glyphicon glyphicon-remove"></i><%= client.status %></span>
+          <span style="color:red"><i class="glyphicon glyphicon-remove"></i><%= client.status %></span>
       <% end %>
 
     </p>
