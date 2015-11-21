@@ -19,9 +19,11 @@
       </button>
     <% end %>
   </div>
+
   <p>
     Owner: <%= client.owner %>
   </p>
+
   Status:
   <p class="<%= client.status %>text">
     <% if client.status == "Active" %>
@@ -34,6 +36,7 @@
       </span>
     <% end %>
   </p>
+  
   Employee In-charge: <%= client.user_email %>
   <hr>
 <% end %>

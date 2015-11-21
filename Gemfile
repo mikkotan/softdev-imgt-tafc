@@ -56,3 +56,6 @@ group :development, :test do
   gem 'traceroute'
   gem 'rails_best_practices'
 end
+
+#pagination
+gem 'kaminari', '~> 0.16.1'

@@ -3,11 +3,11 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(10)
   end
 
   def employees
-    @employees = User.where("role = 'employee'").order(created_at: :desc)
+    @employees = User.where("role = 'employee'").order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show_employee
