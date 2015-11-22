@@ -59,3 +59,4 @@ end
 
 #pagination
 gem 'kaminari', '~> 0.16.1'
+gem 'bootstrap-kaminari-views'  

@@ -7082,3 +7082,6 @@ html, body {
 .footer, .container:after {
     height: 60px;
 }
+.pagination-container {
+  text-align: center;
+}
