@@ -12,8 +12,6 @@ class Ability
     elsif user.role == 'employee'
       can :read, :all
       can [:edit, :update, :change_password, :update_password], User, id: user.id
-    else
-      can :read, :all
     end
   end
 end
