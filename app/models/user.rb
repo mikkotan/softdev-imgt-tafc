@@ -32,4 +32,9 @@ class User < ActiveRecord::Base
   def signed_in?
     first_name
   end
+
+  def self.search(query)
+    q = "%#{query}%"
+    where("role = 'employee' AND first_name like ? or last_name like ?", q,q)
+  end
 end

@@ -6,12 +6,17 @@ class UsersController < ApplicationController
   end
 
   def employees
-    @employees = User.where("role = 'employee'").order(created_at: :desc)
+    if params[:search]
+      @employees = User.search(params[:search]).order('last_name ASC')
+    else
+      @employees = User.all.order('last_name ASC')
+    end
   end
 
   def show_employee
     @employee = User.find(params[:id])
-    @clients = Client.where('user_id =  ? ', params[:id])
+    @clients = @employee.clients
+
   end
 
   def show
