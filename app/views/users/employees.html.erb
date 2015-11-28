@@ -1,4 +1,5 @@
 <h1>Employees#index</h1>
+
 <p>Find me in app/views/users/index.html.erb</p>
 
 <%= form_tag(employees_path, :method => 'get', class: 'navbar-form', id: 'search-form') do %>
@@ -36,3 +37,5 @@
     Clients: <p><%= user.clients.count %></p>
     <hr>
 <% end %>
+<%= paginate @employees %>
+<%= page_entries_info @employees %>

@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-
   has_many :clients
 
   validates :first_name, presence: true
@@ -16,10 +15,9 @@ class User < ActiveRecord::Base
   validates_presence_of :email
 
   def encrypt_password
-    if @password.present?
-      self.password_salt = BCrypt::Engine.generate_salt
-      self.password_hash = BCrypt::Engine.hash_secret(@password, password_salt)
-    end
+    return false unless @password.present?
+    self.password_salt = BCrypt::Engine.generate_salt
+    self.password_hash = BCrypt::Engine.hash_secret(@password, password_salt)
   end
 
   def self.authenticate(email, password)
@@ -29,8 +27,9 @@ class User < ActiveRecord::Base
     end
   end
 
-  def signed_in?
-    first_name
+  def update_info(params)
+    attributes = params
+    save
   end
 
   def self.search(query)

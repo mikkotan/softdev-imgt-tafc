@@ -1,0 +1,10 @@
+<% @clients.each do |client| %>
+    <div class="container">
+      <p>
+        <%= client.company_name %>
+      </p>
+      <p>
+        Owner: <%= client.owner %>
+      </p>
+    </div>
+<% end %>

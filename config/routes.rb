@@ -25,8 +25,11 @@ Rails.application.routes.draw do
 
   root 'users#index'
 
+  get 'users/:id/clients' => 'users#clients'
+
   resources :users
 
+  get 'clients/assign'
 
   resources :clients
 
@@ -35,7 +38,6 @@ Rails.application.routes.draw do
   patch 'users/:id/change_password' => 'users#update_password'
 
   put 'users/:id/change_password' => 'users#update_password'
-
 
   # Hi! I'm anpeng and I'll put some references here. :D
   # get '/patients/:id', to: 'patients#show', as: 'patient'

@@ -1,4 +1,6 @@
- class ClientsController < ApplicationController
+class ClientsController < ApplicationController
+  before_action :find_client, only: [:show, :edit, :destroy, :update]
+
   def index
     if params[:search]
       @clients = Client.search(params[:search]).order('company_name ASC')
@@ -8,7 +10,6 @@
   end
 
   def show
-    @client = Client.find(params[:id])
   end
 
   def new
@@ -24,24 +25,18 @@
     else
       render :new
     end
-
   end
 
   def edit
-    @client = Client.find(params[:id])
   end
 
   def destroy
-    @client = Client.find(params[:id])
-
     @client.destroy
 
     redirect_to clients_path
   end
 
   def update
-    @client = Client.find(params[:id])
-
     if @client.update(client_params)
       flash[:notice] = 'Client successfully updated.'
       redirect_to clients_path
@@ -50,6 +45,8 @@
     end
   end
 
+  def assign
+  end
 
   private
 
@@ -57,5 +54,7 @@
     params.require(:client).permit(:company_name, :owner, :representative, :address, :tel_num, :email, :tin_num, :status, :user_id)
   end
 
-
+  def find_client
+    @client = Client.find(params[:id])
+  end
 end

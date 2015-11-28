@@ -14,19 +14,20 @@ User.create(password: 'password',
            )
 
 User.create(password: 'tantantan',
-          email: 'tantantan@yahoo.com',
-          password_confirmation: 'tantantan',
-          first_name: 'Michael Tan',
-          last_name: 'Tan',
-          role: 'owner'
-)
+            email: 'tantantan@yahoo.com',
+            password_confirmation: 'tantantan',
+            first_name: 'Michael Tan',
+            last_name: 'Tan',
+            role: 'owner'
+           )
 
 user = User.create(password: 'password',
-            email: 'keia123@gmail.com',
-            password_confirmation: 'password',
-            first_name: 'Keia Joy',
-            last_name: 'Harder',
-            role: 'employee')
+                   email: 'keia123@gmail.com',
+                   password_confirmation: 'password',
+                   first_name: 'Keia Joy',
+                   last_name: 'Harder',
+                   role: 'employee')
+                   
 Client.create(company_name: 'ACME Inc.',
               owner: 'Kalbo',
               representative: 'Michael',

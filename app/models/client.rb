@@ -5,4 +5,8 @@ class Client < ActiveRecord::Base
   def self.search(query)
     where("company_name like ?", "%#{query}%")
   end
+
+  def user_email
+    user.email
+  end
 end
