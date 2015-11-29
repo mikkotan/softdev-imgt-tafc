@@ -43,8 +43,9 @@ ActiveRecord::Schema.define(version: 20151126091545) do
     t.string   "name"
     t.float    "monthly_fee"
     t.string   "service_type"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.boolean  "is_template",  default: true
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "transactions", force: :cascade do |t|
@@ -53,9 +54,12 @@ ActiveRecord::Schema.define(version: 20151126091545) do
     t.float    "vat"
     t.float    "percentage"
     t.string   "other_processing"
+    t.integer  "client_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
+
+  add_index "transactions", ["client_id"], name: "index_transactions_on_client_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"

@@ -44,5 +44,41 @@ RSpec.describe Service, type: :model do
     expect(@service.total_cost).to eq 4000
   end
 
+  it 'defaults to is_template == true' do
+    Service.create(name: 'Service A',
+      service_type: 'none',
+      monthly_fee: 3000)
+    @service = Service.find 1
+
+    expect(@service.is_template).to eq true
+  end
+
+  it 'can make "real" non-template services' do
+    Service.create(name: 'Service A',
+      service_type: 'none',
+      monthly_fee: 3000)
+    @service = Service.find 1
+
+    @real_service = @service.make
+    @real_service.save
+
+    @test_service = Service.find 2
+    expect(@test_service.is_template).to eq false
+    expect(@test_service).to eq @service
+  end
+
+  it 'can return only the important info of a service' do
+    Service.create(name: 'Service A',
+      service_type: 'none',
+      monthly_fee: 3000)
+    @service = Service.find 1
+
+    expect(@service.info_hash).to eq({'name' => 'Service A',
+      'service_type' => 'none',
+      'monthly_fee' => 3000})
+  end
   it 'has its type default to none'
+  it 'can not have a fee of lower than zero'
+  it 'templates to only related cost templates'
+  it 'non-templates to only related cost non templates'
 end
