@@ -31,4 +31,9 @@ class User < ActiveRecord::Base
     attributes = params
     save
   end
+
+  def self.search(query)
+    q = "%#{query}%"
+    where("role = 'employee' AND first_name like ? or last_name like ?", q,q)
+  end
 end

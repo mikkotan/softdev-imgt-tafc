@@ -2,7 +2,11 @@ class ClientsController < ApplicationController
   before_action :find_client, only: [:show, :edit, :destroy, :update]
 
   def index
-    @clients = Client.all
+    if params[:search]
+      @clients = Client.search(params[:search]).order('company_name ASC')
+    else
+      @clients = Client.all.order('company_name ASC')
+    end
   end
 
   def show

@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  get 'transactions/index'
+
+  get 'transactions/show'
+
+  get 'transactions/new'
+
+  get 'transactions/create'
+
+  get 'transactions/edit'
+
+  get 'transactions/update'
+
+  get 'transactions/destroy'
+
   get 'login' => 'sessions#new', as: 'login'
 
   post 'login' => 'sessions#create', as: 'check_login'
