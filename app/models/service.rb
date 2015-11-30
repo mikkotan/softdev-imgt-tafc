@@ -1,5 +1,12 @@
 class Service < ActiveRecord::Base
+  include Modules::InfoHashable
+
   has_many :related_costs
+  validates :name, presence: true
+  validates :monthly_fee, numericality: { greater_than_or_equal_to: 0 }
+  validate :template_status_must_match_all_template_statuses_of_related_costs
+
+  before_save :no_type_becomes_none
 
   def complete_name
     return name if service_type == 'none'
@@ -17,11 +24,13 @@ class Service < ActiveRecord::Base
     @new_thing
   end
 
-  def info_hash
-    attributes.delete_if{ |key, value| ["updated_at", "created_at", "id", "is_template"].include? key }
+  def no_type_becomes_none
+    self.service_type = 'none' if service_type.blank?
   end
 
-  def ==(y)
-    info_hash == y.info_hash
+  def template_status_must_match_all_template_statuses_of_related_costs
+    related_costs.each do |related_cost|
+      errors.add(:is_template, "TemplateMismatchError") if related_cost.is_template != is_template
+    end
   end
 end

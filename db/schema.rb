@@ -33,8 +33,9 @@ ActiveRecord::Schema.define(version: 20151126091545) do
     t.string   "nature"
     t.float    "value"
     t.integer  "service_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "is_template", default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_index "related_costs", ["service_id"], name: "index_related_costs_on_service_id"
@@ -42,10 +43,10 @@ ActiveRecord::Schema.define(version: 20151126091545) do
   create_table "services", force: :cascade do |t|
     t.string   "name"
     t.float    "monthly_fee"
-    t.string   "service_type"
+    t.string   "service_type", default: "none"
     t.boolean  "is_template",  default: true
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "transactions", force: :cascade do |t|
