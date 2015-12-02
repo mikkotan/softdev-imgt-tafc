@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151007150542) do
+ActiveRecord::Schema.define(version: 20151126091545) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "company_name"
@@ -29,15 +29,38 @@ ActiveRecord::Schema.define(version: 20151007150542) do
 
   add_index "clients", ["user_id"], name: "index_clients_on_user_id"
 
+  create_table "related_costs", force: :cascade do |t|
+    t.string   "nature"
+    t.float    "value"
+    t.integer  "service_id"
+    t.boolean  "is_template", default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "related_costs", ["service_id"], name: "index_related_costs_on_service_id"
+
+  create_table "services", force: :cascade do |t|
+    t.string   "name"
+    t.float    "monthly_fee"
+    t.string   "service_type", default: "none"
+    t.boolean  "is_template",  default: true
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
   create_table "transactions", force: :cascade do |t|
     t.datetime "month_and_year"
     t.float    "retainers_fee"
     t.float    "vat"
     t.float    "percentage"
     t.string   "other_processing"
+    t.integer  "client_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
+
+  add_index "transactions", ["client_id"], name: "index_transactions_on_client_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"

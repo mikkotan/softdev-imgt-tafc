@@ -1,5 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Transaction, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'returns invoice # as an integer'
+  it 'can not have a template service'
 end
