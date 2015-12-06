@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     user = User.authenticate(params[:email], params[:password])
     if user
       session[:user_id] = user.id
-      redirect_to root_url, notice: 'Logged In!'
+      redirect_to '/home', notice: 'Logged In!'
     else
       flash[:alert] = 'Invalid Email or Password!'
       @email = post_params[:email]

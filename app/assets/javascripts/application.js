@@ -12,8 +12,8 @@
 //
 // Adding js files in this folder is already enough, so don't add anymore lines here.
 //
-//= require toastr
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap-sprockets
 //= require_tree .

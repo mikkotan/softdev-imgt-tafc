@@ -4,27 +4,26 @@
 <head>
   <title>SoftdevIMgtTafc</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= custom_bootstrap_flash %>
-      <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-        <%= csrf_meta_tags %>
+  <%= custom_bootstrap_flash %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
 </head>
 
 <body>
 
-  <%= render "shared/navbar" %>
+<%= render "shared/navbar" %>
 
-    <div class="container">
-      <div class="col-md-2">
-        <%= render "shared/flash_messages" %>
-      </div>
-      <div class="col-md-8">
-        <%= yield %>
-      </div>
-      <div class="col-md-2">
-        
-      </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1">
+      <%= render "shared/flash_messages" %>
     </div>
-    <%= render "shared/footer" %>
+  </div>
+  <div class="row">
+    <%= yield %>
+  </div>
+</div>
+<%= render "shared/footer" %>
 
 </body>
 

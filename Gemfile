@@ -59,4 +59,8 @@ end
 
 #pagination
 gem 'kaminari', '~> 0.16.1'
-gem 'bootstrap-kaminari-views'  
+gem 'bootstrap-kaminari-views'
+
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootswatch-rails'
+#datatables
