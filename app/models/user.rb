@@ -1,18 +1,25 @@
+class EmailValidator < ActiveModel::Validator
+  def validate(record)
+    unless record.email =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+      record.errors[:email] << 'Need a valid email please!'
+    end
+  end
+end
+
 class User < ActiveRecord::Base
+  include ActiveModel::Validations
+  validates_with EmailValidator
   has_many :clients
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :password, length: { minimum: 8 }
+  validates :password, length: { minimum: 8 }, presence: true, confirmation: true
+  validates :email, uniqueness: true, presence: true
 
   attr_accessor :password
   before_save :encrypt_password
 
   attr_accessor :password
-  validates_confirmation_of :password
-  validates_presence_of :password
-  validates_uniqueness_of :email
-  validates_presence_of :email
 
   def encrypt_password
     return false unless @password.present?
@@ -30,5 +37,10 @@ class User < ActiveRecord::Base
   def update_info(params)
     attributes = params
     save
+  end
+
+  def self.search_employee(query)
+    q = "%#{query}%"
+    where("role = 'employee' AND first_name like ? or last_name like ?", q,q)
   end
 end

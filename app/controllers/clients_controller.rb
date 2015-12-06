@@ -3,7 +3,11 @@ class ClientsController < ApplicationController
   before_filter :require_authorization
 
   def index
-    @clients = Client.all
+    if params[:search]
+      @clients = Client.search(params[:search]).order('company_name ASC')
+    else
+      @clients = Client.all.order('company_name ASC')
+    end
   end
 
   def show
@@ -57,7 +61,7 @@ class ClientsController < ApplicationController
 
   def require_authorization
     if can? :read, :all
-      
+
     else
       flash[:alert] = 'Unauthorized! login ples'
       redirect_to '/login'
