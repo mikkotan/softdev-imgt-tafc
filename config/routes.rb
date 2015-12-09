@@ -1,17 +1,4 @@
 Rails.application.routes.draw do
-  get 'transactions/index'
-
-  get 'transactions/show'
-
-  get 'transactions/new'
-
-  get 'transactions/create'
-
-  get 'transactions/edit'
-
-  get 'transactions/update'
-
-  get 'transactions/destroy'
 
   get 'login' => 'sessions#new', as: 'login'
 
@@ -38,6 +25,14 @@ Rails.application.routes.draw do
   patch 'users/:id/change_password' => 'users#update_password'
 
   put 'users/:id/change_password' => 'users#update_password'
+
+  post 'clients/:id/new_transaction' => 'transactions#create', as: 'new_transaction'
+
+  post ':id/fees/new' => 'fees#create', as:'new_fee'
+  resources :transactions
+
+  resources :fees
+
 
   # Hi! I'm anpeng and I'll put some references here. :D
   # get '/patients/:id', to: 'patients#show', as: 'patient'

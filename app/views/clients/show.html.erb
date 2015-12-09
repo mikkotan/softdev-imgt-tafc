@@ -7,5 +7,32 @@
 
 <div class="pull-right">
   <%= link_to raw("<button class='btn btn-info btn-sm'  role='button'><i class='glyphicon glyphicon-list-alt'></i> Show Report</button>"), logout_path %>
-  <%= link_to raw("<button class='btn btn-info btn-sm'  role='button'><i class='glyphicon glyphicon-briefcase'></i> Add Transaction</button>"), logout_path %>
+  <%= link_to raw("<button class='btn btn-info btn-sm'  role='button'><i class='glyphicon glyphicon-briefcase'></i> Add Transaction</button>"), new_transaction_path(@client.id) %>
 </div>
+
+<%= form_for @transaction, url: new_transaction_path(@client.id) do |f| %>
+    <div class="form-group">
+      <%= f.label :retainers_fee %>
+      <%= f.text_field :retainers_fee, class: "form-control", type: "number", required: "required" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :vat %>
+      <%= f.text_field :vat, class: "form-control", type: "number", required: "required" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :percentage %>
+      <%= f.text_field :percentage, class: "form-control", type: "number", required: "required" %>
+    </div>
+    <div class="actions col-md-6 pull-right">
+      <%= f.submit "New Transaction", class: "btn btn-primary btn-md btn-block" %>
+    </div>
+<% end %>
+
+<ol>
+  <% @transactions.each do |transaction| %>
+      <li>
+        <h3 class="text-capitalize">Transaction Invoice: <%= "#{transaction.id}" %></h3>
+        <%= link_to raw("<button class='btn btn-info btn-sm'  role='button'><i class='glyphicon glyphicon-briefcase'></i> Transaction Details</button>"), transaction_path(transaction) %>
+      </li>
+  <% end %>
+</ol>
