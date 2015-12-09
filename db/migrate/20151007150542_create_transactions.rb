@@ -4,6 +4,7 @@ class CreateTransactions < ActiveRecord::Migration
       t.float :retainers_fee
       t.float :vat
       t.float :percentage
+      t.text :transaction_details
       t.belongs_to :client, index: true
       t.timestamps null: false
     end

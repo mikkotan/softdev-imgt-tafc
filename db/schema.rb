@@ -64,9 +64,10 @@ ActiveRecord::Schema.define(version: 20151208120216) do
     t.float    "retainers_fee"
     t.float    "vat"
     t.float    "percentage"
+    t.text     "transaction_details"
     t.integer  "client_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   add_index "transactions", ["client_id"], name: "index_transactions_on_client_id"
