@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SoftdevIMgtTafc</title>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= custom_bootstrap_flash %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body class="login-body">
+    <div id="flash_messages">
+      <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, class: name %>
+      <% end %>
+    </div>
+
+    <%= yield %>
+
+  </body>
+</html>

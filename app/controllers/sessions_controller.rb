@@ -1,13 +1,13 @@
 class SessionsController < ApplicationController
+  layout :resolve_layout
   def new
   end
 
   def create
     user = User.authenticate(params[:email], params[:password])
-
     if user
       session[:user_id] = user.id
-      redirect_to root_url, notice: 'Logged In!'
+      redirect_to '/home', notice: 'Logged In!'
     else
       flash[:alert] = 'Invalid Email or Password!'
       @email = post_params[:email]
@@ -17,10 +17,19 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, notice: 'Successfully Logged Out!'
+    redirect_to "/login", notice: 'Successfully Logged Out!'
   end
 
   private
+
+  def resolve_layout
+    case action_name
+    when 'new', 'create'
+      'blank_layout'
+    else
+      'application'
+    end
+ end
 
   def post_params
     params.permit(:email, :password)

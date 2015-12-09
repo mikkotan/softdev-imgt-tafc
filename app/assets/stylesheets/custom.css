@@ -1,0 +1,38 @@
+* {
+  margin: 0
+}
+html,
+body {
+  height: 100%
+}
+.container {
+  min-height   : 100%
+  /* equal to footer height */
+  margin-bottom: -60px
+}
+.container:after {
+  content: ''
+  display: block
+}
+.footer,
+.container:after {
+  height: 60px
+}
+.pagination-container {
+  text-align: center
+}
+.login-panel {
+  margin-top: 25%
+}
+.login-body {
+  background-color: #F8F8F8
+}
+.pagination-container {
+  text-align: center
+}
+.login-panel {
+  margin-top: 25%
+}
+.login-body {
+  background-color: #F8F8F8
+}
