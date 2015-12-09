@@ -59,3 +59,4 @@ gem 'bootstrap-kaminari-views'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bootswatch-rails'
 #datatables
+gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'

@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 window.onload = () ->
-  H5F.setup(document.getElementById("forms"));
+  H5F.setup(document.getElementById("forms"))
 
 jQuery ->
+  $("#table").DataTable()

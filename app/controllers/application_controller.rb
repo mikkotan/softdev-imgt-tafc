@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |_exception|
     flash[:notice] = 'You are unauthorized!'
-    redirect_to login
+    redirect_to '/login'
   end
 
   private
