@@ -4,6 +4,7 @@ RSpec.describe Service, type: :model do
   it 'has a monthly fee' do
     create(:service)
     @service = Service.find 1
+
     expect(@service.complete_name).to eq 'Service A'
     expect(@service.monthly_fee).to eq 5000
   end
@@ -11,6 +12,7 @@ RSpec.describe Service, type: :model do
   it 'can have a service type' do
     create(:service, service_type: 'Type A')
     @service = Service.find 1
+
     expect(@service.complete_name).to eq 'Service A w/ Type A'
     expect(@service.monthly_fee).to eq 5000
   end
@@ -19,6 +21,7 @@ RSpec.describe Service, type: :model do
     create(:service)
     @service = Service.find 1
     @service.related_costs << build(:related_cost)
+
     expect(@service.related_costs[0].value).to eq 250
     expect(@service.related_costs[0].nature).to eq 'Registration fee'
   end
@@ -27,6 +30,7 @@ RSpec.describe Service, type: :model do
     create :service
     create :related_cost
     create :related_cost, nature: 'BIR Fee', value: 750
+
     @service = Service.find 1
     @service.related_costs << RelatedCost.find(1)
     @service.related_costs << RelatedCost.find(2)

@@ -43,4 +43,8 @@ class User < ActiveRecord::Base
     q = "%#{query}%"
     where("role = 'employee' AND first_name like ? or last_name like ?", q,q)
   end
+
+  def name
+    [first_name, last_name].join " "
+  end
 end
