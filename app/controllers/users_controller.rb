@@ -1,19 +1,14 @@
 class UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update, :destroy, :change_password, :update_password]
+  before_filter :require_authorization
   load_and_authorize_resource
 
   def index
-    @users = User.page(params[:page]).per(10)
+    @users = User.page(params[:page])
   end
 
   def employees
-    if params[:search]
-
-      @employees = User.search(params[:search]).order('last_name ASC').page(params[:page]).per(10)
-
-    else
-      @employees = User.all.order('last_name ASC').page(params[:page]).per(10)
-    end
+    @employees = User.where("role = 'employee'").order(created_at: :desc).page(params[:page])
   end
 
   def show_employee
@@ -89,5 +84,14 @@ class UsersController < ApplicationController
 
   def find_user
     @user = User.find(params[:id])
+  end
+
+  def require_authorization
+    if can? :read, :all
+
+    else
+      flash[:alert] = 'Unauthorized! login ples'
+      redirect_to '/login'
+    end
   end
 end

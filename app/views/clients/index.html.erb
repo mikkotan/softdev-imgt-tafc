@@ -1,8 +1,44 @@
-<%= form_tag(clients_path, :method => 'get', class: 'navbar-form', id: 'search-form') do %>
-    <div class="form-group">
-      <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search Clients' %>
-      <button class="btn" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-    </div>
+<% @clients.each do |client| %>
+  <h3 class="text-capitalize"><%= "#{client.company_name}" %></h3>
+  <div class="pull-right">
+    <%= link_to client_path(client) do %>
+      <button class='btn btn-info btn-sm' role='button'>
+        <i class='glyphicon glyphicon-briefcase'></i> Details
+      </button>
+    <% end %>
+
+    <%= link_to edit_client_path(client) do %>
+      <button class='btn btn-info btn-sm' role='button'>
+        <i class='glyphicon glyphicon-edit'></i> Edit Client
+      </button>
+    <% end %>
+
+    <%= link_to client, method: :delete, data: {confirm: 'Are you sure?'} do %>
+      <button class='btn btn-danger btn-sm' role='button'>
+        <i class='glyphicon glyphicon-remove'></i> Destroy
+      </button>
+    <% end %>
+  </div>
+
+  <p>
+    Owner: <%= client.owner %>
+  </p>
+
+  Status:
+  <p class="<%= client.status %>text">
+    <% if client.status == "Active" %>
+      <span style="color:green">
+        <i class="glyphicon glyphicon-ok"></i><%= client.status %>
+      </span>
+    <% else %>
+      <span style="color:red">
+        <i class="glyphicon glyphicon-remove"></i><%= client.status %>
+      </span>
+    <% end %>
+  </p>
+
+  Employee In-charge: <%= client.user_email %>
+  <hr>
 <% end %>
 
 <ol>

@@ -1,37 +1,44 @@
-<%= form_tag(employees_path, :method => 'get', class: 'navbar-form', id: 'search-form') do %>
-    <div class="form-group">
-      <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search Employees' %>
-      <button class="btn" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-    </div>
-<% end %>
-
-<% @employees.each do |user| %>
-
-    <h3 class="text-capitalize"><%= "#{user.last_name}, #{user.first_name}" %></h3>
-    <div class="pull-right">
-      <% if can? :show_employee, user %>
-          <%= link_to raw("<button class='btn btn-info btn-sm'  role='button'><i class='glyphicon glyphicon-edit'></i> Details </button>"), show_employee_path(user) %>
-      <% end %>
-      <% if can? :edit, user %>
-          <%= link_to raw("<button class='btn btn-info btn-sm'  role='button'><i class='glyphicon glyphicon-edit'></i> Edit Profile</button>"), edit_user_path(user) %>
-      <% end %>
-      <% if can? :destroy, user %>
-          <%= link_to raw("<button class='btn btn-danger btn-sm'  role='button'><i class='glyphicon glyphicon-remove'></i> Delete</button>"), user, method: :delete, data: {confirm: 'Are you sure?'} %>
-      <% end %>
-      <% if can? :change_password, user %>
-          <%= link_to raw("<button class='btn btn-warning btn-sm'  role='button'><i class='glyphicon glyphicon-remove'></i> Change Password</button>"), change_password_path(user)%>
-      <% end %>
-    </div>
-    <p>
-      Email: <%= user.email %>
-    </p>
-    Role:
-    <p class="<%= user.role %>text">
-      <%= user.role %>
-    </p>
-
-    Clients: <p><%= user.clients.count %></p>
-    <hr>
-<% end %>
-<%= paginate @employees %>
-<%= page_entries_info @employees %>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Options</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @employees.each do |user| %>
+      <tr>
+        <td><h3 class="text-capitalize"><%= "#{user.last_name}, #{user.first_name}" %></h3></td>
+        <td><%= user.email %></td>
+        <td>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Options <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <% if can? :show_employee, user %>
+                  <%= link_to raw("<button class='btn btn-info btn-sm'  role='button'><i class='glyphicon glyphicon-edit'></i> Details </button>"), show_employee_path(user) %>
+              <% end %>
+            </li>
+            <li>
+              <% if can? :edit, user %>
+                  <%= link_to raw("<button class='btn btn-info btn-sm'  role='button'><i class='glyphicon glyphicon-edit'></i> Edit Profile</button>"), edit_user_path(user) %>
+              <% end %>
+            </li>
+            <li>
+              <% if can? :destroy, user %>
+                  <%= link_to raw("<button class='btn btn-danger btn-sm'  role='button'><i class='glyphicon glyphicon-remove'></i> Delete</button>"), user, method: :delete, data: {confirm: 'Are you sure?'} %>
+              <% end %>
+            </li>
+            <li>
+              <% if can? :change_password, user %>
+                  <%= link_to raw("<button class='btn btn-warning btn-sm'  role='button'><i class='glyphicon glyphicon-remove'></i> Change Password</button>"), change_password_path(user) %>
+              <% end %>
+            </li>
+          </ul>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

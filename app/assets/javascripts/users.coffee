@@ -4,3 +4,5 @@
 
 window.onload = () ->
   H5F.setup(document.getElementById("forms"));
+
+jQuery ->
