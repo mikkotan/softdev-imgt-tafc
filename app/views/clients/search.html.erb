@@ -1,13 +1,22 @@
-<h1>Clients#search</h1>
-<p>Find me in app/views/clients/search.html.erb</p>
-
 <% @clients.each do |client| %>
 
     <h3 class="text-capitalize"><%= "#{client.company_name}" %></h3>
     <div class="pull-right">
-      <%= link_to raw("<button class='btn btn-info btn-sm'  role='button'><i class='glyphicon glyphicon-briefcase'></i> Details</button>"), client_path(client) %>
-      <%= link_to raw("<button class='btn btn-info btn-sm'  role='button'><i class='glyphicon glyphicon-edit'></i> Edit Client</button>"), edit_client_path(client) %>
-      <%= link_to raw("<button class='btn btn-danger btn-sm'  role='button'><i class='glyphicon glyphicon-remove'></i> Destroy</button>"), client, method: :delete, data: {confirm: 'Are you sure?'} %>
+      <%= link_to client_path(client) do %>
+        <button class='btn btn-info btn-sm' role='button'>
+          <i class='glyphicon glyphicon-briefcase'></i> Details
+        </button>
+      <% end %>
+      <%= link_to edit_client_path(client) do %>
+        <button class='btn btn-info btn-sm' role='button'>
+          <i class='glyphicon glyphicon-edit'></i> Edit Client
+        </button>
+      <% end %>
+      <%= link_to client, method: :delete, data: {confirm: 'Are you sure?'} do %>
+        <button class='btn btn-danger btn-sm'  role='button'>
+          <i class='glyphicon glyphicon-remove'></i> Destroy
+        </button>
+      <% end %>
     </div>
     <p>
       Owner: <%= client.owner %>
@@ -19,7 +28,6 @@
       <% else %>
           <span style="color:red"><i class="glyphicon glyphicon-remove"></i><%= client.status %></span>
       <% end %>
-
     </p>
     Employee In-charge: <%= client.user.email %>
     <hr>

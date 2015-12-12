@@ -3,11 +3,17 @@
 <strong><h3 class="text-capitalize"><%= "#{@client.company_name}" %></h3></strong>
 <hr>
 
-
-
 <div class="pull-right">
-  <%= link_to raw("<button class='btn btn-info btn-sm'  role='button'><i class='glyphicon glyphicon-list-alt'></i> Show Report</button>"), logout_path %>
-  <%= link_to raw("<button class='btn btn-info btn-sm'  role='button'><i class='glyphicon glyphicon-briefcase'></i> Add Transaction</button>"), new_transaction_path(@client.id) %>
+  <%= link_to logout_path do %>
+    <button class='btn btn-info btn-sm' role='button'>
+      <i class='glyphicon glyphicon-list-alt'></i> Show Report
+    </button>
+  <% end %>
+  <%= link_to new_transaction_path(@client.id) do %>
+   <button class='btn btn-info btn-sm' role='button'>
+     <i class='glyphicon glyphicon-briefcase'></i> Add Transaction
+   </button>
+  <% end %>
 </div>
 
 <%= form_for @transaction, url: new_transaction_path(@client.id) do |f| %>
@@ -32,7 +38,11 @@
   <% @transactions.each do |transaction| %>
       <li>
         <h3 class="text-capitalize">Transaction Invoice: <%= "#{transaction.id}" %></h3>
-        <%= link_to raw("<button class='btn btn-info btn-sm'  role='button'><i class='glyphicon glyphicon-briefcase'></i> Transaction Details</button>"), transaction_path(transaction) %>
+        <%= link_to transaction_path(transaction) do %>
+          <button class='btn btn-info btn-sm' role='button'>
+            <i class='glyphicon glyphicon-briefcase'></i> Transaction Details
+          </button>
+        <% end %>
       </li>
   <% end %>
 </ol>
