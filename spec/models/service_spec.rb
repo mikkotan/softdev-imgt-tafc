@@ -61,9 +61,9 @@ RSpec.describe Service, type: :model do
     create(:service)
     @service = Service.find 1
 
-    expect(@service.info_hash).to eq({'name' => 'Service A',
-      'service_type' => 'none',
-      'monthly_fee' => 5000})
+    expect(@service.info_hash).to eq('name' => 'Service A',
+                                     'service_type' => 'none',
+                                     'monthly_fee' => 5000)
   end
 
   it 'has its type default to none' do

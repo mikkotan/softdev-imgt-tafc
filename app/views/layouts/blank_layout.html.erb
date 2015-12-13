@@ -4,6 +4,7 @@
     <title>SoftdevIMgtTafc</title>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= custom_bootstrap_flash %>
+
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
@@ -17,4 +18,7 @@
     <%= yield %>
 
   </body>
+
+  <%= javascript_include_tag 'datatables', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'datatables-bootstrap', 'data-turbolinks-track' => true %>
 </html>
