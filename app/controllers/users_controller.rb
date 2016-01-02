@@ -18,7 +18,6 @@ class UsersController < ApplicationController
   def show_employee
     @employee = User.find(params[:id])
     @clients = @employee.clients
-
   end
 
   def show
@@ -34,7 +33,7 @@ class UsersController < ApplicationController
   def update
     if @user.update_info edit_user_params
       flash[:notice] = 'Successfully updated profile.'
-      redirect_to root_url
+      redirect_to '/home'
     else
       render :edit
     end
