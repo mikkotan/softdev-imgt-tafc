@@ -1,11 +1,20 @@
-<h5>You are currently viewing the profile of <%= @client.company_name %></h5>
+<h5>You are currently viewing the profile of
+  <%= @client.company_name %></h5>
 
-<strong><h3 class="text-capitalize"><%= "#{@client.company_name}" %></h3></strong>
+<strong>
+  <h3 class="text-capitalize"><%= "#{@client.company_name}" %></h3>
+</strong>
 <hr>
 
-
-
 <div class="pull-right">
-  <%= link_to raw("<button class='btn btn-info btn-sm'  role='button'><i class='glyphicon glyphicon-list-alt'></i> Show Report</button>"), logout_path %>
-  <%= link_to raw("<button class='btn btn-info btn-sm'  role='button'><i class='glyphicon glyphicon-briefcase'></i> Add Transaction</button>"), logout_path %>
+  <%= link_to no_path %>
+  <button class='btn btn-info btn-sm' role='button'>
+    <i class='glyphicon glyphicon-list-alt'></i>
+    Show Report</button>
+  <% end %>
+  <%= link_to edit_client_path(client) %>
+  <button class='btn btn-info btn-sm' role='button'>
+    <i class='glyphicon glyphicon-plus'></i>
+    Add Transaction</button>
+  <% end %>
 </div>
