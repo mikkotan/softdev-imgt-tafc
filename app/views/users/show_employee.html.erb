@@ -48,7 +48,7 @@ Status:
 
 <div class="pull-right">
   <% if can? :new, @employee %>
-  <%= link_to new_client_path %>
+  <%= link_to new_client_path do %>
   <button class='btn btn-info btn-sm' role='button'>
     <i class='glyphicon glyphicon-edit'></i>
     ADD CLIENT

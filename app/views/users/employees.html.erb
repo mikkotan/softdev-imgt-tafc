@@ -25,28 +25,28 @@
           <ul class="dropdown-menu">
             <li class="text-info">
               <% if can? :show_employee, user %>
-                <%= link_to show_employee_path(user) %>
+                <%= link_to show_employee_path(user) do %>
                 <i class='glyphicon glyphicon-briefcase text-info'></i> Details
                 <% end %>
               <% end %>
             </li>
             <li class="text-info">
               <% if can? :edit, user %>
-                <%= link_to edit_user_path(user) %>
+                <%= link_to edit_user_path(user) do %>
                 <i class='glyphicon glyphicon-edit text-info'></i> Edit Profile
                 <% end %>
               <% end %>
             </li>
             <li class="text-warning">
               <% if can? :change_password, user %>
-                <%= link_to change_password_path(user) %>
+                <%= link_to change_password_path(user) do %>
                 <i class='glyphicon glyphicon-remove text-warning'></i> Change Password
                 <% end %>
               <% end %>
             </li>
             <li class="text-danger">
               <% if can? :destroy, user %>
-                <%= link_to user, method: :delete, data: {confirm: 'Are you sure?'} %>
+                <%= link_to user, method: :delete, data: {confirm: 'Are you sure?'} do %>
                 <i class='glyphicon glyphicon-trash text-danger'></i> Delete
                 <% end %>
               <% end %>

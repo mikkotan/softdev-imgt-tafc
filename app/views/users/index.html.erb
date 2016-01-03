@@ -2,33 +2,42 @@
 <p>Find me in app/views/users/index.html.erb</p>
 
 <% @users.each do |user| %>
-    <%= link_to raw("<h3 class='text-capitalize'>#{user.name}</h3>"), user %>
-    <div id="btns_<%= user.id %>" class="pull-right">
-      <% if can? :edit, user %>
-        <%= link_to edit_user_path(user)%>
-        <button class='btn btn-info btn-sm'  role='button'><i class='glyphicon glyphicon-edit'></i> Edit Profile</button>
-        <% end %>
-      <% end %>
-      <% if can? :destroy, user %>
-        <%= link_to user, method: :delete, data: {confirm: 'Are you sure?'} %>
-        <button class='btn btn-danger btn-sm'  role='button'><i class='glyphicon glyphicon-trash'></i> Delete</button>
-        <% end %>
-      <% end %>
-      <% if can? :change_password, user %>
-        <%= link_to change_password_path(user) %>
-        <button class='btn btn-warning btn-sm'  role='button'><i class='glyphicon glyphicon-remove'></i> Change Password</button>
-        <% end %>
-      <% end %>
-    </div>
-    <p>
-      Email: <%= user.email %>
-    </p>
-    Role:
-    <p class="<%= user.role %>text">
-     <%= user.role %>
-    </p>
-    <hr>
+  <%= link_to user do %>
+    <h3 class='text-capitalize'><%= user.name %></h3>
+  <% end %>
+  <div class="pull-right" id="btns_<%= user.id %>">
+  <% if can? :edit, user %>
+    <%= link_to edit_user_path(user) do %>
+    <button class='btn btn-info btn-sm' role='button'>
+      <i class='glyphicon glyphicon-edit'></i>
+      Edit Profile</button>
+    <% end %>
+  <% end %>
+  <% if can? :destroy, user %>
+    <%= link_to user, method: :delete, data: {confirm: 'Are you sure?'} do %>
+    <button class='btn btn-danger btn-sm' role='button'>
+      <i class='glyphicon glyphicon-trash'></i>
+      Delete</button>
+    <% end %>
+  <% end %>
+  <% if can? :change_password, user %>
+    <%= link_to change_password_path(user) do %>
+    <button class='btn btn-warning btn-sm' role='button'>
+      <i class='glyphicon glyphicon-remove'></i>
+      Change Password</button>
+    <% end %>
+  <% end %>
+  </div>
+  <p>
+  Email:
+  <%= user.email %>
+  </p>
+  Role:
+  <p class="<%= user.role %>text">
+  <%= user.role %>
+  </p>
+  <hr>
 <% end %>
 <div class="pagination-container">
-    <%= paginate @users%>
+<%= paginate @users%>
 </div>
