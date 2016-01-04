@@ -12,8 +12,11 @@
 //
 // Adding js files in this folder is already enough, so don't add anymore lines here.
 //
-//= require toastr
 //= require jquery
 //= require jquery_ujs
+//= require jquery.turbolinks
+//= require bootstrap-sprockets
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require turbolinks
 //= require_tree .

@@ -159,7 +159,6 @@ RSpec.feature 'User CRUD thingy', js: true do
     expect(page).to have_text 'Successfully Logged Out!'
   end
 
-
   scenario 'User inputs wrong password' do
     visit '/logout'
     visit '/login'

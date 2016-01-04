@@ -1,5 +1,6 @@
 class ClientsController < ApplicationController
   before_action :find_client, only: [:show, :edit, :destroy, :update]
+  before_filter :require_authorization
 
   def index
     if params[:search]
@@ -56,5 +57,14 @@ class ClientsController < ApplicationController
 
   def find_client
     @client = Client.find(params[:id])
+  end
+
+  def require_authorization
+    if can? :read, :all
+
+    else
+      flash[:alert] = 'Unauthorized! login ples'
+      redirect_to '/login'
+    end
   end
 end

@@ -14,7 +14,7 @@ class Service < ActiveRecord::Base
   end
 
   def total_cost
-    monthly_fee + related_costs.inject(0) {|sum, item| sum + item.value}
+    monthly_fee + related_costs.inject(0) { |sum, item| sum + item.value }
   end
 
   def make
@@ -30,7 +30,7 @@ class Service < ActiveRecord::Base
 
   def template_status_must_match_all_template_statuses_of_related_costs
     related_costs.each do |related_cost|
-      errors.add(:is_template, "TemplateMismatchError") if related_cost.is_template != is_template
+      errors.add(:is_template, 'TemplateMismatchError') if related_cost.is_template != is_template
     end
   end
 end

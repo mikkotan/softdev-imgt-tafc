@@ -1,6 +1,6 @@
 <%= form_for form_model, url: {action: action} do |f| %>
   <% if form_model.errors.any? %>
-    <%= render "shared/error_messages", locals: {form_model: form_model} %>
+    <%= render partial: "shared/error_messages", locals: {form_model: form_model} %>
   <% end %>
 
   <div class="form-group">

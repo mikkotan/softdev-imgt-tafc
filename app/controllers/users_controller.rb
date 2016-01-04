@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update, :destroy, :change_password, :update_password]
+  before_filter :require_authorization
   load_and_authorize_resource
 
   def index
-    @users = User.page(params[:page]).per(10)
+    @users = User.page(params[:page])
   end
 
   def employees
@@ -19,7 +20,6 @@ class UsersController < ApplicationController
   def show_employee
     @employee = User.find(params[:id])
     @clients = @employee.clients
-
   end
 
   def show
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
   def update
     if @user.update_info edit_user_params
       flash[:notice] = 'Successfully updated profile.'
-      redirect_to root_url
+      redirect_to '/home'
     else
       render :edit
     end
@@ -89,5 +89,14 @@ class UsersController < ApplicationController
 
   def find_user
     @user = User.find(params[:id])
+  end
+
+  def require_authorization
+    if can? :read, :all
+
+    else
+      flash[:alert] = 'Unauthorized! login ples'
+      redirect_to '/login'
+    end
   end
 end

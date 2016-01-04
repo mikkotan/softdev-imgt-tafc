@@ -35,12 +35,17 @@ class User < ActiveRecord::Base
   end
 
   def update_info(params)
-    attributes = params
-    save
+    nice = true
+    params.each do |key, value|
+      puts "key is #{key}"
+      puts "value is #{value}"
+      nice &&= update_column key, value
+    end
+    puts 'hello'
+    nice
   end
 
-  def self.search_employee(query)
-    q = "%#{query}%"
-    where("role = 'employee' AND first_name like ? or last_name like ?", q,q)
+  def name
+    [first_name, last_name].join ' '
   end
 end
