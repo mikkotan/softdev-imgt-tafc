@@ -1,4 +1,4 @@
-<h1>Clients#index</h1>
+<!-- <h1>Clients#index</h1>
 <p>Find me in app/views/clients/index.html.erb</p>
 
 <%= form_tag(clients_path, :method => 'get', class: 'navbar-form', id: 'search-form') do %>
@@ -46,6 +46,60 @@ Status:
 </p>
 
 Employee In-charge:
-<%= client.user_email %>
+<%= client.user_email if client.user %>
 <hr>
-<% end %>
+<% end %> -->
+
+
+<h1>Clients#index</h1>
+<p>Find me in app/views/clients/index.html.erb</p>
+
+<table id="datatable">
+  <thead>
+    <tr>
+      <th>Company Name</th>
+      <th>Employee In-charge</th>
+      <th>Status</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @clients.each do |client| %>
+    <tr>
+      <td>
+        <h3 class="text-capitalize"><%= "#{client.company_name}" %></h3>
+      </td>
+      <td>
+        <% if client.user %>
+          <%= client.user_email %>
+        <% else  %>
+          <span>Not assigned</span>
+        <% end %>
+      </td>
+      <td>
+        <%= client.status %>
+      </td>
+      <td>
+        <div class="dropdown">
+          <button aria-expanded="false" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+            Options
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li class="text-info">
+                <%= link_to client_path(client) do %>
+                <i class='glyphicon glyphicon-briefcase text-info'></i> Details
+                <% end %>
+            </li>
+            <li class="text-info">
+                <%= link_to edit_client_path(client) do %>
+                <i class='glyphicon glyphicon-edit text-info'></i> Edit Profile
+                <% end %>
+            </li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

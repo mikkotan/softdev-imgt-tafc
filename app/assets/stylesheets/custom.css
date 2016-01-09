@@ -5,6 +5,10 @@ html,
 body {
   height: 100%
 }
+
+body {
+  padding-top: 70px
+}
 .container {
   min-height   : 100%
   /* equal to footer height */
