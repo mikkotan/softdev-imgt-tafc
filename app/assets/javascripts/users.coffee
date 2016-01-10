@@ -8,5 +8,8 @@
 jQuery ->
   $("#datatable").DataTable({
   pagingType: "full_numbers",
-  sPaginationType: "bootstrap"
+  sPaginationType: "bootstrap",
+  "aoColumnDefs": [
+          { 'bSortable': false, 'aTargets': [ -1 ] }
+       ]
     })
