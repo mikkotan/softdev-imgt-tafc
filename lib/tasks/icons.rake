@@ -18,7 +18,7 @@ namespace :icons do
         system "mkdir #{tmpdir}"
       end
 
-      # Unzip that motherfucker
+      # Unzip 
       system "unzip -u #{zipfile} -d #{tmpdir}"
 
       # Copy the font files
