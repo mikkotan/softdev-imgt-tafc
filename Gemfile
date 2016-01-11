@@ -33,6 +33,9 @@ gem 'rubycritic', require: false
 # pagination
 gem 'kaminari', '~> 0.16.1'
 
+# toastr_rails
+gem 'toastr-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
