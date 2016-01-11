@@ -8,11 +8,7 @@ class UsersController < ApplicationController
   end
 
   def employees
-    if params[:search]
-      @employees = User.search_employees(params[:search]).order('last_name ASC')
-    else
-      @employees = User.all.order('last_name ASC')
-    end
+    @employees = get_employees
   end
 
   def show_employee

@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  def employees
+  def get_employees
     @employees = User.where('role = ?', 'employee')
   end
 end

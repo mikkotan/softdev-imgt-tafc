@@ -14,6 +14,7 @@ class ClientsController < ApplicationController
   end
 
   def new
+    @employees = get_employees
     @client = Client.new
   end
 

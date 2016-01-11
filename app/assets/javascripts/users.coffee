@@ -7,6 +7,7 @@
 
 jQuery ->
   $("#datatable").DataTable({
+    auto_width:"true",
   pagingType: "full_numbers",
   sPaginationType: "bootstrap",
   "aoColumnDefs": [

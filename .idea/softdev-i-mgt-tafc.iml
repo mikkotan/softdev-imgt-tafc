@@ -195,12 +195,18 @@
     <orderEntry type="library" scope="PROVIDED" name="astrolabe (v1.3.1, ruby-2.1.5-p273) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="axiom-types (v0.1.1, ruby-2.1.5-p273) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bcrypt (v3.1.10, ruby-2.1.5-p273) [gem]" level="application" />
+<<<<<<< HEAD
+    <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.2, ruby-2.1.5-p273) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bundler (v1.7.7, ruby-2.1.5-p273) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="cancancan (v1.12.0, ruby-2.1.5-p273) [gem]" level="application" />
+=======
     <orderEntry type="library" scope="PROVIDED" name="bootstrap-kaminari-views (v0.0.5, ruby-2.1.5-p273) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bootstrap-sass (v3.2.0.2, ruby-2.1.5-p273) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bootswatch-rails (v3.3.5, ruby-2.1.5-p273) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.2, ruby-2.1.5-p273) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v1.7.7, ruby-2.1.5-p273) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="cancancan (v1.13.1, ruby-2.1.5-p273) [gem]" level="application" />
+>>>>>>> 9a26752e5cc1307bd76eda370d9e1e67fc53fc26
     <orderEntry type="library" scope="PROVIDED" name="capybara (v2.5.0, ruby-2.1.5-p273) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="childprocess (v0.5.8, ruby-2.1.5-p273) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="code_analyzer (v0.4.5, ruby-2.1.5-p273) [gem]" level="application" />
@@ -211,8 +217,12 @@
     <orderEntry type="library" scope="PROVIDED" name="coffee-script-source (v1.10.0, ruby-2.1.5-p273) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="colored (v1.2, ruby-2.1.5-p273) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="concord (v0.1.5, ruby-2.1.5-p273) [gem]" level="application" />
+<<<<<<< HEAD
+    <orderEntry type="library" scope="PROVIDED" name="database_cleaner (v1.4.1, ruby-2.1.5-p273) [gem]" level="application" />
+=======
     <orderEntry type="library" scope="PROVIDED" name="concurrent-ruby (v1.0.0, ruby-2.1.5-p273) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="database_cleaner (v1.5.1, ruby-2.1.5-p273) [gem]" level="application" />
+>>>>>>> 9a26752e5cc1307bd76eda370d9e1e67fc53fc26
     <orderEntry type="library" scope="PROVIDED" name="descendants_tracker (v0.0.4, ruby-2.1.5-p273) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.2.5, ruby-2.1.5-p273) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="equalizer (v0.0.11, ruby-2.1.5-p273) [gem]" level="application" />
