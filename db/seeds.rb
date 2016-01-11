@@ -27,7 +27,7 @@ user = User.create(password: 'password',
                    first_name: 'Keia Joy',
                    last_name: 'Harder',
                    role: 'employee')
-                   
+
 client = Client.create(company_name: 'ACME Inc.',
               owner: 'Kalbo',
               representative: 'Michael',
@@ -39,10 +39,4 @@ client = Client.create(company_name: 'ACME Inc.',
               user: user
              )
 
-trans1 = Transaction.create(retainers_fee: 300, vat: 150, percentage: 300, client: client)
-
-Fee.create(description: 'SSS', kind: 'EmployeeBenefit', amount: 150, invoice: trans1)
-Fee.create(description: 'Pag-ibig', kind: 'EmployeeBenefit', amount: 350, invoice: trans1)
-
-
-
+trans1 = Transaction.create(billing_num: '111', retainers_fee: 300, vat: 150, percentage: 300, client: client)
