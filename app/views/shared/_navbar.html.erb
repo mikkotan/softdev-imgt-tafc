@@ -4,7 +4,7 @@
   <% else %>
       navbar-default
   <% end %>
-   navbar-static-top navbar-offset">
+   navbar-fixed-top navbar-offset">
 
   <div class="container-fluid">
     <div class="navbar-header">
@@ -14,37 +14,76 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/home">
-        <i class="glyphicon glyphicon-thumbs-up"></i>
-        I-MGT-TAFC</a>
+        <i class="custom-imgt_logo"></i>
+      </a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <% if current_user %>
-          <ul class="nav navbar-nav">
-            <li><%= link_to raw("<i class='glyphicon glyphicon-user'></i> Employees"), employees_path %></li>
-            <li><%= link_to raw("<i class='glyphicon glyphicon-briefcase'></i> Clients"), clients_path %></li>
-            <% if can? :manage, :all %>
-                <!-- owner-->
-                <li><%= link_to raw("<i class='glyphicon glyphicon-pencil'></i> New User"), new_user_path %></li>
-                <li><%= link_to raw("<i class='glyphicon glyphicon-plus'></i> Add Client"), new_client_path %></li>
-            <% end %>
-          </ul>
+      <ul class="nav navbar-nav">
+        <li>
+          <%= link_to employees_path do %>
+          <i class='glyphicon glyphicon-user'></i>Employees
+          <% end %>
+        </li>
+        <li>
+          <%= link_to clients_path do %>
+          <i class='glyphicon glyphicon-briefcase'></i>
+          Clients
+          <% end %>
+        </li>
+        <% if can? :manage, :all %>
+        <!-- owner-->
+        <li>
+          <%= link_to new_user_path do %>
+          <i class='glyphicon glyphicon-pencil'></i>
+          New User
+          <% end %>
+        </li>
+        <li>
+          <%= link_to new_client_path do %>
+          <i class='glyphicon glyphicon-plus'></i>
+          Add Client
+          <% end %>
+        </li>
+        <% end %>
+      </ul>
 
       <% end %>
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
-            <li class="dropdown">
-              <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown" href="#" id="user-dropdown" role="button">
-                <%= current_user ? "Logged in as #{current_user.email}" : "" %>
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to raw("<i class='glyphicon glyphicon-edit'></i> Edit Profile"), edit_user_path(current_user) %></li>
-                <li><%= link_to raw("<i class='glyphicon glyphicon-lock'></i> Change Password</button>"), change_password_path(current_user) %></li>
-                <li><%= link_to raw("<i class='glyphicon glyphicon-log-out'></i> Log-out"), logout_path %></li>
-              </ul>
+        <li class="dropdown">
+          <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown" href="#" id="user-dropdown" role="button">
+            <%= current_user ? "Logged in as #{current_user.email}" : "" %>
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <%= link_to edit_user_path(current_user) do %>
+              <i class='glyphicon glyphicon-edit'></i>
+              Edit Profile
+              <% end %>
             </li>
+            <li>
+              <%= link_to change_password_path(current_user) do %>
+              <i class='glyphicon glyphicon-lock'></i>
+              Change Password
+              <% end %>
+            </li>
+            <li>
+              <%= link_to logout_path do %>
+              <i class='glyphicon glyphicon-log-out'></i>
+              Log-out
+              <% end %>
+            </li>
+          </ul>
+        </li>
         <% else %>
-            <li><%= link_to raw("<i class='glyphicon glyphicon-log-in'></i> Log-in"), login_path %></li>
+        <li>
+          <%= link_to login_path do %>
+          <i class='glyphicon glyphicon-log-in'></i>
+          Log-in
+          <% end %>
+        </li>
         <% end %>
       </ul>
     </div>

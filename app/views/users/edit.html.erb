@@ -1,7 +1,7 @@
 <%= form_for @user, url: {action: 'update'} do |f| %>
 <% if @user.errors.any? %>
   <div id="error_explanation">
-    <%= render "shared/error_messages", locals: {form_model: @user} %>
+    <%= render partial: "shared/error_messages", locals: {form_model: @user} %>
   </div>
 <% end %>
 <div class="form-group">

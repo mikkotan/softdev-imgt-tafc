@@ -12,7 +12,7 @@ RSpec.describe RelatedCost, type: :model do
 
     expect(@related_cost).to_not be_valid
   end
-  
+
   it 'can make "real" non-template related costs' do
     create :related_cost
     @related_cost = RelatedCost.find 1

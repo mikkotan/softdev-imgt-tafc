@@ -17,7 +17,14 @@ class ClientsController < ApplicationController
   end
 
   def new
+    @employees = get_employees
     @client = Client.new
+
+
+    if params[:id]
+      @client.user_id = params[:id]
+      @withparams = true
+    end
   end
 
   def create

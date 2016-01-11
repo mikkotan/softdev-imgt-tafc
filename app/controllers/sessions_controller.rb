@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   layout :resolve_layout
   def new
+    redirect_to '/home' if current_user
   end
 
   def create
@@ -17,7 +18,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to "/login", notice: 'Successfully Logged Out!'
+    redirect_to '/login', notice: 'Successfully Logged Out!'
   end
 
   private
@@ -29,7 +30,7 @@ class SessionsController < ApplicationController
     else
       'application'
     end
- end
+  end
 
   def post_params
     params.permit(:email, :password)

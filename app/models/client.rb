@@ -3,7 +3,7 @@ class Client < ActiveRecord::Base
   has_many :transactions
 
   def self.search(query)
-    where("company_name like ?", "%#{query}%")
+    where('company_name like ?', "%#{query}%")
   end
 
   def user_email

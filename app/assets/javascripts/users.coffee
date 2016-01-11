@@ -2,8 +2,15 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-window.onload = () ->
-  H5F.setup(document.getElementById("forms"))
+#window.onload = () ->
+#  H5F.setup(document.getElementById("forms"))
 
 jQuery ->
-  $("#table").DataTable()
+  $("#datatable").DataTable({
+    auto_width:"true",
+  pagingType: "full_numbers",
+  sPaginationType: "bootstrap",
+  "aoColumnDefs": [
+    { 'bSortable': false, 'aTargets': [ -1 ] }
+    ]
+    })

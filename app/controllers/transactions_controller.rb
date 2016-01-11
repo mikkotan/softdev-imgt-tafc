@@ -32,7 +32,7 @@ class TransactionsController < ApplicationController
   end
 
   private
+
   def transaction_params
-    params.require(:transaction).permit(:retainers_fee, :vat, :percentage)
   end
 end

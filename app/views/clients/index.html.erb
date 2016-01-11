@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <% @clients.each do |client| %>
 <h3 class="text-capitalize"><%= "#{client.company_name}" %></h3>
 <div class="pull-right">
@@ -5,6 +6,16 @@
   <button class='btn btn-info btn-sm' role='button'>
     <i class='glyphicon glyphicon-briefcase'></i>
     Details
+=======
+<!-- <h1>Clients#index</h1>
+<p>Find me in app/views/clients/index.html.erb</p>
+
+<%= form_tag(clients_path, :method => 'get', class: 'navbar-form', id: 'search-form') do %>
+<div class="form-group">
+  <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search Clients' %>
+  <button class="btn" type="submit">
+    <i class="glyphicon glyphicon-search"></i>
+>>>>>>> a761816d04405b9b19e9e41e1cda0586cc849f63
   </button>
   <% end %>
   <%= form_tag(clients_path, :method => 'get', class: 'navbar-form', id: 'search-form') do %>
@@ -16,6 +27,7 @@
   </div>
   <% end %>
 
+<<<<<<< HEAD
   <ol>
     <% @clients.each do |client| %>
     <li>
@@ -29,6 +41,29 @@
     </li>
 
   </ol>
+=======
+<ul>
+  <% @clients.each do |client| %>
+  <li>
+    <h3 class="text-capitalize"><%= "#{client.company_name}" %></h3>
+    <div class="pull-right">
+      <%= link_to client_path(client) do %>
+      <button class='btn btn-info btn-sm'  role='button'>
+        <i class='glyphicon glyphicon-briefcase'></i> Details</button>
+      <% end %>
+      <%= link_to edit_client_path(client) do %>
+      <button class='btn btn-info btn-sm'  role='button'>
+        <i class='glyphicon glyphicon-edit'></i> Edit Client</button>
+      <% end %>
+      <%= link_to client, method: :delete, data: {confirm: 'Are you sure?'} do %>
+      <button class='btn btn-danger btn-sm'  role='button'>
+        <i class='glyphicon glyphicon-trash'></i> Delete</button>
+      <% end %>
+    </div>
+    <hr>
+  </li>
+</ul>
+>>>>>>> a761816d04405b9b19e9e41e1cda0586cc849f63
 
   Status:
   <p class="<%= client.status %>text">
@@ -43,7 +78,68 @@
     <% end %>
   </p>
 
+<<<<<<< HEAD
   Employee In-charge:
   <%= client.user_email %>
   <hr>
   <% end %>
+=======
+Employee In-charge:
+<%= client.user_email if client.user %>
+<hr>
+<% end %> -->
+
+
+<h1>Clients#index</h1>
+<p>Find me in app/views/clients/index.html.erb</p>
+
+<table id="datatable">
+  <thead>
+    <tr>
+      <th>Company Name</th>
+      <th>Employee In-charge</th>
+      <th>Status</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @clients.each do |client| %>
+    <tr>
+      <td>
+        <h3 class="text-capitalize"><%= "#{client.company_name}" %></h3>
+      </td>
+      <td>
+        <% if client.user %>
+          <%= client.user_email %>
+        <% else  %>
+          <span>Not assigned</span>
+        <% end %>
+      </td>
+      <td>
+        <%= client.status %>
+      </td>
+      <td>
+        <div class="dropdown">
+          <button aria-expanded="false" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+            Options
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li class="text-info">
+                <%= link_to client_path(client) do %>
+                <i class='glyphicon glyphicon-briefcase text-info'></i> Details
+                <% end %>
+            </li>
+            <li class="text-info">
+                <%= link_to edit_client_path(client) do %>
+                <i class='glyphicon glyphicon-edit text-info'></i> Edit Profile
+                <% end %>
+            </li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+>>>>>>> a761816d04405b9b19e9e41e1cda0586cc849f63
