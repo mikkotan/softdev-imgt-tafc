@@ -5,6 +5,7 @@ class CreateServices < ActiveRecord::Migration
       t.float :monthly_fee
       t.string :service_type, default: 'none'
       t.boolean :is_template, default: true
+      t.belongs_to :transaction, index: true
 
       t.timestamps null: false
     end

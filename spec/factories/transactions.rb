@@ -1,9 +1,20 @@
 FactoryGirl.define do
   factory :transaction do
-    month_and_year '2015-10-07 23:05:43'
-    retainers_fee 1.5
-    vat 1.5
-    percentage 1.5
-    other_processing 'MyString'
+    billing_num '111'
+    vat 0
+    percentage 0
+    retainers_fee 500
+  end
+
+  factory :full_transaction, class: Transaction do
+    billing_num '112'
+    retainers_fee 500
+    employee_benefit_sss 300
+    employee_benefit_philhealth 100
+    employee_benefit_pag_ibig 200
+    withholding_1601c 500
+    withholding_1601e 300
+    vat 800
+    percentage 0
   end
 end

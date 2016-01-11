@@ -43,21 +43,28 @@ ActiveRecord::Schema.define(version: 20151126091545) do
   create_table "services", force: :cascade do |t|
     t.string   "name"
     t.float    "monthly_fee"
-    t.string   "service_type", default: "none"
-    t.boolean  "is_template",  default: true
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.string   "service_type",   default: "none"
+    t.boolean  "is_template",    default: true
+    t.integer  "transaction_id"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
+  add_index "services", ["transaction_id"], name: "index_services_on_transaction_id"
+
   create_table "transactions", force: :cascade do |t|
-    t.datetime "month_and_year"
+    t.string   "billing_num"
     t.float    "retainers_fee"
     t.float    "vat"
     t.float    "percentage"
-    t.string   "other_processing"
+    t.float    "withholding_1601c"
+    t.float    "withholding_1601e"
+    t.float    "employee_benefit_sss"
+    t.float    "employee_benefit_philhealth"
+    t.float    "employee_benefit_pag_ibig"
     t.integer  "client_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "transactions", ["client_id"], name: "index_transactions_on_client_id"

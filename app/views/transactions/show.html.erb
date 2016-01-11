@@ -1,2 +1,38 @@
 <h1>Transactions#show</h1>
 <p>Find me in app/views/transactions/show.html.erb</p>
+
+<div>
+  <div class="col-md-10">
+        <h3><em>Transaction Details</em></h3>
+        <div>
+            <h6>Invoice: 00<%= @transaction.id %></h6>
+            <h6>Client: <%= @transaction.client.company_name %></h6>
+            <h6>Retainers Fee: <%= @transaction.retainers_fee%></h6>
+            <h6>Vat: <%= @transaction.vat%></h6>
+            <h6>Percentage: <%= @transaction.percentage%></h6>
+            <% @transaction.fees.each do |fee|%>
+                <li><h6><%= fee.kind %> - <%= fee.description %>      Php <%= fee.amount %></h6></li>
+            <% end %>
+
+            <strong><h3>Total: Php <%= @transaction.total%></h3></strong>
+        </div>
+  </div>
+  <%= form_for @fee, url: new_fee_path(@transaction.id) do |f| %>
+      <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_field :description, class: "form-control", type: "text", required: "required" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :vat %>
+        <%= f.text_field :vat, class: "form-control", type: "number", required: "required" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :percentage %>
+        <%= f.text_field :percentage, class: "form-control", type: "number", required: "required" %>
+      </div>
+      <div class="actions col-md-6 pull-right">
+        <%= f.submit "New Transaction", class: "btn btn-primary btn-md btn-block" %>
+      </div>
+  <% end %>
+
+</div>

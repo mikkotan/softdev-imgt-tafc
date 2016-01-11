@@ -5,6 +5,8 @@ class TransactionsController < ApplicationController
 
   def show
     @transaction = Transaction.find(params[:id])
+    @fees = @transaction.fees
+    @fee = Fee.new
   end
 
   def new
@@ -12,7 +14,12 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    @transaction = Transaction.new(transaction_params)
+
+    @transaction = Transaction.new(transaction_params.merge(client_id: params[:id]))
+
+    if @transaction.save
+      redirect_to client_path(params)
+    end
   end
 
   def edit
@@ -26,6 +33,6 @@ class TransactionsController < ApplicationController
 
   private
   def transaction_params
-
+    params.require(:transaction).permit(:retainers_fee, :vat, :percentage)
   end
 end

@@ -29,8 +29,14 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rubocop', require: false
 gem "rubycritic", require: false
 
-# pagination
+#pagination
 gem 'kaminari', '~> 0.16.1'
+#datatables
+gem 'bootstrap-kaminari-views'
+
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootswatch-rails'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -53,6 +59,7 @@ group :development, :test do
   gem 'traceroute'
   gem 'rails_best_practices'
 end
+<<<<<<< HEAD
 
 gem 'bootstrap-kaminari-views'
 
@@ -60,3 +67,5 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bootswatch-rails'
 #datatables
 gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
+=======
+>>>>>>> transactions

@@ -18,13 +18,13 @@
 </div>
 <div class="form-group">
     <% if can? :manage, User %>
-    <%= f.label :role %>
-    <%= f.radio_button :role, 'owner', :checked => (@user.role == 'owner' ? true : false), class: "radio-inline" %>
-    <%= label :role, 'owner' %>
-    <%= f.radio_button :role, 'manager', :checked => (@user.role == 'manager' ? true : false), class: "radio-inline" %>
-    <%= label :role, 'manager' %>
-    <%= f.radio_button :role, 'employee', :checked => (@user.role == 'employee' ? true : false), class: "radio-inline" %>
-    <%= label :role, 'employee' %>
+      <%= f.label :role %>
+      <%= f.radio_button :role, 'owner', :checked => (@user.role == 'owner' ? true : false), class: "radio-inline" %>
+      <%= label :role, 'owner' %>
+      <%= f.radio_button :role, 'manager', :checked => (@user.role == 'manager' ? true : false), class: "radio-inline" %>
+      <%= label :role, 'manager' %>
+      <%= f.radio_button :role, 'employee', :checked => (@user.role == 'employee' ? true : false), class: "radio-inline" %>
+      <%= label :role, 'employee' %>
     <% end %>
 </div>
 <div class="actions col-md-6 pull-right">

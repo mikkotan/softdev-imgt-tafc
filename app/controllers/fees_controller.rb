@@ -1,0 +1,3 @@
+class FeesController < ApplicationController
+
+end

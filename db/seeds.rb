@@ -27,8 +27,8 @@ user = User.create(password: 'password',
                    first_name: 'Keia Joy',
                    last_name: 'Harder',
                    role: 'employee')
-                   
-Client.create(company_name: 'ACME Inc.',
+
+client = Client.create(company_name: 'ACME Inc.',
               owner: 'Kalbo',
               representative: 'Michael',
               address: '32 Ledesma St.',
@@ -38,3 +38,5 @@ Client.create(company_name: 'ACME Inc.',
               status: 'active',
               user: user
              )
+
+trans1 = Transaction.create(billing_num: '111', retainers_fee: 300, vat: 150, percentage: 300, client: client)

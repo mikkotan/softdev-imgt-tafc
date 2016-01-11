@@ -1,6 +1,7 @@
 class Service < ActiveRecord::Base
   include Modules::InfoHashable
 
+  belongs_to :tx, class_name: "Transaction", foreign_key: 'transaction_id'
   has_many :related_costs
   validates :name, presence: true
   validates :monthly_fee, numericality: { greater_than_or_equal_to: 0 }
@@ -32,5 +33,10 @@ class Service < ActiveRecord::Base
     related_costs.each do |related_cost|
       errors.add(:is_template, "TemplateMismatchError") if related_cost.is_template != is_template
     end
+  end
+
+  def self.make(id)
+    service = Service.find id
+    service.make
   end
 end
