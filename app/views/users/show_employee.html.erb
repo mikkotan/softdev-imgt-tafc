@@ -6,49 +6,49 @@
 </strong>
 <hr>
 
-<% @clients.each do |user| %>
+<% @clients.each do |client| %>
 
-<h4 class="text-capitalize"><%= "#{user.company_name}" %></h4>
+<h4 class="text-capitalize"><%= "#{client.company_name}" %></h4>
 <!--<div class="pull-right">-->
 <!--
-    <% if can? :show_employee, user %>-->
-<!--<%= link_to raw("<button class='btn btn-info btn-sm'  role='button'><i class='glyphicon glyphicon-briefcase'></i> Details </button>"), show_employee_path(user) %>-->
+    <% if can? :show_employee, client %>-->
+<!--<%= link_to raw("<button class='btn btn-info btn-sm'  role='button'><i class='glyphicon glyphicon-briefcase'></i> Details </button>"), show_employee_path(client) %>-->
 <!--
     <% end %>-->
 <!--
-    <% if can? :edit, user %>-->
-<!--<%= link_to raw("<button class='btn btn-info btn-sm'  role='button'><i class='glyphicon glyphicon-edit'></i> Edit Profile</button>"), edit_user_path(user) %>-->
+    <% if can? :edit, client %>-->
+<!--<%= link_to raw("<button class='btn btn-info btn-sm'  role='button'><i class='glyphicon glyphicon-edit'></i> Edit Profile</button>"), edit_user_path(client) %>-->
 <!--
     <% end %>-->
 <!--
-    <% if can? :destroy, user %>-->
-<!--<%= link_to raw("<button class='btn btn-danger btn-sm'  role='button'><i class='glyphicon glyphicon-trash'></i> Delete</button>"), user, method: :delete, data: {confirm: 'Are you sure?'} %>-->
+    <% if can? :destroy, client %>-->
+<!--<%= link_to raw("<button class='btn btn-danger btn-sm'  role='button'><i class='glyphicon glyphicon-trash'></i> Delete</button>"), client, method: :delete, data: {confirm: 'Are you sure?'} %>-->
 <!--
     <% end %>-->
 <!--
-    <% if can? :change_password, user %>-->
-<!--<%= link_to raw("<button class='btn btn-warning btn-sm'  role='button'><i class='glyphicon glyphicon-remove'></i> Change Password</button>"), change_password_path(user) %>-->
+    <% if can? :change_password, client %>-->
+<!--<%= link_to raw("<button class='btn btn-warning btn-sm'  role='button'><i class='glyphicon glyphicon-remove'></i> Change Password</button>"), change_password_path(client) %>-->
 <!--
     <% end %>-->
 <!--</div>-->
 <p>
   Owner:
-  <%= user.owner %>
+  <%= client.owner %>
 </p>
 <p>
   Representative:
-  <%= user.representative %>
+  <%= client.representative %>
 </p>
 Status:
 <p>
-  <%= user.status %>
+  <%= client.status %>
 </p>
 <hr>
 <% end %>
 
 <div class="pull-right">
   <% if can? :new, @employee %>
-  <%= link_to new_client_path do %>
+  <%= link_to employee_new_client_path (@employee.id) do %>
   <button class='btn btn-info btn-sm' role='button'>
     <i class='glyphicon glyphicon-edit'></i>
     ADD CLIENT
