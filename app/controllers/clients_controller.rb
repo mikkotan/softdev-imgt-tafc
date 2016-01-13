@@ -30,6 +30,7 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(client_params)
 
+
     if @client.save
       flash[:notice] = 'Client successfully added.'
       redirect_to clients_path
