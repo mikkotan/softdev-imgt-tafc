@@ -4,6 +4,7 @@
 html,
 body {
   height: 100%;
+  font-size: 100%;
 }
 body {
   padding-top: 70px;
@@ -63,6 +64,23 @@ body {
     transform-origin: left top;
     transition: 240ms;
 }
+.control-label-textarea {
+    font-size: 16px;
+    font-weight: 400;
+    opacity: 0.4;
+    pointer-events: none;
+    position: absolute;
+    transform: translate3d(0, 22px, 0) scale(1);
+    transform-origin: left top;
+    transition: 240ms;
+}
+.inputAddressTextArea{
+
+};
+
+.control-label-textarea{
+
+};
 
 .form-group.focused .control-label {
     opacity: 1;
@@ -84,4 +102,10 @@ body {
 
 .form-group.focused .form-control::-webkit-input-placeholder {
     color: #bbb;
+}
+
+.custom-imgt_logo {
+  font-size: 2em;
+   line-height: 50%;
+
 }

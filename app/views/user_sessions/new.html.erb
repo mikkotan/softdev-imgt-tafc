@@ -7,14 +7,14 @@
   </div>
 
   <div class="col-md-8">
-    <div class="form-group">
-      <%= form.label :email, "email" %>
-      <%= form.text_field :email, class: "form-control" %>
-    </div>
 
     <div class="form-group">
-      <%= form.label :password, "Password" %>
-      <%= form.password_field :password, class: "form-control" %>
+      <%= f.label :email, class:"control-label", for:"inputEmail" %>
+      <%= f.text_field :email, class: "form-control", type: "email", required: "required", id:"inputEmail", placeholder: "sample@gmail.com, example@yahoo.com" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password, class:"control-label", for:"inputPassword" %>
+      <%= f.password_field :password, class: "form-control", required: "required", id:"inputPassword" %>
     </div>
 
     <div>

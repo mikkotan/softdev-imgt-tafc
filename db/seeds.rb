@@ -29,7 +29,7 @@ user = User.create(password: 'password',
                    role: 'employee'
                   )
 
-Client.create(company_name: 'ACME Inc.',
+client = Client.create(company_name: 'ACME Inc.',
               owner: 'Kalbo',
               representative: 'Michael',
               address: '32 Ledesma St.',
