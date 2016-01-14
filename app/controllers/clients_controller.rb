@@ -1,6 +1,11 @@
 class ClientsController < ApplicationController
   before_action :find_client, only: [:show, :edit, :destroy, :update]
   before_filter :require_authorization
+  after_filter "save_my_previous_url", only: [:new]
+
+  def save_my_previous_url
+    session[:my_previous_url] =  URI(request.referer || '').path
+  end
 
   def index
     if params[:search]
@@ -33,13 +38,15 @@ class ClientsController < ApplicationController
 
     if @client.save
       flash[:notice] = 'Client successfully added.'
-      redirect_to clients_path
+      redirect_to session[:my_previous_url]
     else
       render :new
     end
   end
 
   def edit
+    @withparams = false
+    @employees = get_employees
   end
 
   def destroy
