@@ -1,2 +1,68 @@
 <h1>Services#index</h1>
 <p>Find me in app/views/services/index.html.erb</p>
+
+<div class="pull-right">
+  <% if can? :new, @service %>
+  <%= link_to new_service_path  do %>
+  <button class='btn btn-info btn-sm' role='button'>
+    <i class='glyphicon glyphicon-edit'></i>
+    ADD Service
+  </button>
+  <% end %>
+  <% end %>
+</div>
+
+<table id="servicedatatable" class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Service Name</th>
+      <th>Monthly Fee</th>
+      <th>Related Costs</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @services.each do |service| %>
+    <tr>
+      <td>
+        <h6 class="text-capitalize"><%= "#{service.name}" %></h6>
+      </td>
+      <td>
+        P <%= service.monthly_fee %>
+      </td>
+      <td>
+        <% service.related_costs.each do |c| %>
+          <ul>
+            <li>
+              P <%= c.value %>
+            </li>
+          </ul>
+        <% end %>
+      </td>
+      <td>
+        <div class="dropdown">
+          <button aria-expanded="false" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+            Options
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li class="text-info">
+                <%= link_to edit_service_path(service) do %>
+                <i class='glyphicon glyphicon-edit text-info'></i> Edit Service
+                <% end %>
+            </li>
+            <li class="text-danger">
+              <% if can? :destroy, service %>
+              <%= link_to service, method: :delete do %>
+              <i class='glyphicon glyphicon-trash text-danger'></i>
+              Delete
+              <% end %>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

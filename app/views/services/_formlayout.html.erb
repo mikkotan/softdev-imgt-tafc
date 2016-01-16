@@ -1,0 +1,28 @@
+<%= form_for form_model, url: {action: action} do |f| %>
+  <% if form_model.errors.any? %>
+    <%= render partial: "shared/error_messages", locals: {form_model: form_model} %>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name, class:"control-label", for:"inputServiceName" %>
+    <%= f.text_field :name, class: "form-control", required: "required", id:"inputServiceName", placeholder: "Insert Service Name here..." %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :monthly_fee, class:"control-label", for:"inputMonthlyFee" %>
+    <%= f.text_field :monthly_fee, class: "form-control", type: "number", required: "required", id:"inputMonthlyFee", placeholder: "Insert Monthly Fee here..." %>
+  </div>
+
+
+  <%= f.fields_for :related_costs do |builder| %>
+    <%= render 'related_cost_fields', f:builder %>
+  <% end %>
+
+  <div>
+    <%= link_to_add_fields "Add Related Cost", f, :related_costs %>
+  </div>
+
+  <div class="actions col-md-6 pull-right">
+    <%= f.submit action.capitalize + " Service", class: "btn btn-primary btn-md btn-block" %>
+  </div>
+<% end %>
