@@ -1,4 +1,6 @@
 class TransactionsController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @transactions = Transaction.all
   end

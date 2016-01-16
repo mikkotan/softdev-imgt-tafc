@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:show, :edit, :update, :destroy, :change_password, :update_password]
+  before_action :find_user, only: [:show, :edit, :update, :destroy, :change_password, :update_password, :clients]
   load_and_authorize_resource
 
   def index
@@ -27,24 +27,32 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_info edit_user_params
-      flash[:notice] = 'Successfully updated profile.'
+      flash[:success] = 'Successfully updated profile.'
       redirect_to '/home'
     else
+      flash[:error] = 'Something went wrong when updating profile.'
       render :edit
     end
   end
 
   def destroy
     @user.destroy
+
+    if @user.destroyed?
+      flash[:success] = 'User successfully deleted.'
+    else
+      flash[:error] = 'User WAS NOT deleted.'
+    end
     redirect_to root_url
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = 'User successfully created.'
+      flash[:success] = 'User successfully created.'
       redirect_to users_path
     else
+      flash[:error] = 'User WAS NOT created.'
       render :new
     end
   end
@@ -58,6 +66,7 @@ class UsersController < ApplicationController
         flash[:success] = 'Successfully updated password.'
         redirect_to root_url
       else
+        flash[:error] = 'Something went wrong.'
         render :change_password
       end
     else
@@ -67,7 +76,7 @@ class UsersController < ApplicationController
   end
 
   def clients
-    @clients = User.find(params[:id]).clients
+    @clients = @user.clients
   end
 
   private
