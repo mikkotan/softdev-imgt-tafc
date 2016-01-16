@@ -29,11 +29,8 @@ class User < ActiveRecord::Base
   def update_info(params)
     nice = true
     params.each do |key, value|
-      puts "key is #{key}"
-      puts "value is #{value}"
       nice &&= update_column key, value
     end
-    puts 'hello'
     nice
   end
 
