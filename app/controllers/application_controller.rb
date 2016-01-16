@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   rescue_from CanCan::AccessDenied do |_exception|
-    flash[:notice] = 'You are unauthorized!'
+    flash[:alert] = 'You are unauthorized! Login Please'
     redirect_to '/login'
   end
 
@@ -20,6 +20,4 @@ class ApplicationController < ActionController::Base
   def get_employees
     @employees = User.where('role = ?', 'employee')
   end
-
-  
 end

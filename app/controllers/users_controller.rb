@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update, :destroy, :change_password, :update_password]
-  before_filter :require_authorization
   load_and_authorize_resource
 
   def index
@@ -83,14 +82,5 @@ class UsersController < ApplicationController
 
   def find_user
     @user = User.find(params[:id])
-  end
-
-  def require_authorization
-    if can? :read, :all
-
-    else
-      flash[:alert] = 'Unauthorized! login ples'
-      redirect_to '/login'
-    end
   end
 end

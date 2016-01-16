@@ -1,11 +1,7 @@
 class ClientsController < ApplicationController
   before_action :find_client, only: [:show, :edit, :destroy, :update]
-  before_filter :require_authorization
-  after_filter "save_my_previous_url", only: [:new]
-
-  def save_my_previous_url
-    session[:my_previous_url] =  URI(request.referer || '').path
-  end
+  after_filter 'save_my_previous_url', only: [:new]
+  load_and_authorize_resource
 
   def index
     if params[:search]
@@ -25,7 +21,6 @@ class ClientsController < ApplicationController
     @employees = get_employees
     @client = Client.new
 
-
     if params[:id]
       @client.user_id = params[:id]
       @withparams = true
@@ -34,7 +29,6 @@ class ClientsController < ApplicationController
 
   def create
     @client = Client.new(client_params)
-
 
     if @client.save
       flash[:notice] = 'Client successfully added.'
@@ -67,7 +61,6 @@ class ClientsController < ApplicationController
   def assign
   end
 
-
   private
 
   def client_params
@@ -78,12 +71,7 @@ class ClientsController < ApplicationController
     @client = Client.find(params[:id])
   end
 
-  def require_authorization
-    if can? :read, :all
-
-    else
-      flash[:alert] = 'Unauthorized! login ples'
-      redirect_to '/login'
-    end
+  def save_my_previous_url
+    session[:my_previous_url] = URI(request.referer || '').path
   end
 end
