@@ -19,11 +19,6 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :user_id, 'Assigned to: ', class:"control-label", for:"inputEmployee" %>
-    <%= f.select :user_id, @employees.collect {|employee| ["#{employee.last_name}, #{employee.first_name}", employee.id]}, {},  { class: 'form-control', disabled: @withparams } %>
-  </div>
-
-  <div class="form-group">
     <%= f.label :address, class:"control-label", for:"inputAddress" %>
     <%= f.text_field :address,  class: "form-control", size:"150", required: "required", id:"inputAddress"%>
 
@@ -56,8 +51,8 @@
     <% if @withparams %>
       <%= f.hidden_field :user_id, class: "form-control"%>
     <% else %>
-      <%= f.label :user_id, 'Employee Assigned' %>
-      <%= f.select :user_id, @employees.collect {|employee| ["#{employee.last_name}, #{employee.first_name}", employee.id]}, { },  { class: 'form-control' } %>
+        <%= f.label :user_id, 'Assigned to: ', class:"control-label", for:"inputEmployee" %>
+        <%= f.select :user_id, @employees.collect {|employee| ["#{employee.last_name}, #{employee.first_name}", employee.id]}, {},  { class: 'form-control', disabled: @withparams } %>
     <% end %>
   </div>
 

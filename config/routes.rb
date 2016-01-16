@@ -38,6 +38,8 @@ Rails.application.routes.draw do
 
   resources :fees
 
+  resources :services
+
 
   # Hi! I'm anpeng and I'll put some references here. :D
   # get '/patients/:id', to: 'patients#show', as: 'patient'
