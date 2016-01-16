@@ -2,6 +2,8 @@ class Transaction < ActiveRecord::Base
   belongs_to :client
 
   has_many :other_processing_fees, class_name: "Service"
+  has_many :provisional_receipts
+
   validates :billing_num, presence: true, uniqueness: true
   validates :retainers_fee, presence: true
   validate :can_not_have_values_for_both_vat_and_percentage
@@ -23,7 +25,7 @@ class Transaction < ActiveRecord::Base
   end
 
   def total_of_processing_fees
-    other_processing_fees.inject(0) { |sum, service| sum + service.total_cost }
+    other_processing_fees.inject(:+)
   end
 
   def total_balance
@@ -40,5 +42,43 @@ class Transaction < ActiveRecord::Base
       'VAT' => vat,
       'Percentage' => percentage,
       'Other Processing Fees' => total_of_processing_fees }
+  end
+
+  def pay_in_full(receipt_no)
+    raise 'Transaction is already paid for.' if remaining_balance == 0
+
+    provisional_receipts << ProvisionalReceipt.create(
+      receipt_no: receipt_no,
+      amount_paid: remaining_balance,
+      paid_items: current_remaining_fee_balances
+    )
+  end
+
+  def remaining_balance
+    total_balance - provisional_receipts.inject(0){|sum, receipt| sum + receipt.amount_paid}
+  end
+
+  def current_remaining_fee_balances
+    fees = get_fees
+
+    provisional_receipts.each do |receipt|
+      fees.each do |name, value|
+        if receipt.paid_items[name]
+          fees[name] = value - receipt.paid_items[name]
+        end
+      end
+    end
+
+    fees
+  end
+
+  def pay(receipt_no, paid_items)
+    raise 'Transaction is already paid for.' if remaining_balance == 0
+
+    provisional_receipts << ProvisionalReceipt.create(
+      receipt_no: receipt_no,
+      amount_paid: paid_items.values.inject{|sum, value| sum + value},
+      paid_items: paid_items
+    )
   end
 end
