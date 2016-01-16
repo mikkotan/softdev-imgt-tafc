@@ -31,21 +31,26 @@ class ClientsController < ApplicationController
     @client = Client.new(client_params)
 
     if @client.save
-      flash[:notice] = 'Client successfully added.'
+      flash[:success] = 'Client successfully added.'
       redirect_to session[:my_previous_url]
     else
+      flash[:notice] = 'Client WAS NOT added.'
       render :new
     end
   end
 
   def edit
-    @withparams = false
     @employees = get_employees
   end
 
   def destroy
     @client.destroy
 
+    if @client.destroyed?
+      flash[:success] = 'Client successfully deleted.'
+    else
+      flash[:error] = 'Client WAS NOT deleted.'
+    end
     redirect_to clients_path
   end
 
@@ -54,6 +59,7 @@ class ClientsController < ApplicationController
       flash[:notice] = 'Client successfully updated.'
       redirect_to clients_path
     else
+      flash[:notice] = 'Client WAS NOT edited.'
       render :edit
     end
   end
