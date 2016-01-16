@@ -56,10 +56,10 @@ class ClientsController < ApplicationController
 
   def update
     if @client.update(client_params)
-      flash[:notice] = 'Client successfully updated.'
+      flash[:success] = 'Client successfully updated.'
       redirect_to clients_path
     else
-      flash[:notice] = 'Client WAS NOT edited.'
+      flash[:error] = 'Client WAS NOT edited.'
       render :edit
     end
   end
