@@ -1,9 +1,15 @@
-<table id="datatable" class="table table-hover table-striped" >
+<table class="table table-hover table-striped" id="datatable">
   <thead>
     <tr>
-      <th><h5>Name</h5></th>
-      <th><h5>Email</h5></th>
-      <th style="width: 30px"><h5></h5></th>
+      <th>
+        <h5>Name</h5>
+      </th>
+      <th>
+        <h5>Email</h5>
+      </th>
+      <th style="width: 30px">
+        <h5></h5>
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -13,12 +19,16 @@
         <h4 class="text-capitalize"><%= "#{user.last_name}, #{user.first_name}" %></h4>
       </td>
       <td>
-        <h4><%= user.email %></h4></td>
+        <h4><%= user.email %></h4>
+      </td>
       <td>
         <div class="dropdown text-center">
           <button class="btn btn-default dropdown-toggle btn-block" data-toggle="dropdown" type="button">
-           <h6><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Options
-            <span class="caret"></span></h6>
+            <h6>
+              <span aria-hidden="true" class="glyphicon glyphicon-wrench"></span>
+              Options
+              <span class="caret"></span>
+            </h6>
           </button>
           <ul class="dropdown-menu">
             <li class="text-info">
