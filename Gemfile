@@ -64,9 +64,9 @@ group :development, :test do
   gem 'rails_best_practices'
 end
 
-gem 'bootstrap-kaminari-views'
 
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bootswatch-rails'
+gem 'gretel'
 # datatables
 gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'

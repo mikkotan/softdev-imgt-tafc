@@ -1,0 +1,9 @@
+<div class="col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation">
+
+
+  <%= side_bar do %>
+  <%= side_link raw("<i class='glyphicon glyphicon-home'></i>Home"), home_path %>
+  <%= side_link raw("<i class='glyphicon glyphicon-user'></i>Employees"), employees_path%>
+  <%= side_link raw("<i class='glyphicon glyphicon-briefcase'></i>Clients"), clients_path %>
+<% end %>
+</div>

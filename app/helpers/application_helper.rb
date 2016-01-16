@@ -9,4 +9,18 @@ module ApplicationHelper
     end
     flash_messages.join("\n").html_safe
   end
+
+  def side_bar
+    content_tag(:ul, class: "nav nav-sidebar") do
+      yield
+    end
+  end
+
+  def side_link(text, path)
+    options = current_page?(path) ? { class: "active" } : {}
+    content_tag(:li, options) do
+        link_to text, path
+    end
+  end
+
 end
