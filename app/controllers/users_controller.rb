@@ -56,13 +56,13 @@ class UsersController < ApplicationController
   def update_password
     if User.authenticate(@user.email, params[:user][:old_password]) || can?(:manage, User)
       if @user.update(user_params)
-        flash[:notice] = 'Successfully updated password.'
+        flash[:success] = 'Successfully updated password.'
         redirect_to root_url
       else
         render :change_password
       end
     else
-      flash[:notice] = 'Wrong Password'
+      flash[:error] = 'Wrong Password'
       render :change_password
     end
   end
