@@ -8,7 +8,7 @@ class Ability
       can :manage, :all
     elsif user.role == 'manager'
       can :read, :all
-      can :update, Client
+      can [:update, :edit], Client
     elsif user.role == 'employee'
       can :read, :all
       can [:edit, :update, :change_password, :update_password], User, id: user.id
