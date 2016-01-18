@@ -2,14 +2,14 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery ->
- t = $("#transactions-datatable").DataTable({
-  pagingType: "full_numbers",
-  sPaginationType: "bootstrap"
-  })
+  t = $("#transactions-datatable").DataTable({
+    pagingType: "full_numbers",
+    sPaginationType: "bootstrap"
+    })
 
- $('#addRow').on 'click', () ->
-        t.row.add( [
-          "haha",
-          "hehe",
-          "lala"
-        ] ).draw( false );
+  $('#addRow').on 'click', () ->
+    t.row.add( [
+      "haha",
+      "hehe",
+      "mikel"
+    ] ).draw( false );

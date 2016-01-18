@@ -1,7 +1,6 @@
 <h1>Users#new</h1>
 <p>Find me in app/views/users/new.html.erb</p>
 
-
 <%= form_for @user, url: {action: 'create'} do |f| %>
 <% if @user.errors.any? %>
 <div id="error_explanation">
@@ -15,37 +14,49 @@
   </ul>
 </div>
 <% end %>
-<div class="form-group">
-  <%= f.label :first_name, class:"control-label", for:"inputFirstName" %>
-  <%= f.text_field :first_name, class: "form-control", type: "text", pattern: "^[A-Za-z ]+$", required: "required", id:"inputFirstName", placeholder: "First Name goes here..."  %>
-</div>
-<div class="form-group">
-  <%= f.label :last_name, class:"control-label", for:"inputLastName" %>
-  <%= f.text_field :last_name, class: "form-control", type: "text", pattern: "^[A-Za-z ]+$", required: "required", id:"inputLastName", placeholder: "Last Name goes here..." %>
-</div>
-<div class="form-group">
-  <%= f.label :email, class:"control-label", for:"inputEmail" %>
-  <%= f.text_field :email, class: "form-control", type: "email", required: "required", id:"inputEmail", placeholder: "sample@gmail.com, example@yahoo.com" %>
-</div>
-<div class="form-group">
-  <%= f.label :password, class:"control-label", for:"inputPassword" %>
-  <%= f.password_field :password, class: "form-control", required: "required", id:"inputPassword" %>
-</div>
-<div class="form-group">
-  <%= f.label :password_confirmation, class:"control-label", for:"inputPasswordConfirm" %>
-  <%= f.password_field :password_confirmation, class: "form-control", required: "required", id:"inputPasswordConfirm" %>
-</div>
-<div class="form-group">
-  <%= f.label :role, 'Role: ' %>
-  <%= f.radio_button :role, 'owner', :checked => true, class: "radio-inline" %>
-  <%= label :role, 'owner' %>
-  <%= f.radio_button :role, 'manager', class: "radio-inline" %>
-  <%= label :role, 'manager' %>
-  <%= f.radio_button :role, 'employee', class: "radio-inline" %>
-  <%= label :role, 'employee' %>
-</div>
-<div class="actions col-md-6 pull-right">
-  <%= f.submit "Create User", class: "btn btn-primary btn-md btn-block" %>
-</div>
+<div class="row">
+  <div class="col-sm-5 col-md-6">
 
+    <div class="form-group">
+      <%= f.label :email, class:"control-label", for:"inputEmail" %>
+      <%= f.text_field :email, class: "form-control", type: "email", required: "required", id:"inputEmail", placeholder: "sample@gmail.com, example@yahoo.com" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password, class:"control-label", for:"inputPassword" %>
+      <%= f.password_field :password, class: "form-control", required: "required", id:"inputPassword" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password_confirmation, class:"control-label", for:"inputPasswordConfirm" %>
+      <%= f.password_field :password_confirmation, class: "form-control", required: "required", id:"inputPasswordConfirm" %>
+    </div>
+
+  </div>
+  <div class="col-sm-5 col-md-6">
+    <div class="form-group">
+      <%= f.label :first_name, class:"control-label", for:"inputFirstName" %>
+      <%= f.text_field :first_name, class: "form-control", type: "text", pattern: "^[A-Za-z ]+$", required: "required", id:"inputFirstName", placeholder: "First Name goes here..."  %>
+    </div>
+    <div class="form-group">
+      <%= f.label :last_name, class:"control-label", for:"inputLastName" %>
+      <%= f.text_field :last_name, class: "form-control", type: "text", pattern: "^[A-Za-z ]+$", required: "required", id:"inputLastName", placeholder: "Last Name goes here..." %>
+    </div>
+
+    <h5>Role:</h5>
+    <%= f.radio_button :role, 'owner', :checked => true%>
+    <%= label :role, 'owner' %>
+    <br>
+    <%= f.radio_button :role, 'manager' %>
+    <%= label :role, 'manager' %>
+    <br>
+    <%= f.radio_button :role, 'employee' %>
+    <%= label :role, 'employee' %>
+  </div>
+</div>
+<div class="row">
+  <hr>
+  <div class="actions col-md-6 pull-right">
+    <%= f.submit "Create User", class: "btn btn-primary btn-md btn-block" %>
+  </div>
+</div>
+</div>
 <% end %>

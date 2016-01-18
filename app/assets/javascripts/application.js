@@ -13,6 +13,7 @@
 // Adding js files in this folder is already enough, so don't add anymore lines here.
 //
 //= require jquery
+//= require best_in_place
 //= require jquery_ujs
 //= require jquery.turbolinks
 //= require bootstrap-sprockets
@@ -23,20 +24,23 @@
 //= require_tree .
 
 $(document).ready(function() {
+  toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "positionClass": "toast-bottom-right",
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  };
+});
 
-    toastr.options = {
-        "closeButton": false,
-        "debug": false,
-        "positionClass": "toast-bottom-right",
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-    };
-
-	});
+$(document).ready(function() {
+  /* Activating Best In Place */
+  jQuery(".best_in_place").best_in_place();
+});
