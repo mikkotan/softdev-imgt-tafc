@@ -3,10 +3,11 @@ class Transaction < ActiveRecord::Base
 
   has_many :other_processing_fees, class_name: "Service"
   has_many :provisional_receipts
+  accepts_nested_attributes_for :other_processing_fees 
 
   validates :billing_num, presence: true, uniqueness: true
   validates :retainers_fee, presence: true
-  validate :can_not_have_values_for_both_vat_and_percentage
+  # validate :can_not_have_values_for_both_vat_and_percentage
   validate :can_not_have_services_that_are_templates
 
   def can_not_have_values_for_both_vat_and_percentage

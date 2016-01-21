@@ -20,4 +20,8 @@ class ApplicationController < ActionController::Base
   def get_employees
     @employees = User.where('role = ?', 'employee')
   end
+
+  def get_services
+    @service = Service.where('is_template = ?', true)
+  end
 end
