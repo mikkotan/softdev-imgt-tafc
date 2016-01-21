@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
   def get_employees
     @employees = User.where('role = ?', 'employee')
   end
-
   
+
+
 end

@@ -13,3 +13,5 @@ jQuery ->
       "hehe",
       "mikel"
     ] ).draw( false );
+
+  $('#transactions').collapse 'show'

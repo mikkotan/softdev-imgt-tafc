@@ -12,6 +12,8 @@ jQuery ->
 
 
 
+  $('#services').collapse 'show'
+
 
 
   $('form').on 'click', '.add_fields', (event) ->

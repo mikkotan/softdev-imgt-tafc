@@ -15,7 +15,7 @@
 </div>
 <% end %>
 <div class="row">
-  <div class="col-sm-5 col-md-6">
+  <div class="col-sm-5 col-md-6" id="panel">
 
     <div class="form-group">
       <%= f.label :email, class:"control-label", for:"inputEmail" %>
@@ -31,7 +31,7 @@
     </div>
 
   </div>
-  <div class="col-sm-5 col-md-6">
+  <div class="col-sm-5 col-md-6"id="panel">
     <div class="form-group">
       <%= f.label :first_name, class:"control-label", for:"inputFirstName" %>
       <%= f.text_field :first_name, class: "form-control", type: "text", pattern: "^[A-Za-z ]+$", required: "required", id:"inputFirstName", placeholder: "First Name goes here..."  %>

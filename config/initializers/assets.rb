@@ -4,7 +4,11 @@
 Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( datatables.js )
 Rails.application.config.assets.precompile += %w( datatables-bootstrap.js )
+Rails.application.config.assets.precompile += %w( users.coffee )
 Rails.application.config.assets.precompile += %w( material-bonus.js )
+Rails.application.config.assets.precompile += %w( clients.coffee )
+Rails.application.config.assets.precompile += %w( services.coffee )
+Rails.application.config.assets.precompile += %w( transactions.coffee )
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
 

@@ -9,3 +9,5 @@ jQuery ->
     { 'bSortable': false, 'aTargets': [ -1 ] }
     ]
   })
+
+  $('#clients').collapse 'show'

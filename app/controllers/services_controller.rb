@@ -2,7 +2,7 @@ class ServicesController < ApplicationController
   before_action :find_service, only: [:show, :edit, :destroy, :update]
 
   def index
-    @services = Service.all
+    
   end
 
   def new

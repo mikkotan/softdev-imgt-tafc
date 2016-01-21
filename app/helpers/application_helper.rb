@@ -11,13 +11,20 @@ module ApplicationHelper
   end
 
   def side_bar
-    content_tag(:ul, class: "nav nav-sidebar") do
+    content_tag(:div, class: "nav nav-sidebar panel list-group") do
       yield
     end
   end
 
   def side_link(text, path)
     options = current_page?(path) ? { class: "active" } : {}
+    content_tag(:li, options) do
+        link_to text, path
+    end
+  end
+
+  def side_child_link(text, path)
+    options = current_page?(path) ? { class: "active-tab list-group-item active small" } : {class: "list-group-item small"}
     content_tag(:li, options) do
         link_to text, path
     end
@@ -31,5 +38,5 @@ module ApplicationHelper
     end
     button_tag(name, class:"add_fields btn btn-info btn-sm", data: {id: id, fields: fields.gsub("\n", "")})
   end
-  
+
 end

@@ -153,5 +153,17 @@ footer {
 }
 .nav-sidebar > .active > a {
   color: #fff;
-  background-color: #428bca;
+  background-color: #428BCA;
+}
+
+.active-tab {
+  background-color:#428BCA ;
+}
+
+.active-tab > a {
+  color: #fff;
+}
+
+.list-group panel.active {
+  background-color:#428BCA;
 }

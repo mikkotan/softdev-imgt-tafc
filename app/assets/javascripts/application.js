@@ -21,7 +21,10 @@
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require turbolinks
 //= require toastr
-//= require_tree .
+//= require datatables-bootstrap
+//= require datatables-buttons
+//= require datatables
+//= require material-bonus
 
 $(document).ready(function() {
   toastr.options = {
