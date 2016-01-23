@@ -21,6 +21,9 @@
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require turbolinks
 //= require toastr
+//= require underscore
+//= require json2
+//= require judge
 //= require_tree .
 
 $(document).ready(function() {
