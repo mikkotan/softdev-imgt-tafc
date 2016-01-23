@@ -11,3 +11,4 @@ jQuery ->
   })
 
   $('#clients').collapse 'show'
+  

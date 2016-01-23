@@ -18,49 +18,7 @@
       </a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <% if current_user %>
-      <ul class="nav navbar-nav">
-        <li>
-          <%= link_to employees_path do %>
-          <i class='glyphicon glyphicon-user'></i>Employees
-          <% end %>
-        </li>
-        <li>
-          <%= link_to clients_path do %>
-          <i class='glyphicon glyphicon-briefcase'></i>
-          Clients
-          <% end %>
-        </li>
-        <% if can? :manage, :all %>
-        <!-- owner-->
-        <li>
-          <%= link_to new_user_path do %>
-          <i class='glyphicon glyphicon-pencil'></i>
-          New User
-          <% end %>
-        </li>
-        <li>
-          <%= link_to new_client_path do %>
-          <i class='glyphicon glyphicon-plus'></i>
-          Add Client
-          <% end %>
-        </li>
-        <li>
-          <%= link_to services_path do %>
-          <i class='glyphicon glyphicon-list-alt'></i>
-          Services List
-          <% end %>
-        </li>
-        <li>
-          <%= link_to transactions_path do %>
-          <i class='glyphicon glyphicon-list-alt'></i>
-          Transactions
-          <% end %>
-        </li>
-        <% end %>
-      </ul>
-
-      <% end %>
+    <!-- gretel goes here -->
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
         <li class="dropdown">

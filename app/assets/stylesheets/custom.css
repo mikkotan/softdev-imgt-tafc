@@ -167,3 +167,9 @@ footer {
 .list-group panel.active {
   background-color:#428BCA;
 }
+
+.child {
+  background-color: #F5F5F5;
+  color: #2196F3;
+
+}
