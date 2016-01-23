@@ -53,12 +53,9 @@
     <%= f.text_field :client_id, class: "form-control", type: "number",  required: "required", id:"inputClientId", placeholder: "Insert Client Id here..."  %>
   </div>
 
-  <%= f.fields_for :other_processing_fees do |builder| %>
-    <div class="form-group">
-      <%= builder.select :id, @services.collect {|service| ["#{service.name}", service.id]}, {},  { class: 'form-control' } %>
-    </div>
-  <% end %>
-
+  <div class="form-group">
+  <%= select_tag "services[0]", options_from_collection_for_select(@services, :id, :complete_name), class:"form-control"%>
+  </div>
 
   <div class="actions col-md-6 pull-right">
     <%= f.submit action.capitalize + " Transaction", class: "btn btn-primary btn-md btn-block" %>

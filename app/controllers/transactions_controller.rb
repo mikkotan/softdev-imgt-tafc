@@ -21,12 +21,17 @@ class TransactionsController < ApplicationController
   end
 
   def create
-
     @transaction = Transaction.new(transaction_params)
 
-    if @transaction.save
-      redirect_to session[:my_previous_url]
+    unless @transaction.valid?
+      render :new
     end
+
+    params[:services].each do |key,value|
+      @transaction.other_processing_fees << Service.find(value).make
+    end
+
+    redirect_to session[:my_previous_url]
   end
 
   def edit
@@ -49,9 +54,8 @@ class TransactionsController < ApplicationController
                                         :withholding_1601e,
                                         :employee_benefit_sss,
                                         :employee_benefit_philhealth,
-                                        :employee_benefit_pagibig,
-                                        :client_id,
-                                        other_processing_fees_attributes: [:id])
+                                        :employee_benefit_pag_ibig,
+                                        :client_id)
   end
 
   def save_my_previous_url

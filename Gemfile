@@ -42,6 +42,9 @@ gem 'bootswatch-rails'
 # toastr_rails
 gem 'toastr-rails'
 
+# selectize_rails
+gem "selectize-rails"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -70,5 +73,3 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bootswatch-rails'
 # datatables
 gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
-
-
