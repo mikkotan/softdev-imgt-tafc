@@ -5,7 +5,7 @@ FactoryGirl.define do
     representative 'MyString'
     address 'MyText'
     tel_num 'MyString'
-    email 'MyString'
+    email 'starjirachi1@gmail.com'
     tin_num 'MyString'
     status 'MyString'
   end

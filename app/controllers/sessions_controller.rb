@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   layout :resolve_layout
+
   def new
     redirect_to '/home' if current_user
   end
@@ -8,9 +9,10 @@ class SessionsController < ApplicationController
     user = User.authenticate(params[:email], params[:password])
     if user
       session[:user_id] = user.id
-      redirect_to '/home', notice: 'Logged In!'
+      flash[:success] = "Logged In!"
+      redirect_to '/home'
     else
-      flash[:alert] = 'Invalid Email or Password!'
+      flash[:error] = 'Invalid Email or Password!'
       @email = post_params[:email]
       render 'new'
     end
@@ -18,7 +20,8 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to '/login', notice: 'Successfully Logged Out!'
+    flash[:success] = 'Successfully Logged Out!'
+    redirect_to '/login'
   end
 
   private

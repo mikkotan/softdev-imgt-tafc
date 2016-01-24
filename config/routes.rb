@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Judge::Engine => '/judge'
 
   get 'login' => 'sessions#new', as: 'login'
 

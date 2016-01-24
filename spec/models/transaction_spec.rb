@@ -158,7 +158,7 @@ RSpec.describe Transaction, type: :model do
 
     context 'when customer makes a full payment' do
       before(:each) do
-        transaction.pay_in_full
+        transaction.pay_in_full("002")
       end
 
       it 'should have a remaining balance of zero' do
@@ -180,15 +180,35 @@ RSpec.describe Transaction, type: :model do
       end
 
       it 'should not allow any more payments to be made' do
-        expect(transaction.pay_in_full).to raise_exception
+        expect { transaction.pay_in_full "002" }.to raise_exception(RuntimeError)
 
-        expect(transaction.pay({ 'VAT' => 800 })).to raise_exception
+        expect { transaction.pay("002", { 'VAT' => 800 }) }.to raise_exception(RuntimeError)
       end
 
       it 'should update the individual balances of each fee to zero' do
         transaction.current_remaining_fee_balances.each do |fee, balance|
           expect(balance).to eq 0
         end
+      end
+    end
+
+    context 'when customer makes a partial payment to VAT' do
+      before(:each) do
+        transaction.pay("002", { 'VAT' => 800 })
+      end
+
+      it 'should have a provisional receipt containing all the fees paid' do
+        result = { 'VAT' => 800 }
+
+        expect(transaction.provisional_receipts[0].paid_items).to eq result
+      end
+
+      it 'should update the individual balance of VAT to zero' do
+        expect(transaction.current_remaining_fee_balances['VAT']).to eq 0
+      end
+
+      it 'should update the remaining balance' do
+        expect(transaction.remaining_balance).to eq 7650
       end
     end
   end

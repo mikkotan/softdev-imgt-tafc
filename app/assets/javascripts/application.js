@@ -17,6 +17,9 @@
 //= require jquery_ujs
 //= require jquery.turbolinks
 //= require bootstrap-sprockets
+//= require underscore
+//= require json2
+//= require judge
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require turbolinks
@@ -44,6 +47,5 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-  /* Activating Best In Place */
   jQuery(".best_in_place").best_in_place();
 });

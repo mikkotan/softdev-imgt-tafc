@@ -1,5 +1,6 @@
 class ServicesController < ApplicationController
   before_action :find_service, only: [:show, :edit, :destroy, :update]
+  load_and_authorize_resource
 
   def index
     
@@ -12,12 +13,12 @@ class ServicesController < ApplicationController
 
   def create
     @service = Service.new(service_params)
-    p @service.monthly_fee
 
     if @service.save
-      flash[:notice] = 'Service successfully added.'
+      flash[:success] = 'Service successfully added.'
       redirect_to services_path
     else
+      flash[:error] = 'Service WAS NOT added.'
       render :new
     end
   end
@@ -29,15 +30,22 @@ class ServicesController < ApplicationController
 
   def update
     if @service.update(service_params)
-      flash[:notice] = 'Service successfully updated.'
+      flash[:success] = 'Service successfully updated.'
       redirect_to services_path
     else
+      flash[:error] = 'Service WAS NOT updated.'
       render :edit
     end
   end
 
   def destroy
     @service.destroy
+
+    if @service.destroyed?
+      flash[:success] = 'Service successfully deleted.'
+    else
+      flash[:error] = 'Service WAS NOT deleted.'
+    end
     redirect_to services_path
   end
 
@@ -50,6 +58,4 @@ class ServicesController < ApplicationController
   def find_service
     @service = Service.find(params[:id])
   end
-
-
 end

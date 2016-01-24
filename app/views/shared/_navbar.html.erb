@@ -18,7 +18,14 @@
       </a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-    <!-- gretel goes here -->
+      <!-- gretel goes here -->
+      <ul class="nav navbar-nav">
+        <li>
+          <ol class="breadcrumb">
+            <%= render_breadcrumbs :tag => :li, :separator => "" %>
+          </ol>
+        </li>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
         <li class="dropdown">
@@ -58,4 +65,4 @@
       </ul>
     </div>
   </div>
-  </nav>
+</nav>
