@@ -1,12 +1,11 @@
 class User < ActiveRecord::Base
-  include ActiveModel::Validations
-  validates_with EmailValidator
   has_many :clients
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :password, length: { minimum: 8 }, presence: true, confirmation: true
-  validates :email, uniqueness: true, presence: true
+  validates :password, confirmation: true
+  validates :password, length: { minimum: 8 }, presence: true
+  validates :email, presence: true, email: true
 
   attr_accessor :password
   before_save :encrypt_password

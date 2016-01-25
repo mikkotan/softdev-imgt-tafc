@@ -5,6 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
 User.create(password: 'password',
             email: 'starjirachi1@yahoo.com',
             password_confirmation: 'password',
@@ -39,6 +40,7 @@ Client.create(company_name: 'ACME Inc.',
               status: 'active',
               user: user
              )
+
 client = Client.create(company_name: 'ACME Inc.',
                        owner: 'Kalbo',
                        representative: 'Michael',

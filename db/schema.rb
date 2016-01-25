@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160116124344) do
+ActiveRecord::Schema.define(version: 20160121041112) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "company_name"
@@ -28,17 +28,6 @@ ActiveRecord::Schema.define(version: 20160116124344) do
   end
 
   add_index "clients", ["user_id"], name: "index_clients_on_user_id"
-
-  create_table "fees", force: :cascade do |t|
-    t.string   "description"
-    t.string   "kind"
-    t.float    "amount"
-    t.integer  "transaction_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  add_index "fees", ["transaction_id"], name: "index_fees_on_transaction_id"
 
   create_table "provisional_receipts", force: :cascade do |t|
     t.integer  "transaction_id"
@@ -73,6 +62,14 @@ ActiveRecord::Schema.define(version: 20160116124344) do
   end
 
   add_index "services", ["transaction_id"], name: "index_services_on_transaction_id"
+
+  create_table "services_transactions", force: :cascade do |t|
+    t.integer "service_id"
+    t.integer "transaction_id"
+  end
+
+  add_index "services_transactions", ["service_id"], name: "index_services_transactions_on_service_id"
+  add_index "services_transactions", ["transaction_id"], name: "index_services_transactions_on_transaction_id"
 
   create_table "transactions", force: :cascade do |t|
     t.string   "billing_num"

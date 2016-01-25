@@ -23,6 +23,9 @@ class Service < ActiveRecord::Base
   def make
     @new_thing = dup
     @new_thing.is_template = false
+    related_costs.each do |cost|
+      @new_thing.related_costs << cost.make
+    end
 
     @new_thing
   end

@@ -32,7 +32,7 @@ Rails.application.routes.draw do
 
   put 'users/:id/change_password' => 'users#update_password'
 
-  post 'clients/:id/new_transaction' => 'transactions#create', as: 'new_transaction'
+  get 'clients/:id/new_transaction' => 'transactions#new', as: 'new_transaction'
 
   post ':id/fees/new' => 'fees#create', as:'new_fee'
   resources :transactions

@@ -9,6 +9,7 @@ Rails.application.config.assets.precompile += %w( material-bonus.js )
 Rails.application.config.assets.precompile += %w( clients.coffee )
 Rails.application.config.assets.precompile += %w( services.coffee )
 Rails.application.config.assets.precompile += %w( transactions.coffee )
+Rails.application.config.assets.precompile += %w( users_new.coffee )
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
 

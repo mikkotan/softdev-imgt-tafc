@@ -1,3 +1,5 @@
 <h1>Transactions#new</h1>
 <p>Find me in app/views/transactions/new.html.erb</p>
 
+
+<%= render partial: 'form', locals: {form_model: @transaction, action: 'create'} %>
