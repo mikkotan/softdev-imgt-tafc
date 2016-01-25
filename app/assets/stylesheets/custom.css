@@ -37,7 +37,7 @@ body {
 .login-body {
   background-color: #F8F8F8;
 }
-.form-group {
+/*.form-group {
   display: flex;
   height: 55px;
 }
@@ -81,7 +81,96 @@ body {
 }
 .form-group.focused .form-control::-webkit-input-placeholder {
   color: #bbb;
+}*/
+
+/* --- material floating label --- */
+
+.form-group {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    height: 55px;
 }
+
+.control-label {
+    font-size: 16px;
+    font-weight: 400;
+    opacity: 0.4;
+    pointer-events: none;
+    position: absolute;
+    -webkit-transform: translate3d(0, 22px, 0) scale(1);
+    transform: translate3d(0, 22px, 0) scale(1);
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+    transition: 240ms;
+}
+
+.form-group.focused .control-label {
+    opacity: 1;
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75);
+}
+
+.form-control {
+    -webkit-align-self: flex-end;
+    align-self: flex-end;
+}
+
+.form-control::-webkit-input-placeholder {
+    color: transparent;
+    transition: 240ms;
+}
+
+.form-control::-moz-placeholder {
+    color: transparent;
+    transition: 240ms;
+}
+
+.form-control::-ms-input-placeholder {
+    color: transparent;
+    transition: 240ms;
+}
+
+.form-control:focus::placeholder {
+    transition: none;
+}
+
+.form-control:focus::-webkit-input-placeholder {
+    transition: none;
+}
+
+.form-control:focus::-moz-placeholder {
+    transition: none;
+}
+
+.form-control:focus::-ms-input-placeholder {
+    transition: none;
+}
+
+.form-control:focus::placeholder {
+    transition: none;
+}
+
+.form-group.focused .form-control::-webkit-input-placeholder {
+    color: #bbb;
+}
+
+.form-group.focused .form-control::-moz-placeholder {
+    color: #bbb;
+}
+
+.form-group.focused .form-control::-ms-input-placeholder {
+    color: #bbb;
+}
+
+.form-group.focused .form-control::placeholder {
+    color: #bbb;
+}
+
+
+
 .custom-imgt_logo {
   font-size: 2em;
   line-height: 50%;
