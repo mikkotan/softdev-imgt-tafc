@@ -23,11 +23,13 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Transaction.new(transaction_params)
 
-    unless @transaction.valid?
+    unless @transaction.save
+      @services = get_services
       render :new
+      return
     end
 
-    params[:services].each do |key,value|
+    params[:services].each do |value|
       @transaction.other_processing_fees << Service.find(value).make
     end
 
