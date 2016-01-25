@@ -10,6 +10,9 @@ class Transaction < ActiveRecord::Base
   validate :can_not_have_services_that_are_templates
 
   def can_not_have_values_for_both_vat_and_percentage
+    unless vat && percentage
+      return
+    end
     if vat > 0 && percentage > 0
       errors.add(:vat, " and percentage can't have values at the same time!")
     end
@@ -25,11 +28,11 @@ class Transaction < ActiveRecord::Base
   end
 
   def total_of_processing_fees
-    other_processing_fees.inject(:+)
+    other_processing_fees.inject(0) { |sum, fee| sum + fee.total_cost }
   end
 
   def total_balance
-    get_fees.values.inject(:+)
+    get_fees.values.inject(0) { |sum, value| sum + (value || 0) }
   end
 
   def get_fees
@@ -56,6 +59,10 @@ class Transaction < ActiveRecord::Base
 
   def remaining_balance
     total_balance - provisional_receipts.inject(0){|sum, receipt| sum + receipt.amount_paid}
+  end
+
+  def pending?
+    remaining_balance != 0
   end
 
   def current_remaining_fee_balances

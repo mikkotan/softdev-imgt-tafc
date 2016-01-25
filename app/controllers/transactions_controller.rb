@@ -9,8 +9,6 @@ class TransactionsController < ApplicationController
 
   def show
     @transaction = Transaction.find(params[:id])
-    @fees = @transaction.fees
-    @fee = Fee.new
   end
 
   def new
