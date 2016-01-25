@@ -5,14 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-# User.create(password: 'password',
-#             email: 'starjirachi1@yahoo.com',
-#             password_confirmation: 'password',
-#             first_name: 'Anfernee Joan',
-#             last_name: 'Ng',
-#             role: 'owner'
-#            )
-#
+
+User.create(password: 'password',
+            email: 'starjirachi1@yahoo.com',
+            password_confirmation: 'password',
+            first_name: 'Anfernee Joan',
+            last_name: 'Ng',
+            role: 'owner'
+           )
+
 User.create(password: 'tantantan',
             email: 'tantantan@yahoo.com',
             password_confirmation: 'tantantan',
@@ -40,29 +41,27 @@ Client.create(company_name: 'ACME Inc.',
               user: user
              )
 
-# trans1 = Transaction.create(billing_num: '111', retainers_fee: 300, vat: 150, percentage: 300, client: client)
+client = Client.create(company_name: 'ACME Inc.',
+                       owner: 'Kalbo',
+                       representative: 'Michael',
+                       address: '32 Ledesma St.',
+                       tel_num: '337-6608',
+                       email: 'starjirachi1@yahoo.com',
+                       tin_num: '21312312-2312321',
+                       status: 'active',
+                       user: user
+                      )
 
-#
-# srv = Service.create(name: 'DTI Registration and Renewal',
-#                monthly_fee: 1500
-#               )
-# RelatedCost.create(nature: 'Registration Fees',
-#                    value: 250,
-#                    service: srv
-#               )
-# =======
-# client = Client.create(company_name: 'ACME Inc.',
-#               owner: 'Kalbo',
-#               representative: 'Michael',
-#               address: '32 Ledesma St.',
-#               tel_num: '337-6608',
-#               email: 'starjirachi1@yahoo.com',
-#               tin_num: '21312312-2312321',
-#               status: 'active',
-#               user: user
-#              )
-# >>>>>>> bcdc4804b3d6680b09dc8014f1c7d66153d8e342
-#
-# Service.create(name: 'Intellectual Property Right Application(Copyright/Trademark)',
-#                monthly_fee: 5000,
-#               )
+trans1 = Transaction.create(billing_num: '111', retainers_fee: 300, vat: 150, percentage: 300, client: client)
+
+srv = Service.create(name: 'DTI Registration and Renewal',
+                     monthly_fee: 1500
+                    )
+RelatedCost.create(nature: 'Registration Fees',
+                   value: 250,
+                   service: srv
+                  )
+
+Service.create(name: 'Intellectual Property Right Application(Copyright/Trademark)',
+               monthly_fee: 5000
+              )

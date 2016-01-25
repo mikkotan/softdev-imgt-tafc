@@ -8,10 +8,20 @@ jQuery ->
   "aoColumnDefs": [
     { 'bSortable': false, 'aTargets': [ -1 ] }
     ]
-  })
+  });
+
+
+
+  $('#services').collapse 'show'
+
+
 
   $('form').on 'click', '.add_fields', (event) ->
     time = new Date().getTime()
     regexp = new RegExp($(this).data('id'), 'g')
     $(this).before($(this).data('fields').replace(regexp, time))
+    $('.form-control').on('focus blur', (e) ->
+      $(this).parents('.form-group').toggleClass 'focused', e.type == 'focus' or @value.length > 0
+      return
+      ).trigger 'blur'
     event.preventDefault()

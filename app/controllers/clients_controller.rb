@@ -2,16 +2,15 @@ class ClientsController < ApplicationController
   before_action :find_client, only: [:show, :edit, :destroy, :update]
   after_filter 'save_my_previous_url', only: [:new]
   load_and_authorize_resource
+  add_breadcrumb "Home", :root_path
 
   def index
-    if params[:search]
-      @clients = Client.search(params[:search]).order('company_name ASC')
-    else
-      @clients = Client.all.order('company_name ASC')
-    end
+    add_breadcrumb "Clients List", clients_path
   end
 
   def show
+    add_breadcrumb "Clients List", clients_path
+    add_breadcrumb @client.company_name, client_path
     @transactions = @client.transactions
     @transaction = Transaction.new
   end
@@ -28,7 +27,8 @@ class ClientsController < ApplicationController
 
   def create
     @client = Client.new(client_params)
-
+    add_breadcrumb "Clients List", clients_path
+    add_breadcrumb "New Client", new_client_path
     if @client.save
       flash[:success] = 'Client successfully added.'
       redirect_to session[:my_previous_url]
@@ -54,6 +54,8 @@ class ClientsController < ApplicationController
   end
 
   def update
+    add_breadcrumb "Clients List", clients_path
+    add_breadcrumb "Edit Client" + client.company_name, edit_client_path
     if @client.update(client_params)
       flash[:success] = 'Client successfully updated.'
       redirect_to clients_path

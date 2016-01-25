@@ -3,11 +3,12 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @users = User.page(params[:page])
+    add_breadcrumb "Home", :root_path
   end
 
   def employees
     @employees = get_employees
+      add_breadcrumb "employees", employees_path
   end
 
   def show_employee

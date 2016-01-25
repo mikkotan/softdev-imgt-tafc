@@ -40,6 +40,17 @@ class TransactionsController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:id])
+
+    respond_to do |format|
+      if @transaction.update_attributes(params[:transaction])
+        format.html { redirect_to(@transaction, :notice => 'Transaction was successfully updated.') }
+        format.json { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.json { respond_with_bip(@user) }
+      end
+    end
   end
 
   def destroy

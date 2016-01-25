@@ -66,10 +66,8 @@ group :development, :test do
   gem 'traceroute'
   gem 'rails_best_practices'
 end
-
-gem 'bootstrap-kaminari-views'
-
-gem 'bootstrap-sass', '~> 3.2.0'
-gem 'bootswatch-rails'
+gem "breadcrumbs_on_rails"
 # datatables
 gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
+gem 'best_in_place', '~> 3.0.1'
+gem 'judge'

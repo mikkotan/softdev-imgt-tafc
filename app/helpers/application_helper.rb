@@ -10,12 +10,30 @@ module ApplicationHelper
     flash_messages.join("\n").html_safe
   end
 
+  def side_bar
+    content_tag(:div, class: 'nav nav-sidebar list-group panel') do
+      yield
+    end
+  end
+
+  def side_link(text, path)
+    options = current_page?(path) ? { class: 'active' } : {}
+    content_tag(:li, options) do
+      link_to text, path
+    end
+  end
+
+  def side_child_link(text, path)
+    options = current_page?(path) ? { class: ' child active-tab list-group-item active small' } : { class: 'child list-group-item  small' }
+    link_to text, path, options
+  end
+
   def link_to_add_fields(name, f, association)
     new_object = f.object.send(association).klass.new
     id = new_object.object_id
     fields = f.fields_for(association, new_object, child_index: id) do |builder|
-      render(association.to_s.singularize + "_fields", f: builder)
+      render(association.to_s.singularize + '_fields', f: builder)
     end
-    button_tag(name, class:"add_fields btn btn-info btn-sm", data: {id: id, fields: fields.gsub("\n", "")})
+    button_tag(name, class: 'add_fields btn btn-info btn-sm', data: { id: id, fields: fields.delete("\n") })
   end
 end

@@ -5,6 +5,7 @@
   <title>SoftdevIMgtTafc</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
       <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+      <%= javascript_include_tag params[:controller] ,'data-turbolinks-track' =>true %>
         <%= csrf_meta_tags %>
 </head>
 
@@ -18,16 +19,25 @@
         </script>
     <% end %>
   <%= render "shared/navbar" %>
-    <div class="container">
-      <div class="row">
-        <%= yield %>
+      <div class="container-fluid">
+      <div class="row row-offcanvas row-offcanvas-left">
+        <%= render "shared/sidebar" %>
+          <div class="col-sm-9 col-md-10 main">
+            <p class="visible-xs">
+              <button class="btn btn-primary btn-xs" data-toggle="offcanvas" type="button">
+                <i class="glyphicon glyphicon-chevron-left"></i>
+              </button>
+            </p>
+              <div class="row" id="main-content">
+                <%= yield %>
+              </div>
+          </div>
       </div>
-    </div>
-    <%= render "shared/footer" %>
+      <%= render "shared/footer" %>
 </body>
 
-  <%= javascript_include_tag 'datatables', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'datatables', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'datatables-bootstrap', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'material-bonus', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'material-bonus', 'data-turbolinks-track' => true %>
 
 </html>

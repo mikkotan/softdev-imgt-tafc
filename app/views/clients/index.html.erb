@@ -13,8 +13,8 @@
   <tbody>
     <% @clients.each do |client| %>
     <tr>
-      <td>
-        <h3 class="text-capitalize"><%= "#{client.company_name}" %></h3>
+      <td class="text-capitalize">
+        <%= "#{client.company_name}" %>
       </td>
       <td>
         <% if client.user %>
