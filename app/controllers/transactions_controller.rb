@@ -27,7 +27,7 @@ class TransactionsController < ApplicationController
       return
     end
 
-    params[:services].each do |value|
+    params[:selectize].each do |value|
       @transaction.other_processing_fees << Service.find(value).make
     end
 
