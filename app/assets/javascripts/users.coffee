@@ -11,22 +11,3 @@ jQuery ->
   });
 
   $('#employees').collapse 'show'
-
-
-  $('.form-control').blur( ->
-    return if $(this).attr('name') == 'user[password_confirmation]'
-    judge.validate(this, {
-      valid: (element) ->
-        x = $("##{element.id}") # $('#element_id')
-        x.popover('destroy')
-        x.parent().removeClass('has-error')
-        x.parent().addClass('has-success')
-      invalid: (element, messages) ->
-        x = $("##{element.id}")
-        x.parent().removeClass('has-success')
-        x.parent().addClass('has-error')
-        x.attr('data-content', messages.join(','))
-        x.attr('data-placement', 'left')
-        x.popover('show')
-    })
-  );
