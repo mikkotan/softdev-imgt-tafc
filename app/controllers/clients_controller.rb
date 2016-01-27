@@ -55,7 +55,7 @@ class ClientsController < ApplicationController
 
   def update
     add_breadcrumb "Clients List", clients_path
-    add_breadcrumb "Edit Client" + client.company_name, edit_client_path
+    add_breadcrumb "Edit Client" + @client.company_name, edit_client_path
     if @client.update(client_params)
       flash[:success] = 'Client successfully updated.'
       redirect_to clients_path

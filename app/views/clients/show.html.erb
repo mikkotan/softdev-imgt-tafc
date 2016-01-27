@@ -31,13 +31,17 @@
       <% @transactions.each do |transaction| %>
       <tr>
         <td class="text-capitalize">
-          Billing # <%= "#{transaction.billing_num}" %>
+          # <%= "#{transaction.billing_num}" %>
         </td>
         <td>
           P<%= transaction.total_balance %>
         </td>
         <td>
-          <%= transaction.pending? %>
+          <% if transaction.pending? %>
+            <button type="button" class="btn btn-danger">Pending</button>
+          <% else %>
+            <button type="button" class="btn btn-success">Paid</button>
+          <% end %>
         </td>
         <td>
           <div class="dropdown">
