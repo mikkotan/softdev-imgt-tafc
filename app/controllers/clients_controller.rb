@@ -16,6 +16,8 @@ class ClientsController < ApplicationController
   end
 
   def new
+    add_breadcrumb "Clients List", clients_path
+    add_breadcrumb "New Client", new_client_path
     @employees = get_employees
     @client = Client.new
 
@@ -27,8 +29,6 @@ class ClientsController < ApplicationController
 
   def create
     @client = Client.new(client_params)
-    add_breadcrumb "Clients List", clients_path
-    add_breadcrumb "New Client", new_client_path
     if @client.save
       flash[:success] = 'Client successfully added.'
       redirect_to session[:my_previous_url]
@@ -39,6 +39,8 @@ class ClientsController < ApplicationController
   end
 
   def edit
+    add_breadcrumb "Clients Lists", clients_path
+    add_breadcrumb "Edit " + @client.company_name , edit_client_path
     @employees = get_employees
   end
 
@@ -54,8 +56,6 @@ class ClientsController < ApplicationController
   end
 
   def update
-    add_breadcrumb "Clients List", clients_path
-    add_breadcrumb "Edit Client" + client.company_name, edit_client_path
     if @client.update(client_params)
       flash[:success] = 'Client successfully updated.'
       redirect_to clients_path
@@ -66,6 +66,9 @@ class ClientsController < ApplicationController
   end
 
   def assign
+    add_breadcrumb "Clients Lists", clients_path
+    add_breadcrumb @client.company_name , clients_assign_path
+
   end
 
   private
