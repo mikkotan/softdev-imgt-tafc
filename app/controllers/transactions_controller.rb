@@ -12,8 +12,6 @@ class TransactionsController < ApplicationController
     add_breadcrumb "Transactions List", transactions_path
     add_breadcrumb "View Transaction (Add transaction name here)", transaction_path
     @transaction = Transaction.find(params[:id])
-    @fees = @transaction.get_fees
-    @fee = Fee.new
   end
 
   def new
@@ -37,7 +35,7 @@ class TransactionsController < ApplicationController
       return
     end
 
-    params[:services].each do |value|
+    params[:selectize].each do |value|
       @transaction.other_processing_fees << Service.find(value).make
     end
 

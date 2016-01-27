@@ -17,15 +17,46 @@
 </div>
 
 
-<ol>
-  <% @transactions.each do |transaction| %>
-      <li>
-        <h3 class="text-capitalize">Transaction Invoice: <%= "#{transaction.billing_num}" %></h3>
-        <%= link_to transaction_path(transaction) do %>
-          <button class='btn btn-info btn-sm' role='button'>
-            <i class='glyphicon glyphicon-briefcase'></i> Transaction Details
-          </button>
-        <% end %>
-      </li>
-  <% end %>
-</ol>
+<div>
+  <table id="clientdatatable" class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th>Billing Number</th>
+        <th>Total Amount</th>
+        <th>Status</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @transactions.each do |transaction| %>
+      <tr>
+        <td class="text-capitalize">
+          Billing # <%= "#{transaction.billing_num}" %>
+        </td>
+        <td>
+          P<%= transaction.total_balance %>
+        </td>
+        <td>
+          <%= transaction.pending? %>
+        </td>
+        <td>
+          <div class="dropdown">
+            <button aria-expanded="false" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+              Options
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li class="text-info">
+                  <%= link_to transaction_path(transaction) do %>
+                  <i class='glyphicon glyphicon-briefcase text-info'></i> Details
+                  <% end %>
+              </li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>

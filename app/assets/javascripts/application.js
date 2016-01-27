@@ -28,6 +28,7 @@
 //= require datatables-buttons
 //= require datatables
 //= require material-bonus
+//= require selectize
 
 $(document).ready(function() {
   toastr.options = {

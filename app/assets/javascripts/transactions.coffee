@@ -15,3 +15,13 @@ jQuery ->
     ] ).draw( false );
 
   $('#transactions').collapse 'show'
+
+  $('#selectize').selectize
+    plugins: [ 'remove_button' ]
+    delimiter: ','
+    persist: false
+    create: (input) ->
+      {
+        value: input
+        text: input
+      }
