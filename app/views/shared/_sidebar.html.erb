@@ -8,16 +8,16 @@
       Employees
     </a>
     <div class="sublinks collapse" id="employees">
-      <%= side_child_link raw("<i class='glyphicon glyphicon-home'></i> Index"), employees_path  %>
-      <%= side_child_link raw("<i class='glyphicon glyphicon-home'></i> Add"), new_user_path %>
+      <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Index"), employees_path  %>
+      <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Add"), new_user_path %>
     </div>
     <a class="list-group-item" data-parent="#SideMenu" data-target="#clients" data-toggle="collapse" href="#" id="clientscollapse">
       <i class='glyphicon glyphicon-briefcase'></i>
       Clients
     </a>
     <div class="sublinks collapse" id="clients">
-      <%= side_child_link raw("<i class='glyphicon glyphicon-home'></i> Index"), clients_path %>
-      <%= side_child_link raw("<i class='glyphicon glyphicon-home'></i> Add"), new_client_path %>
+      <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Index"), clients_path %>
+      <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Add"), new_client_path %>
     </div>
     <a class="list-group-item" data-parent="#SideMenu" data-target="#transactions" data-toggle="collapse" href="#">
       <i class='glyphicon glyphicon-briefcase'></i>
@@ -27,12 +27,12 @@
       <%= side_child_link raw("<i class='glyphicon glyphicon-home'></i> Index"), transactions_path %>
     </div>
     <a class="list-group-item" data-parent="#SideMenu" data-target="#services" data-toggle="collapse" href="#">
-      <i class='glyphicon glyphicon-briefcase'></i>
+      <i class='glyphicon glyphicon-list-alt'></i>
       Services
     </a>
     <div class="sublinks collapse" id="services">
-      <%= side_child_link raw("<i class='glyphicon glyphicon-home'></i> Index"), services_path %>
-      <%= side_child_link raw("<i class='glyphicon glyphicon-home'></i> Add"), new_service_path %>
+      <!-- <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Index"), services_path %> -->
+      <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Add"), new_service_path %>
     </div>
     <% end %>
   </div>
