@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   get 'employees/:id/new-client' => 'clients#new', as: 'employee_new_client'
 
-  get 'home' => 'users#index', as: 'home'
+  get 'home' => 'home#index', as: 'home'
 
   # root 'users#index'
   root 'sessions#new'

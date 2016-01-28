@@ -1,17 +1,23 @@
 class TransactionsController < ApplicationController
   load_and_authorize_resource
   after_filter 'save_my_previous_url', only: [:new]
-
+  add_breadcrumb "Home", :root_path
 
   def index
+    add_breadcrumb "Transactions List", transactions_path
     @transactions = Transaction.all
   end
 
   def show
+    add_breadcrumb "Transactions List", transactions_path
+    add_breadcrumb "View Transaction (Add transaction name here)", transaction_path
     @transaction = Transaction.find(params[:id])
   end
 
   def new
+    add_breadcrumb "Transactions List", transactions_path
+    add_breadcrumb "New Transaction", new_transaction_path
+
     @transaction = Transaction.new
     @transaction.client_id = params[:id]
     @transaction.other_processing_fees.build
@@ -19,6 +25,8 @@ class TransactionsController < ApplicationController
   end
 
   def create
+    add_breadcrumb "Transactions List", transactions_path
+    add_breadcrumb "New Transaction", new_transaction_path
     @transaction = Transaction.new(transaction_params)
 
     unless @transaction.save
@@ -35,9 +43,13 @@ class TransactionsController < ApplicationController
   end
 
   def edit
+    add_breadcrumb "Transactions List", transactions_path
+    add_breadcrumb "Edit Transaction(add Transaction name here)", edit_transaction_path
   end
 
   def update
+    add_breadcrumb "Transactions List", transactions_path
+    add_breadcrumb "Edit Transaction(add Transaction name here)", edit_transaction_path
     @user = User.find(params[:id])
 
     respond_to do |format|

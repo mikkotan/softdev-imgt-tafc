@@ -1,17 +1,22 @@
 class ServicesController < ApplicationController
   before_action :find_service, only: [:show, :edit, :destroy, :update]
   load_and_authorize_resource
+  add_breadcrumb "Home", :root_path
 
   def index
-    
+    add_breadcrumb "Services List", services_path
   end
 
   def new
+    add_breadcrumb "Services List", services_path
+    add_breadcrumb "Add Service", new_service_path
     @service = Service.new
     @service.related_costs.build
   end
 
   def create
+    add_breadcrumb "Services List", services_path
+    add_breadcrumb "Add Service", new_service_path
     @service = Service.new(service_params)
 
     if @service.save
@@ -24,6 +29,8 @@ class ServicesController < ApplicationController
   end
 
   def edit
+    add_breadcrumb "Services List", services_path
+    add_breadcrumb "Edit Service " + @service.complete_name, edit_service_path
     @service = Service.find params[:id]
     @service.related_costs.build if @service.related_costs.size == 0
   end

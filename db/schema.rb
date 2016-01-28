@@ -29,6 +29,17 @@ ActiveRecord::Schema.define(version: 20160121041112) do
 
   add_index "clients", ["user_id"], name: "index_clients_on_user_id"
 
+  create_table "fees", force: :cascade do |t|
+    t.string   "description"
+    t.string   "kind"
+    t.float    "amount"
+    t.integer  "transaction_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "fees", ["transaction_id"], name: "index_fees_on_transaction_id"
+
   create_table "provisional_receipts", force: :cascade do |t|
     t.integer  "transaction_id"
     t.text     "paid_items"

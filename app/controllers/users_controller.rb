@@ -1,25 +1,30 @@
 class UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update, :destroy, :change_password, :update_password, :clients]
   load_and_authorize_resource
+  add_breadcrumb "Home", :root_path
 
   def index
-    add_breadcrumb "Home", :root_path
   end
 
   def employees
+    add_breadcrumb "Employees", employees_path
     @employees = get_employees
-      add_breadcrumb "employees", employees_path
+
   end
 
   def show_employee
     @employee = User.find(params[:id])
     @clients = @employee.clients
+    add_breadcrumb "Employees", employees_path
+    add_breadcrumb @employee.email, show_employee_path
   end
 
   def show
   end
 
   def new
+    add_breadcrumb "Employees", employees_path
+    add_breadcrumb "New User", new_user_path
     @user = User.new
   end
 
@@ -27,6 +32,8 @@ class UsersController < ApplicationController
   end
 
   def update
+    add_breadcrumb "Employees", employees_path
+    add_breadcrumb "New User", new_user_path
     if @user.update_info edit_user_params
       flash[:success] = 'Successfully updated profile.'
       redirect_to '/home'
@@ -48,6 +55,8 @@ class UsersController < ApplicationController
   end
 
   def create
+    add_breadcrumb "Employees", employees_path
+    add_breadcrumb "New User", new_user_path
     @user = User.new(user_params)
     if @user.save
       flash[:success] = 'User successfully created.'
@@ -59,6 +68,8 @@ class UsersController < ApplicationController
   end
 
   def change_password
+    add_breadcrumb "Employees", employees_path
+    add_breadcrumb "Change Password of " + @user.email , change_password_path
   end
 
   def update_password
