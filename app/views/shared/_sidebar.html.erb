@@ -6,7 +6,6 @@
     <a class="list-group-item" data-parent="#SideMenu" data-target="#employees" data-toggle="collapse" href="#">
       <i class='glyphicon glyphicon-user'></i>
       Employees
-
     </a>
     <div class="sublinks collapse" id="employees">
       <%= side_child_link raw("<i class='glyphicon glyphicon-home'></i> Index"), employees_path  %>
@@ -15,7 +14,6 @@
     <a class="list-group-item" data-parent="#SideMenu" data-target="#clients" data-toggle="collapse" href="#" id="clientscollapse">
       <i class='glyphicon glyphicon-briefcase'></i>
       Clients
-
     </a>
     <div class="sublinks collapse" id="clients">
       <%= side_child_link raw("<i class='glyphicon glyphicon-home'></i> Index"), clients_path %>
@@ -24,13 +22,13 @@
     <a class="list-group-item" data-parent="#SideMenu" data-target="#transactions" data-toggle="collapse" href="#">
       <i class='glyphicon glyphicon-briefcase'></i>
       Transactions
-
     </a>
-    <div class="sublinks collapse" id="transactions"></div>
+    <div class="sublinks collapse" id="transactions">
+      <%= side_child_link raw("<i class='glyphicon glyphicon-home'></i> Index"), transactions_path %>
+    </div>
     <a class="list-group-item" data-parent="#SideMenu" data-target="#services" data-toggle="collapse" href="#">
       <i class='glyphicon glyphicon-briefcase'></i>
       Services
-
     </a>
     <div class="sublinks collapse" id="services">
       <%= side_child_link raw("<i class='glyphicon glyphicon-home'></i> Index"), services_path %>
