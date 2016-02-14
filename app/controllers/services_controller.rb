@@ -5,13 +5,14 @@ class ServicesController < ApplicationController
 
   def index
     add_breadcrumb "Services List", services_path
+    @services = get_services
   end
 
   def new
     add_breadcrumb "Services List", services_path
     add_breadcrumb "Add Service", new_service_path
     @service = Service.new
-    @service.related_costs.build
+
   end
 
   def create
@@ -32,7 +33,7 @@ class ServicesController < ApplicationController
     add_breadcrumb "Services List", services_path
     add_breadcrumb "Edit Service " + @service.complete_name, edit_service_path
     @service = Service.find params[:id]
-    @service.related_costs.build if @service.related_costs.size == 0
+
   end
 
   def update

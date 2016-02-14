@@ -13,8 +13,8 @@
     <%= f.text_field :monthly_fee, class: "form-control", type: "number", required: "required", id:"inputMonthlyFee", placeholder: "Insert Monthly Fee here..." %>
   </div>
 
-
   <%= f.fields_for :related_costs do |builder| %>
+    <%= render "related_cost_fields", :f => builder %>
   <% end %>
 
   <div>

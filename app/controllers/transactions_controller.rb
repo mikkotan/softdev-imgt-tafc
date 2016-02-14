@@ -26,7 +26,6 @@ class TransactionsController < ApplicationController
 
   def create
     add_breadcrumb "Transactions List", transactions_path
-    add_breadcrumb "New Transaction", new_transaction_path
     @transaction = Transaction.new(transaction_params)
 
     unless @transaction.save
