@@ -10,6 +10,7 @@ class CreateTransactions < ActiveRecord::Migration
       t.float :employee_benefit_sss
       t.float :employee_benefit_philhealth
       t.float :employee_benefit_pag_ibig
+      t.float :discount
       t.belongs_to :client, index: true
       t.timestamps null: false
     end

@@ -34,10 +34,12 @@ class TransactionsController < ApplicationController
       return
     end
 
-    params[:selectize].each do |value|
-      @transaction.other_processing_fees << Service.find(value).make
+    if params[:selectize]
+      params[:selectize].each do |value|
+        @transaction.other_processing_fees << Service.find(value).make
+      end
     end
-
+    
     redirect_to session[:my_previous_url]
   end
 
@@ -77,6 +79,7 @@ class TransactionsController < ApplicationController
                                         :employee_benefit_sss,
                                         :employee_benefit_philhealth,
                                         :employee_benefit_pag_ibig,
+                                        :discount,
                                         :client_id)
   end
 

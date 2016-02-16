@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20160121041112) do
     t.float    "employee_benefit_sss"
     t.float    "employee_benefit_philhealth"
     t.float    "employee_benefit_pag_ibig"
+    t.float    "discount"
     t.integer  "client_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false

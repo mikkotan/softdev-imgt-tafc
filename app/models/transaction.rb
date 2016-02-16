@@ -32,7 +32,11 @@ class Transaction < ActiveRecord::Base
   end
 
   def total_balance
-    get_fees.values.inject(0) { |sum, value| sum + (value || 0) }
+    if discount
+      (get_fees.values.inject(0) { |sum, value| sum + (value || 0) }) * (1-(discount/100))
+    else
+      get_fees.values.inject(0) { |sum, value| sum + (value || 0) }
+    end
   end
 
   def get_fees
