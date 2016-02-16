@@ -24,14 +24,14 @@
       Transactions
     </a>
     <div class="sublinks collapse" id="transactions">
-      <%= side_child_link raw("<i class='glyphicon glyphicon-home'></i> Index"), transactions_path %>
+      <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Index"), transactions_path %>
     </div>
     <a class="list-group-item" data-parent="#SideMenu" data-target="#services" data-toggle="collapse" href="#">
       <i class='glyphicon glyphicon-list-alt'></i>
       Services
     </a>
     <div class="sublinks collapse" id="services">
-      <!-- <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Index"), services_path %> -->
+      <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Index"), services_path %>
       <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Add"), new_service_path %>
     </div>
     <% end %>

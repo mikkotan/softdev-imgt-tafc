@@ -71,3 +71,5 @@ gem "breadcrumbs_on_rails"
 gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
 gem 'best_in_place', '~> 3.0.1'
 gem 'judge'
+
+#gantt charting

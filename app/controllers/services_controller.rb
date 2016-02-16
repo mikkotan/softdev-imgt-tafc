@@ -26,7 +26,7 @@ class ServicesController < ApplicationController
       flash[:error] = 'Service WAS NOT added.'
       render :new
     end
-  end
+  end   
 
   def edit
     add_breadcrumb "Services List", services_path
