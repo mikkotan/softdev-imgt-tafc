@@ -1,5 +1,5 @@
 jQuery ->
-  $('.form-control').bind 'blur', ->
+  $('.form-control').bind 'change', ->
     judge.validate this, {
       valid: (element) ->
         x = $(element)
