@@ -1,3 +1,6 @@
+
+<%= javascript_include_tag 'users_new' ,'data-turbolinks-track' =>true %>
+
 <%= form_for @user, url: {action: 'create'}, builder: Judge::FormBuilder do |f| %>
 <% if @user.errors.any? %>
 <div id="error_explanation">
@@ -56,5 +59,3 @@
 </div>
 </div>
 <% end %>
-
-<%= javascript_include_tag 'users_new' ,'data-turbolinks-track' =>true %>
