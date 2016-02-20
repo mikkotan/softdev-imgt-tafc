@@ -9,7 +9,7 @@ jQuery ->
 
   $('#addRow').on 'click', () ->
     t.row.add( [
-      "haha",
+      "tani erb code makadtu dri.",
       "hehe",
       "mikel"
     ] ).draw( false );
