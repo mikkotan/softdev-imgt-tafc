@@ -27,7 +27,7 @@ class ProvisionalReceiptsController < ApplicationController
       @transaction.pay(@pr.receipt_no,@pr.amount_paid, @pr.note)
     end
 
-    redirect_to transaction_path(@transaction.id)
+    redirect_to transaction_path(@transaction.client_id,@transaction.id)
   end
 
   def edits
