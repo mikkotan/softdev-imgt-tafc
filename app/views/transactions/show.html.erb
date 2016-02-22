@@ -16,21 +16,16 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="payments_table">
-    <div class="actions col-md-6 pull-right">
-      <%= link_to new_provisional_receipts_path(@transaction.id) do %>
-       <button class='btn btn-info btn-sm' role='button'>
-         <i class='glyphicon glyphicon-briefcase'></i> Pay
-       </button>
-      <% end %>
-    </div>
-  </div>
-</div>
-
 <div>
   <h1>Payment Log</h1>
-  <table id="clientdatatable" class="table table-hover table-striped">
+  <div class="pull-right">
+    <%= link_to new_provisional_receipts_path(@transaction.client.id, @transaction.id) do %>
+     <button class='btn btn-info btn-sm' role='button'>
+       <i class='glyphicon glyphicon-briefcase'></i> Pay
+     </button>
+    <% end %>
+  </div>
+  <table id="transactions-datatable" class="table table-hover table-striped">
     <thead>
       <tr>
         <th>Receipt No.</th>

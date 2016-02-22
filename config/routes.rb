@@ -38,8 +38,9 @@ Rails.application.routes.draw do
 
   post ':id/fees/new' => 'fees#create', as:'new_fee'
 
-  get 'transaction/:id/partial_payment' => 'provisional_receipts#new', as: 'new_provisional_receipts'
-  
+  get 'clients/:id/transactions/:transaction_id/new_payment' => 'provisional_receipts#new', as: 'new_provisional_receipts'
+
+  get 'clients/:id/transactions/:transaction_id' => 'transactions#show', as: 'transaction'
   resources :transactions
 
   resources :fees
