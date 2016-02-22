@@ -12,16 +12,21 @@ class TransactionsController < ApplicationController
     add_breadcrumb "Transactions List", transactions_path
     add_breadcrumb "View Transaction (Add transaction name here)", transaction_path
     @transaction = Transaction.find(params[:id])
+    @payments = get_payments(@transaction.id)
   end
 
   def new
-    add_breadcrumb "Transactions List", transactions_path
-    add_breadcrumb "New Transaction", new_transaction_path
-
     @transaction = Transaction.new
     @transaction.client_id = params[:id]
+    @client = Client.find(params[:id])
     @transaction.other_processing_fees.build
     @services = get_services
+
+    add_breadcrumb "Clients List", clients_path
+    add_breadcrumb @client.company_name, client_path {@client.id}
+    add_breadcrumb "New Transaction", new_transaction_path {@transaction.client_id}
+
+
   end
 
   def create
@@ -39,7 +44,7 @@ class TransactionsController < ApplicationController
         @transaction.other_processing_fees << Service.find(value).make
       end
     end
-    
+
     redirect_to session[:my_previous_url]
   end
 
@@ -66,6 +71,12 @@ class TransactionsController < ApplicationController
 
   def destroy
   end
+
+  # def full_payment
+  #   @transaction = Transactions.find params[:transaction_id]
+  #
+  # end
+
 
   private
 

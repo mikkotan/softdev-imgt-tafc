@@ -34,13 +34,19 @@ Rails.application.routes.draw do
 
   get 'clients/:id/new_transaction' => 'transactions#new', as: 'new_transaction'
 
+  get 'clients/:id/transactions/:transaction_id/full_payment' => 'transactions#full_payment', as: 'transaction_fullpayment'
+
   post ':id/fees/new' => 'fees#create', as:'new_fee'
+
+  get 'transaction/:id/partial_payment' => 'provisional_receipts#new', as: 'new_provisional_receipts'
+  
   resources :transactions
 
   resources :fees
 
   resources :services
 
+  resource :provisional_receipts
 
   # Hi! I'm anpeng and I'll put some references here. :D
   # get '/patients/:id', to: 'patients#show', as: 'patient'
