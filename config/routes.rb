@@ -41,6 +41,8 @@ Rails.application.routes.draw do
   get 'clients/:id/transactions/:transaction_id/new_payment' => 'provisional_receipts#new', as: 'new_provisional_receipts'
 
   get 'clients/:id/transactions/:transaction_id' => 'transactions#show', as: 'transaction'
+
+  get 'reports/accounts_receivable' => 'transactions#accounts_receivable', as: 'accounts_receivable'
   resources :transactions
 
   resources :fees
