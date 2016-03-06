@@ -15,7 +15,10 @@ class TransactionsController < ApplicationController
   end
 
   def new
-    add_breadcrumb "Transactions List", transactions_path
+
+    @client = Client.find(params[:id])
+    add_breadcrumb "Client List", clients_path
+    add_breadcrumb @client.company_name, client_path
     add_breadcrumb "New Transaction", new_transaction_path
 
     @transaction = Transaction.new

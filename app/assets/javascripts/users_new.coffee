@@ -12,7 +12,8 @@ jQuery ->
           x.parent().removeClass('has-success')
           x.parent().addClass('has-error')
           x.attr('data-content', messages.join(','))
-          x.attr('data-placement', 'left')
+          x.attr('data-placement', 'right')
+          x.attr('data-container', 'body')
           x.popover('show')
       }
 
@@ -21,5 +22,5 @@ judge.eachValidators.email = (options, messages) ->
   errorMessages = []
   # 'this' refers to the form element
   if (!this.value.match( emailPattern ))
-    errorMessages.push('not a valid email')
+    errorMessages.push('Please enter a valid email address.')
   new judge.Validation(errorMessages)

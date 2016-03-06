@@ -3,31 +3,46 @@
 <table class="table table-hover table-striped" id="transactions-datatable">
   <thead>
     <tr>
-      <th>
-        <h5>Name</h5>
-      </th>
-      <th>
-        <h5>Description</h5>
-      </th>
-      <th>
-        <h5>Type</h5>
-      </th>
+      <th>Billing Number</th>
+      <th>Total Amount</th>
+      <th>Status</th>
+      <th>Options</th>
     </tr>
   </thead>
   <tbody>
-
+    <% @transactions.each do |transaction| %>
     <tr>
-      <td>
-        hehe
+      <td class="text-capitalize">
+        # <%= "#{transaction.billing_num}" %>
       </td>
       <td>
-        hphp
-        <td>
-          hehe
-        </td>
-      </tr>
-
-    </tbody>
+        P<%= transaction.total_balance %>
+      </td>
+      <td>
+        <% if transaction.pending? %>
+          <button type="button" class="btn btn-danger">Pending</button>
+        <% else %>
+          <button type="button" class="btn btn-success">Paid</button>
+        <% end %>
+      </td>
+      <td>
+        <div class="dropdown">
+          <button aria-expanded="false" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+            Options
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li class="text-info">
+                <%= link_to transaction_path(transaction) do %>
+                <i class='glyphicon glyphicon-briefcase text-info'></i> Details
+                <% end %>
+            </li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
   </table>
 
   <button class="btn btn-primary btn-md btn-block" id="addRow">
