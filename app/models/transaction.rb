@@ -32,7 +32,11 @@ class Transaction < ActiveRecord::Base
   end
 
   def total_balance
-    get_fees.values.inject(0) { |sum, value| sum + (value || 0) }
+    if discount
+      (get_fees.values.inject(0) { |sum, value| sum + (value || 0) }) * (1-(discount/100))
+    else
+      get_fees.values.inject(0) { |sum, value| sum + (value || 0) }
+    end
   end
 
   def get_fees
@@ -79,13 +83,13 @@ class Transaction < ActiveRecord::Base
     fees
   end
 
-  def pay(receipt_no, paid_items)
+  def pay(receipt_no, amount_paid, note)
     raise 'Transaction is already paid for.' if remaining_balance == 0
 
     provisional_receipts << ProvisionalReceipt.create(
       receipt_no: receipt_no,
-      amount_paid: paid_items.values.inject{|sum, value| sum + value},
-      paid_items: paid_items
+      amount_paid: amount_paid,
+      note: note
     )
   end
 end

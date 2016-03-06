@@ -24,4 +24,8 @@ class ApplicationController < ActionController::Base
   def get_services
     @service = Service.where('is_template = ?', true)
   end
+
+  def get_payments(id)
+    @payments = ProvisionalReceipt.where('transaction_id = ?', id)
+  end
 end

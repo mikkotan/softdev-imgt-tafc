@@ -9,22 +9,28 @@ class TransactionsController < ApplicationController
   end
 
   def show
-    add_breadcrumb "Transactions List", transactions_path
-    add_breadcrumb "View Transaction (Add transaction name here)", transaction_path
-    @transaction = Transaction.find(params[:id])
+    @transaction = Transaction.find(params[:transaction_id])
+    @payments = get_payments(@transaction.id)
+    @client = Client.find(@transaction.client_id)
+    add_breadcrumb "Clients List", clients_path
+    add_breadcrumb @client.company_name, client_path {@client.id}
+    # add_breadcrumb "Transaction No. #{@transaction.billing_num}", transaction_path {@client.id}, {@transaction.id}
+    add_breadcrumb "Transaction No. #{@transaction.billing_num}", transaction_path {@client.id @transaction.id}
   end
 
   def new
-
-    @client = Client.find(params[:id])
-    add_breadcrumb "Client List", clients_path
-    add_breadcrumb @client.company_name, client_path
-    add_breadcrumb "New Transaction", new_transaction_path
-
     @transaction = Transaction.new
     @transaction.client_id = params[:id]
+    @client = Client.find(@transaction.client_id)
     @transaction.other_processing_fees.build
     @services = get_services
+    puts @client.company_name
+    puts @client.id
+    add_breadcrumb "Clients List", clients_path
+    add_breadcrumb @client.company_name, client_path {@client.id}
+    add_breadcrumb "New Transaction", new_transaction_path {@transaction.client_id}
+
+
   end
 
   def create
@@ -37,8 +43,10 @@ class TransactionsController < ApplicationController
       return
     end
 
-    params[:selectize].each do |value|
-      @transaction.other_processing_fees << Service.find(value).make
+    if params[:selectize]
+      params[:selectize].each do |value|
+        @transaction.other_processing_fees << Service.find(value).make
+      end
     end
 
     redirect_to session[:my_previous_url]
@@ -68,6 +76,12 @@ class TransactionsController < ApplicationController
   def destroy
   end
 
+  # def full_payment
+  #   @transaction = Transactions.find params[:transaction_id]
+  #
+  # end
+
+
   private
 
   def transaction_params
@@ -80,6 +94,7 @@ class TransactionsController < ApplicationController
                                         :employee_benefit_sss,
                                         :employee_benefit_philhealth,
                                         :employee_benefit_pag_ibig,
+                                        :discount,
                                         :client_id)
   end
 

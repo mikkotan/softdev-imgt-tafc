@@ -1,15 +1,53 @@
 <h1>Transactions#show</h1>
 <p>Find me in app/views/transactions/show.html.erb</p>
 
-<div>
+<div class="row">
   <div class="col-md-10">
         <h3><em>Transaction Details</em></h3>
+        <h3>Billing No: # <%= @transaction.billing_num %></h3>
         <div>
             <% @transaction.get_fees.each do |name, value| %>
               <h6><%= name %>: <%= value || 0 %></h6>
             <% end %>
 
             <strong><h3>Total: Php <%= @transaction.total_balance%></h3></strong>
+            <strong><h6>Remaining Balance: Php <%= @transaction.remaining_balance %></h6></strong>
         </div>
   </div>
+</div>
+
+<div>
+  <h1>Payment Log</h1>
+  <div class="pull-right">
+    <%= link_to new_provisional_receipts_path(@transaction.client.id, @transaction.id) do %>
+     <button class='btn btn-info btn-sm' role='button'>
+       <i class='glyphicon glyphicon-briefcase'></i> Pay
+     </button>
+    <% end %>
+  </div>
+  <table id="transactions-datatable" class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th>Receipt No.</th>
+        <th>Note</th>
+        <th>Amount Paid</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @payments.each do |payment| %>
+      <tr>
+        <td class="text-capitalize">
+          # <%= "#{payment.receipt_no}" %>
+        </td>
+        <td>
+          <em><%= payment.note %></em>
+        </td>
+        <td>
+          P <%= payment.amount_paid %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
 </div>

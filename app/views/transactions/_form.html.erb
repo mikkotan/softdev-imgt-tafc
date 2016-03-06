@@ -52,13 +52,19 @@
   </label>
   <div class="form-group">
     <%= select_tag "selectize", options_from_collection_for_select(@services, :id, :complete_name), class:"form-control selectize input-lg", multiple: true, placeholder:"Click here to see list of available services..."%>
-  </div>
 </div>
 <div class="form-group">
-  <%= f.hidden_field :client_id, class: "form-control" %>
+    <%= f.label :discount, class:"control-label", for:"inputDiscount" %>
+    <%= f.text_field :discount, class: "form-control", type: "number",  required: "required", id:"inputDiscount", placeholder: "Insert Discount in percent here..."  %>
+  </div>
+
+  <div class="form-group">
+    <%= f.hidden_field :client_id, class: "form-control" %>
+  </div>
 </div>
 
-<div class="actions col-md-6 pull-right">
-  <%= f.submit action.capitalize + " Transaction", class: "btn btn-primary btn-md btn-block" %>
-</div>
+
+  <div class="actions col-md-6 pull-right">
+    <%= f.submit action.capitalize + " Transaction", class: "btn btn-primary btn-md btn-block" %>
+  </div>
 <% end %>

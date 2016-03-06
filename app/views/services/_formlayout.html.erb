@@ -4,12 +4,12 @@
   <% end %>
   <div class="col-sm-5 col-md-8" id="panel">
   <div class="form-group">
-    <%= f.label :name, class:"control-label", for:"inputServiceName" %>
+    <%= f.label :name, 'Service Type',class:"control-label", for:"inputServiceName" %>
     <%= f.text_field :name, class: "form-control", required: "required", id:"inputServiceName", placeholder: "Insert Service Name here..." %>
   </div>
 
   <div class="form-group">
-    <%= f.label :monthly_fee, class:"control-label", for:"inputMonthlyFee" %>
+    <%= f.label :monthly_fee, 'Amount',class:"control-label", for:"inputMonthlyFee" %>
     <%= f.text_field :monthly_fee, class: "form-control", type: "number", required: "required", id:"inputMonthlyFee", placeholder: "Insert Monthly Fee here..." %>
   </div>
 

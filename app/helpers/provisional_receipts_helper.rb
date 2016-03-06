@@ -1,0 +1,2 @@
+module ProvisionalReceiptsHelper
+end

@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20160121041112) do
 
   create_table "provisional_receipts", force: :cascade do |t|
     t.integer  "transaction_id"
-    t.text     "paid_items"
+    t.string   "note"
     t.float    "amount_paid"
     t.string   "receipt_no"
     t.datetime "created_at",     null: false
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20160121041112) do
     t.float    "employee_benefit_sss"
     t.float    "employee_benefit_philhealth"
     t.float    "employee_benefit_pag_ibig"
+    t.float    "discount"
     t.integer  "client_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
