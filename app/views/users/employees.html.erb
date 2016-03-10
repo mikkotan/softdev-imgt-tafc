@@ -2,33 +2,32 @@
   <thead>
     <tr>
       <th>
-        <h5>Name</h5>
+        Name
       </th>
       <th>
-        <h5>Email</h5>
+        Email
       </th>
       <th style="width: 30px">
-        <h5></h5>
       </th>
     </tr>
   </thead>
   <tbody>
     <% @employees.each do |user| %>
     <tr>
-      <td>
-        <h4 class="text-capitalize"><%= "#{user.last_name}, #{user.first_name}" %></h4>
-      </td>
-      <td>
-        <h4><%= user.email %></h4>
+       <td class="text-capitalize">
+         <%= "#{user.last_name}, #{user.first_name}" %>
+       </td>
+       <td>
+         <%= user.email %>
       </td>
       <td>
         <div class="dropdown text-center">
-          <button class="btn btn-default dropdown-toggle btn-block" data-toggle="dropdown" type="button">
-            <h6>
+          <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+
               <span aria-hidden="true" class="glyphicon glyphicon-wrench"></span>
               Options
               <span class="caret"></span>
-            </h6>
+            
           </button>
           <ul class="dropdown-menu">
             <li class="text-info">

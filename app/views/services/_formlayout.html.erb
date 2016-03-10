@@ -2,7 +2,7 @@
   <% if form_model.errors.any? %>
     <%= render partial: "shared/error_messages", locals: {form_model: form_model} %>
   <% end %>
-
+  <div class="col-sm-5 col-md-8" id="panel">
   <div class="form-group">
     <%= f.label :name, 'Service Type',class:"control-label", for:"inputServiceName" %>
     <%= f.text_field :name, class: "form-control", required: "required", id:"inputServiceName", placeholder: "Insert Service Name here..." %>
@@ -20,8 +20,10 @@
   <div>
     <%= link_to_add_fields "Add Related Cost", f, :related_costs %>
   </div>
-
+</div>
+<div class="row">
   <div class="actions col-md-6 pull-right">
     <%= f.submit action.capitalize + " Service", class: "btn btn-primary btn-md btn-block" %>
   </div>
+</div>
 <% end %>

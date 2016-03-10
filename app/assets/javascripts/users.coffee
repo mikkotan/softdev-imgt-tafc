@@ -10,4 +10,4 @@ jQuery ->
     ]
   });
 
-  $('#employees').collapse 'show'
+  $('#employees').collapse 'show';

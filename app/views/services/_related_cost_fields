@@ -1,3 +1,4 @@
+
 <div class="form-group">
   <%= f.label :nature, class:"control-label", for:"inputNature"%>
   <%= f.text_field :nature, class: "form-control", required: "required", id:"inputNature", placeholder: "Insert Nature here..." %>

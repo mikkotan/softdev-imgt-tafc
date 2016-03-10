@@ -1,8 +1,8 @@
 <%= form_for form_model, url: {action: action} do |f| %>
-  <% if form_model.errors.any? %>
-    <%= render partial: "shared/error_messages", locals: {form_model: form_model} %>
-  <% end %>
-
+<% if form_model.errors.any? %>
+<%= render partial: "shared/error_messages", locals: {form_model: form_model} %>
+<% end %>
+<div class="col-sm-5 col-md-8" id="panel">
   <div class="form-group">
     <%= f.label :billing_num, class:"control-label", for:"inputBillingNumber" %>
     <%= f.text_field :billing_num, class: "form-control", type: "number", required: "required", id:"inputBillingNumber", placeholder: "Insert Billing Number here..." %>
@@ -48,20 +48,20 @@
     <%= f.text_field :employee_benefit_pag_ibig, class: "form-control", type: "number",  required: "required", id:"inputEmployeeBenefitPagibig", placeholder: "Insert Employee Benefit Pag ibig here..."  %>
   </div>
 
+  <label>Services:
+  </label>
   <div class="form-group">
+    <%= select_tag "selectize", options_from_collection_for_select(@services, :id, :complete_name), class:"form-control selectize input-lg", multiple: true, placeholder:"Click here to see list of available services..."%>
+</div>
+<div class="form-group">
     <%= f.label :discount, class:"control-label", for:"inputDiscount" %>
     <%= f.text_field :discount, class: "form-control", type: "number",  required: "required", id:"inputDiscount", placeholder: "Insert Discount in percent here..."  %>
   </div>
 
   <div class="form-group">
-    <%= f.label :services, 'Services', class:"control-label" %>
-    <%= select_tag "selectize", options_from_collection_for_select(@services, :id, :complete_name), class:"form-control selectize input-lg", multiple: true%>
-  </div>
-
-  <div class="form-group">
     <%= f.hidden_field :client_id, class: "form-control" %>
   </div>
-
+</div>
 
 
   <div class="actions col-md-6 pull-right">

@@ -14,8 +14,7 @@
   </ul>
 </div>
 <% end %>
-<div class="row">
-  <div class="col-sm-5 col-md-6" id="panel">
+  <div class="col-sm-5 col-md-8" id="panel">
     <div class="form-group">
       <%= f.label :email, class:"control-label", for:"inputEmail" %>
       <%= f.text_field :email, validate: true, class: "form-control", type: "email", required: "required", id:"inputEmail", placeholder: "sample@gmail.com, example@yahoo.com" %>
@@ -28,9 +27,6 @@
       <%= f.label :password_confirmation, class:"control-label", for:"inputPassword" %>
       <%= f.password_field :password_confirmation, validate: true, class: "form-control", required: "required", id:"inputPassword" %>
     </div>
-
-  </div>
-  <div class="col-sm-5 col-md-6" id="panel">
     <div class="form-group">
       <%= f.label :first_name, class:"control-label", for:"inputFirstName" %>
       <%= f.text_field :first_name, validate: true, class: "form-control", type: "text", pattern: "^[A-Za-z ]+$", required: "required", id:"inputFirstName", placeholder: "First Name goes here..."  %>
@@ -50,7 +46,6 @@
     <%= f.radio_button :role, 'employee' %>
     <%= label :role, 'employee' %>
   </div>
-</div>
 <div class="row">
   <hr>
   <div class="actions col-md-6 pull-right">
