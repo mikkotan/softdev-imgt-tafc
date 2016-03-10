@@ -92,4 +92,8 @@ class Transaction < ActiveRecord::Base
       note: note
     )
   end
+
+  def self.pending_transactions
+    Transaction.all.select {|transaction| transaction.pending? }
+  end
 end

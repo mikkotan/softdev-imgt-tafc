@@ -79,7 +79,7 @@ class TransactionsController < ApplicationController
   def accounts_receivable
     add_breadcrumb "Reports"
     add_breadcrumb "Accounts Receivables", accounts_receivable_path
-    @transactions = Transaction.all
+    @transactions = Transaction.pending_transactions
   end
 
   # def full_payment

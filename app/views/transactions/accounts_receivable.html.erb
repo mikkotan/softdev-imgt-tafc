@@ -7,31 +7,29 @@
       <th>Billing Number</th>
       <th>Client</th>
       <th>Remaining Balance</th>
-      <th>Date</th>
+      <th>Date Created</th>
     </tr>
   </thead>
   <tbody>
     <% @transactions.each do |transaction| %>
-      <% if transaction.pending? %>
-        <tr>
-          <td>
-            <%= transaction.billing_num %>
-          </td>
-          <td>
-            <% if transaction.client %>
-              <%= transaction.client.company_name %>
-            <% else %>
-              <span>Deleted Client</span>
-            <% end %>
-          </td>
-          <td>
-            <%= transaction.remaining_balance %>
-          </td>
-          <td>
-            <%= transaction.created_at.strftime("%d %b. %Y") %>
-          </td>
-        </tr>
-      <% end %>
+      <tr>
+        <td>
+          <%= transaction.billing_num %>
+        </td>
+        <td>
+          <% if transaction.client %>
+            <%= transaction.client.company_name %>
+          <% else %>
+            <span>Deleted Client</span>
+          <% end %>
+        </td>
+        <td>
+          <%= transaction.remaining_balance %>
+        </td>
+        <td>
+          <%= transaction.created_at.strftime("%d %b. %Y") %>
+        </td>
+      </tr>
     <% end %>
   </tbody>
 </table>
