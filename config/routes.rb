@@ -40,6 +40,8 @@ Rails.application.routes.draw do
 
   get 'clients/:id/transactions/:transaction_id/new_payment' => 'provisional_receipts#new', as: 'new_provisional_receipts'
 
+  get 'clients/:id/transactions/:transaction_id/edit/:provisional_receipt_id' => 'provisional_receipts#edit', as: 'edit_provisional_receipts'
+
   get 'clients/:id/transactions/:transaction_id' => 'transactions#show', as: 'transaction'
 
   get 'reports/accounts_receivable' => 'transactions#accounts_receivable', as: 'accounts_receivable'
@@ -49,7 +51,7 @@ Rails.application.routes.draw do
 
   resources :services
 
-  resource :provisional_receipts
+  resources :provisional_receipts
 
   # Hi! I'm anpeng and I'll put some references here. :D
   # get '/patients/:id', to: 'patients#show', as: 'patient'
