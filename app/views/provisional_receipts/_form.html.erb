@@ -1,4 +1,5 @@
 <%= form_for form_model, url: {action: action} do |f| %>
+<div class="col-sm-5 col-md-8" id="panel">
   <% if form_model.errors.any? %>
     <%= render partial: "shared/error_messages", locals: {form_model: form_model} %>
   <% end %>
@@ -26,4 +27,5 @@
   <div class="actions col-md-6 pull-right">
     <%= f.submit action.capitalize + " Payment", class: "btn btn-primary btn-md btn-block" %>
   </div>
+</div>
 <% end %>

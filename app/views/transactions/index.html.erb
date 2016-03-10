@@ -4,9 +4,10 @@
   <thead>
     <tr>
       <th>Billing Number</th>
+      <th>Client Name</th>
       <th>Total Amount</th>
       <th>Status</th>
-      <th>Options</th>
+      <th style="width: 30px"></th>
     </tr>
   </thead>
   <tbody>
@@ -15,6 +16,9 @@
       <td class="text-capitalize">
         # <%= "#{transaction.billing_num}" %>
       </td>
+      <td class="text-capitalize">
+      <%= "#{transaction.client.company_name}" %>
+    </td>
       <td>
         P<%= transaction.total_balance %>
       </td>
@@ -33,7 +37,7 @@
           </button>
           <ul class="dropdown-menu">
             <li class="text-info">
-                <%= link_to transaction_path(transaction) do %>
+                <%= link_to transaction_path(transaction.client_id, transaction.id) do %>
                 <i class='glyphicon glyphicon-briefcase text-info'></i> Details
                 <% end %>
             </li>
