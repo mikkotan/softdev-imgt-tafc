@@ -12,6 +12,7 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.find(params[:transaction_id])
     @payments = get_payments(@transaction.id)
     @client = Client.find(@transaction.client_id)
+    @provisional_receipt = ProvisionalReceipt.new
     add_breadcrumb "Clients List", clients_path
     add_breadcrumb @client.company_name, client_path {@client.id}
     # add_breadcrumb "Transaction No. #{@transaction.billing_num}", transaction_path {@client.id}, {@transaction.id}
@@ -50,6 +51,19 @@ class TransactionsController < ApplicationController
     end
 
     redirect_to session[:my_previous_url]
+  end
+
+  def new_payment
+    @pr = ProvisionalReceipt.new(provisional_receipt_params)
+    @transaction = Transaction.find(@pr.transaction_id)
+
+    if @pr.amount_paid > @transaction.remaining_balance
+      raise 'Amount paid is greater than the remaining balance'
+    else
+      @transaction.pay(@pr.receipt_no,@pr.amount_paid, @pr.note)
+    end
+
+    redirect_to transaction_path(@transaction.client_id,@transaction.id)
   end
 
   def edit

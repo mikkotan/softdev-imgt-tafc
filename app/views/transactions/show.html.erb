@@ -3,29 +3,33 @@
 
 <div class="row">
   <div class="col-md-10">
-        <h3><em>Transaction Details</em></h3>
-        <h3>Billing No: # <%= @transaction.billing_num %></h3>
-        <div>
-            <% @transaction.get_fees.each do |name, value| %>
-              <h6><%= name %>: <%= value || 0 %></h6>
-            <% end %>
+    <h3>
+      <em>Transaction Details</em>
+    </h3>
+    <h3>Billing No: #
+      <%= @transaction.billing_num %></h3>
+    <div>
+      <% @transaction.get_fees.each do |name, value| %>
+      <h6><%= name %>:
+        <%= value || 0 %></h6>
+      <% end %>
 
-            <strong><h3>Total: Php <%= @transaction.total_balance%></h3></strong>
-            <strong><h6>Remaining Balance: Php <%= @transaction.remaining_balance %></h6></strong>
-        </div>
+      <strong>
+        <h3>Total: Php
+          <%= @transaction.total_balance%></h3>
+      </strong>
+      <strong>
+        <h6>Remaining Balance: Php
+          <%= @transaction.remaining_balance %></h6>
+      </strong>
+    </div>
   </div>
 </div>
 
 <div>
+
   <h1>Payment Log</h1>
-  <div class="pull-right">
-    <%= link_to new_provisional_receipts_path(@transaction.client.id, @transaction.id) do %>
-     <button class='btn btn-info btn-sm' role='button'>
-       <i class='glyphicon glyphicon-briefcase'></i> Pay
-     </button>
-    <% end %>
-  </div>
-  <table id="transactions-datatable" class="table table-hover table-striped">
+  <table class="table table-hover table-striped" id="transactions-datatable">
     <thead>
       <tr>
         <th>Receipt No.</th>
@@ -37,17 +41,134 @@
       <% @payments.each do |payment| %>
       <tr>
         <td class="text-capitalize">
-          # <%= "#{payment.receipt_no}" %>
+          #
+          <%= "#{payment.receipt_no}" %>
         </td>
         <td>
           <em><%= payment.note %></em>
         </td>
         <td>
-          P <%= payment.amount_paid %>
+          P
+          <%= payment.amount_paid %>
         </td>
       </tr>
       <% end %>
     </tbody>
   </table>
+  <input type="button" data-target="#myModal" data-toggle="modal" id="paymentFormButton" type="button">
+</input>
 
+  <!-- Modal -->
+  <div aria-labelledby="myModalLabel" class="modal fade" id="myModal" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h3 class="modal-title" id="myModalLabel">Payment Form</h3>
+          <hr>
+          <div class="row">
+            <div class="col-md-4">
+              <h5>Billing Number:</h5>
+            </div>
+            <div class="col-md-8">
+              <h5 class="pull-right">
+                #<%= @transaction.billing_num%></h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <h5>Total:</h5>
+            </div>
+            <div class="col-md-8">
+              <h5 class="pull-right">
+                Php
+                <%= @transaction.total_balance%></h5>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <h5>Remaining Balance:</h5>
+            </div>
+            <div class="col-md-8">
+              <h5 class="pull-right">
+                Php
+                <%= @transaction.remaining_balance %></h5>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body">
+
+          <!-- form for payments -->
+          <%= form_for @provisional_receipt do |f| %>
+
+          <div class="form-group">
+            <%= f.label :receipt_no, class:"control-label", for:"inputReceiptNumber" %>
+            <%= f.text_field :receipt_no, class: "form-control", required: "required", id:"inputReceiptNumber", placeholder: "Insert Receipt number here..." %>
+          </div>
+          <div aria-label="..." class="btn-group pull-right" role="group">
+            <button class="btn btn-default" onclick="payQuarter()" type="button">25%</button>
+            <button class="btn btn-default" onclick="payHalf()" type="button">50%</button>
+            <button class="btn btn-default" onclick="payFull()" type="button">Full</button>
+          </div>
+          <div class="form-group">
+            <%= f.label :amount_paid, class:"control-label", for:"inputAmountPaid" %>
+            <%= f.text_field :amount_paid, class: "form-control", required: "required", id:"inputAmountPaid", placeholder: "Insert Amount here..." %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :note, class:"control-label", for:"inputNote" %>
+            <%= f.text_field :note, class: "form-control", required: "required", id:"inputNote", placeholder: "Insert Note for payment here..." %>
+          </div>
+
+          <%= f.hidden_field :transaction_id, class: "form-control",value: @transaction.id %>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger" data-dismiss="modal" type="button">Close</button>
+          <div class="actions col-md-6 pull-right">
+            <%= f.submit "Submit", class: "btn btn-primary btn-md btn-block" %>
+          </div>
+          <% end %>
+        </div>
+
+        <!-- end form for payments -->
+      </div>
+
+    </div>
+  </div>
 </div>
+
+<script>
+
+window.onload = disableButton();
+function disableButton() {
+        if (<%= @transaction.pending? %> == true) {
+          document.getElementById("paymentFormButton").value="Add Payment";
+          document.getElementById("paymentFormButton").disabled = false;
+          document.getElementById("paymentFormButton").setAttribute("class", "btn btn-lg btn-primary");
+        } else if (<%= @transaction.pending? %>  == false) {
+          document.getElementById("paymentFormButton").value="Fully Paid";
+          document.getElementById("paymentFormButton").disabled = true;
+          document.getElementById("paymentFormButton").setAttribute("class", "btn btn-lg btn-success");
+        }
+      }
+  function payQuarter() {
+    document.getElementById("inputAmountPaid").focus();
+    document.getElementById("inputAmountPaid").value = <%= @transaction.remaining_balance %> / 4;
+  }
+
+  function payHalf() {
+    document.getElementById("inputAmountPaid").focus();
+    document.getElementById("inputAmountPaid").value = <%= @transaction.remaining_balance %> / 2;
+  }
+
+  function payFull() {
+    document.getElementById("inputAmountPaid").focus();
+    document.getElementById("inputAmountPaid").value = <%= @transaction.remaining_balance %>;
+  }
+
+
+</script>
