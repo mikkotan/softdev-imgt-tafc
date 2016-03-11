@@ -2,6 +2,7 @@ class ProvisionalReceipt < ActiveRecord::Base
   belongs_to :tx, class_name: "Transaction", foreign_key: 'transaction_id'
 
   validates :receipt_no, presence: true, uniqueness: true
+  validates :amount_paid, numericality: { greater_than_or_equal_to: 0 }
   # serialize :paid_items, Hash
 
   # validate :amount_paid_must_be_equal_to_sum_of_paid_items

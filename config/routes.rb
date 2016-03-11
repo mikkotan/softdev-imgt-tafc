@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   get 'reports/accounts_receivable' => 'transactions#accounts_receivable', as: 'accounts_receivable'
   resources :transactions
 
+  get 'reports/employees' => 'users#employees_report', as: 'employees_report'
   resources :fees
 
   resources :services
