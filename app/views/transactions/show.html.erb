@@ -142,7 +142,6 @@
 </div>
 
 <script>
-
 window.onload = disableButton();
 function disableButton() {
         if (<%= @transaction.pending? %> == true) {
@@ -169,6 +168,5 @@ function disableButton() {
     document.getElementById("inputAmountPaid").focus();
     document.getElementById("inputAmountPaid").value = <%= @transaction.remaining_balance %>;
   }
-
 
 </script>

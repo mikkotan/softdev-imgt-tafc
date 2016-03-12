@@ -15,12 +15,12 @@
 
   <div class="form-group">
     <%= f.label :vat, class:"control-label", for:"inputVat" %>
-    <%= f.text_field :vat, class: "form-control", type: "number", id:"inputVat", placeholder: "Insert Vat here..."  %>
+    <%= f.text_field :vat, class: "form-control", type: "number", id:"inputVat", placeholder:"Insert VAT here..."  %>
   </div>
 
   <div class="form-group">
     <%= f.label :percentage, class:"control-label", for:"inputPercentage" %>
-    <%= f.text_field :percentage, class: "form-control", type: "number", id:"inputPercentage", placeholder: "Insert Percentage here..."  %>
+    <%= f.text_field :percentage, class: "form-control", type: "number", id:"inputPercentage", placeholder:"Insert Percentage here..."%>
   </div>
 
   <div class="form-group">
@@ -52,8 +52,8 @@
   </label>
   <div class="form-group">
     <%= select_tag "selectize", options_from_collection_for_select(@services, :id, :complete_name), class:"form-control selectize input-lg", multiple: true, placeholder:"Click here to see list of available services..."%>
-</div>
-<div class="form-group">
+  </div>
+  <div class="form-group">
     <%= f.label :discount, class:"control-label", for:"inputDiscount" %>
     <%= f.text_field :discount, class: "form-control", type: "number",  required: "required", id:"inputDiscount", placeholder: "Insert Discount in percent here..."  %>
   </div>
@@ -63,8 +63,31 @@
   </div>
 </div>
 
+<div class="actions col-md-6 pull-right">
+  <%= f.submit action.capitalize + " Transaction", class: "btn btn-primary btn-md btn-block" %>
+</div>
 
-  <div class="actions col-md-6 pull-right">
-    <%= f.submit action.capitalize + " Transaction", class: "btn btn-primary btn-md btn-block" %>
-  </div>
 <% end %>
+
+<script>
+
+
+
+  document.getElementById("inputVat").onblur = function () {
+      if (this.value.length > 0) {
+          document.getElementById("inputPercentage").disabled=true;
+      }else {
+          document.getElementById("inputPercentage").disabled = false;
+      }
+  };
+
+  document.getElementById("inputPercentage").onblur = function () {
+      if (this.value.length > 0) {
+          document.getElementById("inputVat").disabled=true;
+
+      }else {
+          document.getElementById("inputVat").disabled = false;
+      }
+  };
+
+</script>
