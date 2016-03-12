@@ -35,6 +35,15 @@
       <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Add"), new_service_path %>
     </div>
 
+    <a class="list-group-item" data-parent="#SideMenu" data-target="#reports" data-toggle="collapse" href="#">
+      <i class='glyphicon glyphicon-list-alt'></i>
+      Reports
+    </a>
+    <div class="sublinks collapse" id="reports">
+      <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Accounts Receivable"), accounts_receivable_path %>
+      <%= side_child_link raw("<i class='glyphicon glyphicon-user'></i> Employees"), employees_report_path %>
+    </div>
+
     <% end %>
   </div>
 

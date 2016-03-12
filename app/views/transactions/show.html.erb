@@ -35,6 +35,7 @@
         <th>Receipt No.</th>
         <th>Note</th>
         <th>Amount Paid</th>
+        <th>Options</th>
       </tr>
     </thead>
     <tbody>
@@ -50,6 +51,29 @@
         <td>
           P
           <%= payment.amount_paid %>
+        </td>
+        <td>
+          <div class="dropdown">
+            <button aria-expanded="false" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+              Options
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li class="text-info">
+                  <%= link_to edit_provisional_receipts_path(@client.id, @transaction.id, payment.id) do %>
+                  <i class='glyphicon glyphicon-briefcase text-info'></i> Edit Payment
+                  <% end %>
+              </li>
+              <li class="text-danger">
+                <% if can? :destroy, payment %>
+                <%= link_to payment, method: :delete, data: {confirm: 'Are you sure?'} do %>
+                <i class='glyphicon glyphicon-trash text-danger'></i>
+                Delete
+                <% end %>
+                <% end %>
+              </li>
+            </ul>
+          </div>
         </td>
       </tr>
       <% end %>

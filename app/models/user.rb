@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :clients
+  has_many :transactions, through: :clients
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -36,4 +37,13 @@ class User < ActiveRecord::Base
   def name
     [first_name, last_name].join ' '
   end
+
+  def total_sales
+    clients.inject(0) {|sum, cost| sum + cost.total_balance_of_transaction}
+  end
+
+  def client_count
+    clients.size
+  end
+
 end

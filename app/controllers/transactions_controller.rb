@@ -90,6 +90,12 @@ class TransactionsController < ApplicationController
   def destroy
   end
 
+  def accounts_receivable
+    add_breadcrumb "Reports"
+    add_breadcrumb "Accounts Receivables", accounts_receivable_path
+    @transactions = Transaction.pending_transactions
+  end
+
   # def full_payment
   #   @transaction = Transactions.find params[:transaction_id]
   #

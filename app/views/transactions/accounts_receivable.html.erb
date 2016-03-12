@@ -1,0 +1,35 @@
+<h1>Transactions#accounts_receivable</h1>
+<p>Find me in app/views/transactions/accounts_receivable.html.erb</p>
+
+<table id="transactions-datatable" class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Billing Number</th>
+      <th>Client</th>
+      <th>Remaining Balance</th>
+      <th>Date Created</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @transactions.each do |transaction| %>
+      <tr>
+        <td>
+          <%= transaction.billing_num %>
+        </td>
+        <td>
+          <% if transaction.client %>
+            <%= transaction.client.company_name %>
+          <% else %>
+            <span>Deleted Client</span>
+          <% end %>
+        </td>
+        <td>
+          <%= transaction.remaining_balance %>
+        </td>
+        <td>
+          <%= transaction.created_at.strftime("%d %b. %Y") %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
