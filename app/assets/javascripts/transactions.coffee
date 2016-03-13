@@ -7,12 +7,7 @@ jQuery ->
     sPaginationType: "bootstrap"
     })
 
-  $('#addRow').on 'click', () ->
-    t.row.add( [
-      "tani erb code makadtu dri.",
-      "hehe",
-      "mikel"
-    ] ).draw( false );
+  
 
   $('#transactions').collapse 'show'
 
