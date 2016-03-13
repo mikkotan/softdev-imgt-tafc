@@ -1,7 +1,7 @@
-<h1>Employees#Reports</h1>
-<p>Find me in app/views/users/employees_report.html.erb</p>
+<h1>Reports#employees_report</h1>
+<p>Find me in app/views/reports/employees_report.html.erb</p>
 
-<table id="datatable" class="table table-hover table-striped">
+<table id="reports-datatable" class="table table-hover table-striped">
   <thead>
     <tr>
       <th>Employee Name</th>
@@ -19,7 +19,7 @@
           <%= employee.clients.size %>
         </td>
         <td>
-          P <%= number_with_precision(employee.total_sales, :precision => 2, :delimiter => ',') %>
+          Php <%= number_with_precision(employee.total_sales, :precision => 2, :delimiter => ',') %>
         </td>
       </tr>
     <% end %>

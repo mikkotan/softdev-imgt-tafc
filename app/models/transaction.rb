@@ -18,6 +18,10 @@ class Transaction < ActiveRecord::Base
     end
   end
 
+  def employee
+    client.user_name
+  end
+
   def can_not_have_services_that_are_templates
     other_processing_fees.each do |service|
       next unless service.is_template
@@ -37,6 +41,10 @@ class Transaction < ActiveRecord::Base
     else
       get_fees.values.inject(0) { |sum, value| sum + (value || 0) }
     end
+  end
+
+  def get_transaction_payments
+    provisional_receipts
   end
 
   def get_fees

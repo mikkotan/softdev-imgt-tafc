@@ -7,11 +7,12 @@
         <h3>Billing No: # <%= @transaction.billing_num %></h3>
         <div>
             <% @transaction.get_fees.each do |name, value| %>
-              <h6><%= name %>: <%= value || 0 %></h6>
+              <h6><%= name %>: Php <%= number_with_precision(value || 0, :precision => 2, :delimiter => ',') %><h6>
+
             <% end %>
 
-            <strong><h3>Total: Php <%= @transaction.total_balance%></h3></strong>
-            <strong><h6>Remaining Balance: Php <%= @transaction.remaining_balance %></h6></strong>
+            <strong><h3>Total: Php <%= number_with_precision(@transaction.total_balance, :precision => 2, :delimiter => ',') %><h3></strong>
+            <strong><h6>Remaining Balance: Php <%= number_with_precision(@transaction.remaining_balance, :precision => 2, :delimiter => ',') %></h6></strong>
         </div>
   </div>
 </div>
@@ -44,7 +45,7 @@
           <em><%= payment.note %></em>
         </td>
         <td>
-          P <%= payment.amount_paid %>
+          Php <%= number_with_precision(payment.amount_paid, :precision => 2, :delimiter => ',') %>
         </td>
         <td>
           <div class="dropdown">

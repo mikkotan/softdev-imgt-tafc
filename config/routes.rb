@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'reports/accounts_receivable'
+
+  get 'reports/employees_report'
+
+  get 'reports/transactions_report'
+
   mount Judge::Engine => '/judge'
 
   get 'login' => 'sessions#new', as: 'login'
@@ -44,10 +50,10 @@ Rails.application.routes.draw do
 
   get 'clients/:id/transactions/:transaction_id' => 'transactions#show', as: 'transaction'
 
-  get 'reports/accounts_receivable' => 'transactions#accounts_receivable', as: 'accounts_receivable'
+  resources :reports
+
   resources :transactions
 
-  get 'reports/employees' => 'users#employees_report', as: 'employees_report'
   resources :fees
 
   resources :services

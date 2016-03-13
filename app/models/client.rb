@@ -15,4 +15,9 @@ class Client < ActiveRecord::Base
   def total_balance_of_transaction
     transactions.inject(0) {|sum, transaction| sum + transaction.total_balance}
   end
+
+  def user_name
+    user.name
+  end
+
 end

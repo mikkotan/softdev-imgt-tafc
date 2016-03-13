@@ -91,10 +91,6 @@ class UsersController < ApplicationController
     @clients = @user.clients
   end
 
-  def employees_report
-    @employees = get_employees
-  end
-
   private
 
   def user_params

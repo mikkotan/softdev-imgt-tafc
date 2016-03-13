@@ -35,7 +35,7 @@
           # <%= "#{transaction.billing_num}" %>
         </td>
         <td>
-          P<%= transaction.total_balance %>
+          Php <%= number_with_precision(transaction.total_balance, :precision => 2, :delimiter => ',') %>
         </td>
         <td>
           <% if transaction.pending? %>

@@ -1,7 +1,7 @@
-<h1>Transactions#accounts_receivable</h1>
-<p>Find me in app/views/transactions/accounts_receivable.html.erb</p>
+<h1>Reports#accounts_receivable</h1>
+<p>Find me in app/views/reports/accounts_receivable.html.erb</p>
 
-<table id="transactions-datatable" class="table table-hover table-striped">
+<table id="reports-datatable" class="table table-hover table-striped">
   <thead>
     <tr>
       <th>Billing Number</th>
@@ -14,7 +14,7 @@
     <% @transactions.each do |transaction| %>
       <tr>
         <td>
-          <%= transaction.billing_num %>
+          #<%= transaction.billing_num %>
         </td>
         <td>
           <% if transaction.client %>
@@ -24,7 +24,7 @@
           <% end %>
         </td>
         <td>
-          <%= transaction.remaining_balance %>
+          Php <%= number_with_precision(transaction.remaining_balance, :precision => 2, :delimiter => ',') %>
         </td>
         <td>
           <%= transaction.created_at.strftime("%d %b. %Y") %>

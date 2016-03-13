@@ -1,5 +1,6 @@
 class ProvisionalReceiptsController < ApplicationController
   after_filter 'save_my_previous_url', only: [:destroy]
+  add_breadcrumb "Home", :root_path
 
   def index
   end
