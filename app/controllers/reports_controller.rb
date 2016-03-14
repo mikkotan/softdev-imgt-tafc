@@ -15,5 +15,7 @@ class ReportsController < ApplicationController
 
   def transactions_report
     @transactions = Transaction.all
+    add_breadcrumb "Reports"
+    add_breadcrumb "Transaction Reports", reports_transactions_report_path
   end
 end
