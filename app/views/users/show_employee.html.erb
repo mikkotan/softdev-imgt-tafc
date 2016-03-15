@@ -44,7 +44,7 @@ Status:
   <%= client.status %>
 </p>
 <div class="pull-right">
-  <%= link_to client_path(client.id) do %>
+  <%= link_to show_through_employee_path(@employee.id, client.id) do %>
   <button class='btn btn-info btn-sm' role='button'>
     <i class='glyphicon glyphicon-edit'></i>
     Client Profile

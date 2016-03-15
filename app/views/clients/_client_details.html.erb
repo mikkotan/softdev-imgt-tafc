@@ -1,0 +1,63 @@
+<h1 class="text-capitalize">  <%= @client.company_name %> </h1>
+<hr>
+
+<div class="pull-right">
+  <%= link_to new_transaction_path(@client.id) do %>
+   <button class='btn btn-info btn-sm' role='button'>
+     <i class='glyphicon glyphicon-briefcase'></i> Add Transaction
+   </button>
+  <% end %>
+</div>
+
+<% @client.other_processing_fees.each do |service| %>
+  <p> <%= service.name %></p>
+<% end %>
+
+<div>
+  <table id="clientdatatable" class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th>Billing Number</th>
+        <th>Total Amount</th>
+        <th>Status</th>
+        <th style="width: 30px">
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @transactions.each do |transaction| %>
+      <tr>
+        <td class="text-capitalize">
+          # <%= "#{transaction.billing_num}" %>
+        </td>
+        <td>
+          Php <%= number_with_precision(transaction.total_balance, :precision => 2, :delimiter => ',') %>
+        </td>
+        <td>
+          <% if transaction.pending? %>
+            <button type="button" class="btn btn-danger">Pending</button>
+          <% else %>
+            <button type="button" class="btn btn-success">Paid</button>
+          <% end %>
+        </td>
+        <td>
+          <div class="dropdown">
+            <button aria-expanded="false" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+              Options
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li class="text-info">
+                  <%= link_to transaction_path(transaction.client_id, transaction.id) do %>
+                  <i class='glyphicon glyphicon-briefcase text-info'></i> Details
+                  <% end %>
+              </li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>

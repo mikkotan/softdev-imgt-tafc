@@ -29,11 +29,11 @@ class UsersController < ApplicationController
   end
 
   def edit
+    add_breadcrumb "Employees", employees_path
+    add_breadcrumb "Edit " + @user.email
   end
 
   def update
-    add_breadcrumb "Employees", employees_path
-    add_breadcrumb "New User", new_user_path
     if @user.update_info edit_user_params
       flash[:success] = 'Successfully updated profile.'
       redirect_to '/home'
