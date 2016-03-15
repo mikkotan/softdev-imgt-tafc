@@ -7,8 +7,9 @@
       <th>Billing #</th>
       <th>Client</th>
       <th>Employee</th>
-      <th>Payments</th>
+      <th>Total Balance</th>
       <th>Remaining Balance</th>
+      <th>Payments</th>
     </tr>
   </thead>
   <tbody>
@@ -24,6 +25,12 @@
           <%= transaction.employee %>
         </td>
         <td>
+          Php <%= number_with_precision(transaction.total_balance, :precision => 2, :delimiter => ',') %>
+        </td>
+        <td>
+          Php <%= number_with_precision(transaction.remaining_balance, :precision => 2, :delimiter => ',') %>
+        </td>
+        <td>
           <% transaction.provisional_receipts.each do |payment| %>
             <ul>
               <% if transaction.pending? %>
@@ -37,9 +44,6 @@
               <% end %>
             </ul>
           <% end %>
-        </td>
-        <td>
-          Php <%= number_with_precision(transaction.remaining_balance, :precision => 2, :delimiter => ',') %>
         </td>
       </tr>
     <% end %>

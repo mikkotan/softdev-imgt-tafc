@@ -1,7 +1,7 @@
 class Client < ActiveRecord::Base
-  belongs_to :user, :counter_cache => true
+  belongs_to :user
   has_many :transactions
-
+  has_many :other_processing_fees, through: :transactions, class_name: "Service"
   validates :email, presence: true, email: true
 
   def self.search(query)

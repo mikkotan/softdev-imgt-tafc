@@ -43,16 +43,14 @@ Status:
 <p>
   <%= client.status %>
 </p>
-<hr>
-<% end %>
-
 <div class="pull-right">
-  <% if can? :new, @employee %>
-  <%= link_to employee_new_client_path (@employee.id) do %>
+  <%= link_to client_path(client.id) do %>
   <button class='btn btn-info btn-sm' role='button'>
     <i class='glyphicon glyphicon-edit'></i>
-    ADD CLIENT
+    Client Profile
   </button>
   <% end %>
-  <% end %>
 </div>
+<br>
+<hr>
+<% end %>
