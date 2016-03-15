@@ -1,7 +1,7 @@
 class Client < ActiveRecord::Base
   belongs_to :user
   has_many :transactions
-
+  has_many :other_processing_fees, through: :transactions, class_name: "Service"
   validates :email, presence: true, email: true
 
   def self.search(query)
@@ -20,4 +20,20 @@ class Client < ActiveRecord::Base
     user.name
   end
 
+  def services
+    hash_result = {}
+
+    transactions.each do |transaction|
+      transaction.get_services.each do |service|
+        if hash_result[service]
+          hash_result[service] += 1
+        else
+          hash_result[service] = 1
+        end
+      end
+    end
+
+    puts hash_result
+    hash_result
+  end
 end

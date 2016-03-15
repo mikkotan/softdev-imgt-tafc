@@ -1,4 +1,6 @@
-<%= form_for form_model, url: {action: action} do |f| %>
+<%= javascript_include_tag 'email_validation','data-turbolinks-track' =>true %>
+
+<%= form_for form_model, url: {action: action}, builder: Judge::FormBuilder do |f| %>
     <div class="row">
   <div class="col-sm-5 col-md-8" id="panel">
   <% if form_model.errors.any? %>
@@ -35,7 +37,7 @@
 
   <div class="form-group">
     <%= f.label :email, class:"control-label", for:"inputClientEmail" %>
-    <%= f.text_field :email, class: "form-control", required: "required", id:"inputClientEmail", placeholder: "Insert Email of Company here..." %>
+    <%= f.text_field :email, validate: true, class: "form-control", required: "required", id:"inputClientEmail", placeholder: "Insert Email of Company here..." %>
   </div>
 
   <div class="form-group">

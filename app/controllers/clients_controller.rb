@@ -31,7 +31,7 @@ class ClientsController < ApplicationController
     @client = Client.new(client_params)
     if @client.save
       flash[:success] = 'Client successfully added.'
-      redirect_to session[:my_previous_url]
+      redirect_to clients_path
     else
       flash[:notice] = 'Client WAS NOT added.'
       render :new
