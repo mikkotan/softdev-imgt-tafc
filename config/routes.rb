@@ -42,6 +42,7 @@ Rails.application.routes.draw do
 
   get 'clients/:id/transactions/:transaction_id/full_payment' => 'transactions#full_payment', as: 'transaction_fullpayment'
 
+  get 'clients/:id/transactions/:transaction_id/edit' => 'transactions#edit', as: 'edit_transaction'
   post ':id/fees/new' => 'fees#create', as:'new_fee'
 
   get 'clients/:id/transactions/:transaction_id/new_payment' => 'provisional_receipts#new', as: 'new_provisional_receipts'
@@ -49,6 +50,8 @@ Rails.application.routes.draw do
   get 'clients/:id/transactions/:transaction_id/edit/:provisional_receipt_id' => 'provisional_receipts#edit', as: 'edit_provisional_receipts'
 
   get 'clients/:id/transactions/:transaction_id' => 'transactions#show', as: 'transaction'
+
+  get 'reports/services_report' => 'reports#services_report', as: "reports_services_report"
 
   resources :reports
 

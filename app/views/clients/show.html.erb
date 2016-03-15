@@ -16,8 +16,8 @@
   <% end %>
 </div>
 
-<% @client.other_processing_fees.each do |service| %>
-  <p> <%= service.name %></p>
+<% @client.services.each do |name, count| %>
+  <h6> <%= name%> - <%= count %> </h6>
 <% end %>
 
 <div>
@@ -57,6 +57,11 @@
               <li class="text-info">
                   <%= link_to transaction_path(transaction.client_id, transaction.id) do %>
                   <i class='glyphicon glyphicon-briefcase text-info'></i> Details
+                  <% end %>
+              </li>
+              <li class="text-info">
+                  <%= link_to edit_transaction_path(transaction.client_id, transaction.id) do %>
+                  <i class='glyphicon glyphicon-briefcase text-info'></i> Edit
                   <% end %>
               </li>
             </ul>

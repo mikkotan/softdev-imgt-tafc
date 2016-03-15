@@ -27,7 +27,7 @@ class ServicesController < ApplicationController
       flash[:error] = 'Service WAS NOT added.'
       render :new
     end
-  end   
+  end
 
   def edit
     add_breadcrumb "Services List", services_path
@@ -60,7 +60,7 @@ class ServicesController < ApplicationController
   private
 
   def service_params
-    params.require(:service).permit(:name, :monthly_fee, related_costs_attributes: [:nature, :value, :service])
+    params.require(:service).permit(:name, :monthly_fee, related_costs_attributes: [:id, :nature, :value, :service, :_destroy])
   end
 
   def find_service

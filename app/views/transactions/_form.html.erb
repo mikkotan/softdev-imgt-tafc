@@ -51,7 +51,7 @@
   <label>Services:
   </label>
   <div class="form-group">
-    <%= select_tag "selectize", options_from_collection_for_select(@services, :id, :complete_name), class:"form-control selectize input-lg", multiple: true, placeholder:"Click here to see list of available services..."%>
+    <%= select_tag "selectize", options_from_collection_for_select(@services, :id, :complete_name, @selected_services), class:"form-control selectize input-lg", multiple: true, placeholder:"Click here to see list of available services..."%>
   </div>
   <div class="form-group">
     <%= f.label :discount, class:"control-label", for:"inputDiscount" %>

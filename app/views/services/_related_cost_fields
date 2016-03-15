@@ -8,3 +8,8 @@
   <%= f.label :value , class:"control-label", for:"inputValue"%>
   <%= f.text_field :value, class: "form-control", type: "number", required: "required", id:"inputValue", placeholder: "Insert Value here..." %>
 </div>
+
+<div>
+  <%= f.check_box :_destroy %>
+  <%= f.label :_destroy, "Remove Related Cost" %>
+</div>
