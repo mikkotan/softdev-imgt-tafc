@@ -11,28 +11,28 @@
 
   <div class="form-group">
     <%= f.label :company_name, class:"control-label", for:"inputCompanyName" %>
-    <%= f.text_field :company_name, class: "form-control", required: "required", id:"inputCompanyName", placeholder: "Insert Company Name here..." %>
+    <%= f.text_field :company_name, validate: true, class: "form-control", required: "required", id:"inputCompanyName", placeholder: "Insert Company Name here..." %>
   </div>
 
   <div class="form-group">
     <%= f.label :owner, class:"control-label", for:"inputOwner" %>
-    <%= f.text_field :owner, class: "form-control", required: "required", id:"inputOwner", placeholder: "Insert Owner of Company here..." %>
+    <%= f.text_field :owner, validate: true, class: "form-control", required: "required", id:"inputOwner", placeholder: "Insert Owner of Company here..." %>
   </div>
 
   <div class="form-group">
     <%= f.label :representative, class:"control-label", for:"inputRepresentative" %>
-    <%= f.text_field :representative, class: "form-control", required: "required", id:"inputRepresentative", placeholder: "Insert Representative of Company here..."  %>
+    <%= f.text_field :representative, validate: true, class: "form-control", required: "required", id:"inputRepresentative", placeholder: "Insert Representative of Company here..."  %>
   </div>
 
   <div class="form-group">
     <%= f.label :address, class:"control-label", for:"inputAddress" %>
-    <%= f.text_field :address,  class: "form-control", size:"150", required: "required", id:"inputAddress"%>
+    <%= f.text_field :address, validate: true,  class: "form-control", size:"150", required: "required", id:"inputAddress"%>
 
   </div>
 
   <div class="form-group">
     <%= f.label :tel_num, class:"control-label", for:"inputTelNum" %>
-    <%= f.text_field :tel_num, class: "form-control", required: "required", id:"inputTelNum", placeholder: "Insert Telephone Number of Company here..." %>
+    <%= f.text_field :tel_num, validate: true, class: "form-control", required: "required", id:"inputTelNum", placeholder: "Insert Telephone Number of Company here..." %>
   </div>
 
   <div class="form-group">
@@ -42,7 +42,7 @@
 
   <div class="form-group">
     <%= f.label :tin_num, class:"control-label", for:"inputTinNum" %>
-    <%= f.text_field :tin_num, class: "form-control", required: "required", id:"inputTinNum", placeholder: "Insert Tin Number of Company here..." %>
+    <%= f.text_field :tin_num, validate: true, class: "form-control", required: "required", id:"inputTinNum", placeholder: "Insert Tin Number of Company here..." %>
   </div>
 
   <h5>Status:</h5>
