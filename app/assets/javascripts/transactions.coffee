@@ -7,7 +7,8 @@ jQuery ->
     sPaginationType: "bootstrap"
     })
 
-  
+
+  $("#transactionsnav").addClass "active"
 
   $('#transactions').collapse 'show'
 

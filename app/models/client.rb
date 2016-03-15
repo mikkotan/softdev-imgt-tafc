@@ -1,5 +1,5 @@
 class Client < ActiveRecord::Base
-  belongs_to :user, :counter_cache => true
+  belongs_to :user
   has_many :transactions
 
   validates :email, presence: true, email: true
