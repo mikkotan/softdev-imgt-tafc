@@ -110,6 +110,18 @@ RSpec.describe Transaction, type: :model do
     end
   end
 
+  it 'can get the list of services' do
+    a = create :transaction
+
+    create :service
+    create :service, name: 'Service B', monthly_fee: 750
+
+    a.other_processing_fees << Service.make(1)
+    a.other_processing_fees << Service.make(2)
+
+    expect(a.get_services).to eq ['Service A', 'Service B']
+  end
+
   describe 'fees related stuff' do
     let(:transaction) do
       create :service # monthly_fee = 5000
