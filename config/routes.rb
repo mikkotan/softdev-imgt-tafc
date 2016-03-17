@@ -53,6 +53,8 @@ Rails.application.routes.draw do
 
   get 'reports/services_report' => 'reports#services_report', as: "reports_services_report"
 
+  patch 'clients/:id/transactions/:transaction_id/edit/:provisional_receipt_id' => 'provisional_receipts#update'
+
   resources :reports
 
   resources :transactions

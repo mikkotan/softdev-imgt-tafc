@@ -91,7 +91,7 @@ class TransactionsController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
-      if @transaction.update_attributes(params[:transaction_params])
+      if @transaction.update_attributes(params[:transaction])
         format.html { redirect_to(@transaction, :notice => 'Transaction was successfully updated.') }
         format.json { head :ok }
       else

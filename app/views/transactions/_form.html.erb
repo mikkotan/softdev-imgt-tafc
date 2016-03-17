@@ -48,11 +48,7 @@
     <%= f.text_field :employee_benefit_pag_ibig, class: "form-control", type: "number",  required: "required", id:"inputEmployeeBenefitPagibig", placeholder: "Insert Employee Benefit Pag ibig here..."  %>
   </div>
 
-  <label>Services:
-  </label>
-  <div class="form-group">
-    <%= select_tag "selectize", options_from_collection_for_select(@services, :id, :complete_name, @selected_services), class:"form-control selectize input-lg", multiple: true, placeholder:"Click here to see list of available services..."%>
-  </div>
+
   <div class="form-group">
     <%= f.label :discount, class:"control-label", for:"inputDiscount" %>
     <%= f.text_field :discount, class: "form-control", type: "number",  required: "required", id:"inputDiscount", placeholder: "Insert Discount in percent here..."  %>
