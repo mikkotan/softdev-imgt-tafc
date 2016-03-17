@@ -1,61 +1,66 @@
-<%= form_for form_model, url: {action: action} do |f| %>
+<%= javascript_include_tag 'judge_validation','data-turbolinks-track' =>true %>
+<%= form_for form_model, url: {action: action}, builder: Judge::FormBuilder do |f| %>
 <% if form_model.errors.any? %>
 <%= render partial: "shared/error_messages", locals: {form_model: form_model} %>
 <% end %>
 <div class="col-sm-5 col-md-8" id="panel">
   <div class="form-group">
     <%= f.label :billing_num, class:"control-label", for:"inputBillingNumber" %>
-    <%= f.text_field :billing_num, class: "form-control", type: "number", required: "required", id:"inputBillingNumber", placeholder: "Insert Billing Number here..." %>
+    <%= f.text_field :billing_num, validate: true, class: "form-control", type: "number", required: "required", id:"inputBillingNumber", placeholder: "Insert Billing Number here..." %>
   </div>
 
   <div class="form-group">
     <%= f.label :retainers_fee, class:"control-label", for:"inputRetainersFee" %>
-    <%= f.text_field :retainers_fee, class: "form-control", type:"number", required: "required", id:"inputRetainersFee", placeholder: "Insert Retainers Fee here..." %>
+    <%= f.text_field :retainers_fee, validate: true, class: "form-control", type:"number", required: "required", id:"inputRetainersFee", placeholder: "Insert Retainers Fee here..." %>
   </div>
 
   <div class="form-group">
     <%= f.label :vat, class:"control-label", for:"inputVat" %>
-    <%= f.text_field :vat, class: "form-control", type: "number", id:"inputVat", placeholder:"Insert VAT here..."  %>
+    <%= f.text_field :vat, validate: true, class: "form-control", type: "number", id:"inputVat", placeholder:"Insert VAT here..."  %>
   </div>
 
   <div class="form-group">
     <%= f.label :percentage, class:"control-label", for:"inputPercentage" %>
-    <%= f.text_field :percentage, class: "form-control", type: "number", id:"inputPercentage", placeholder:"Insert Percentage here..."%>
+    <%= f.text_field :percentage, validate: true, class: "form-control", type: "number", id:"inputPercentage", placeholder:"Insert Percentage here..."%>
   </div>
 
   <div class="form-group">
     <%= f.label :withholding_1601c, class:"control-label", for:"inputWithHolding1601c" %>
-    <%= f.text_field :withholding_1601c, class: "form-control", type: "number",  required: "required", id:"inputWithHolding1601c", placeholder: "Insert Withholding 1601c here..."  %>
+    <%= f.text_field :withholding_1601c, validate: true, class: "form-control", type: "number",  required: "required", id:"inputWithHolding1601c", placeholder: "Insert Withholding 1601c here..."  %>
   </div>
 
   <div class="form-group">
     <%= f.label :withholding_1601e, class:"control-label", for:"inputWithHolding1601e" %>
-    <%= f.text_field :withholding_1601e, class: "form-control", type: "number",  required: "required", id:"inputWithHolding1601e", placeholder: "Insert Withholding 1601e here..."  %>
+    <%= f.text_field :withholding_1601e, validate: true, class: "form-control", type: "number",  required: "required", id:"inputWithHolding1601e", placeholder: "Insert Withholding 1601e here..."  %>
   </div>
 
   <div class="form-group">
     <%= f.label :employee_benefit_sss, class:"control-label", for:"inputEmployeeBenefitSSS" %>
-    <%= f.text_field :employee_benefit_sss, class: "form-control", type: "number",  required: "required", id:"inputEmployeeBenefitSSS", placeholder: "Insert Employee Benefit SSS here..."  %>
+    <%= f.text_field :employee_benefit_sss, validate: true, class: "form-control", type: "number",  required: "required", id:"inputEmployeeBenefitSSS", placeholder: "Insert Employee Benefit SSS here..."  %>
   </div>
 
   <div class="form-group">
     <%= f.label :employee_benefit_philhealth, class:"control-label", for:"inputEmployeeBenefitPhilHealth" %>
-    <%= f.text_field :employee_benefit_philhealth, class: "form-control", type: "number",  required: "required", id:"inputEmployeeBenefitPhilHealth", placeholder: "Insert Employee Benefit PhilHealth here..."  %>
+    <%= f.text_field :employee_benefit_philhealth, validate: true, class: "form-control", type: "number",  required: "required", id:"inputEmployeeBenefitPhilHealth", placeholder: "Insert Employee Benefit PhilHealth here..."  %>
   </div>
 
   <div class="form-group">
     <%= f.label :employee_benefit_pag_ibig, class:"control-label", for:"inputEmployeeBenefitPagibig" %>
-    <%= f.text_field :employee_benefit_pag_ibig, class: "form-control", type: "number",  required: "required", id:"inputEmployeeBenefitPagibig", placeholder: "Insert Employee Benefit Pag ibig here..."  %>
+    <%= f.text_field :employee_benefit_pag_ibig, validate: true, class: "form-control", type: "number",  required: "required", id:"inputEmployeeBenefitPagibig", placeholder: "Insert Employee Benefit Pag ibig here..."  %>
   </div>
 
-
+  <label>Services:
+  </label>
+  <div class="form-group">
+    <%= select_tag "selectize", options_from_collection_for_select(@services, :id, :complete_name), class:"form-control selectize input-lg", multiple: true, placeholder:"Click here to see list of available services..."%>
+  </div>
   <div class="form-group">
     <%= f.label :discount, class:"control-label", for:"inputDiscount" %>
-    <%= f.text_field :discount, class: "form-control", type: "number",  required: "required", id:"inputDiscount", placeholder: "Insert Discount in percent here..."  %>
+    <%= f.text_field :discount, validate: true, class: "form-control", type: "number",  required: "required", id:"inputDiscount", placeholder: "Insert Discount in percent here..."  %>
   </div>
 
   <div class="form-group">
-    <%= f.hidden_field :client_id, class: "form-control" %>
+    <%= f.hidden_field :client_id, validate: true, class: "form-control" %>
   </div>
 </div>
 
