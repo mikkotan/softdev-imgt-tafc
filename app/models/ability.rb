@@ -13,7 +13,9 @@ class Ability
     elsif user.role == 'employee'
       can :read, :all
       can [:edit, :update, :change_password, :update_password], User, id: user.id
-      can :manage, Transaction, :client => {:user_id => user.id}
+      can [:create, :read, :update], Transaction do |transaction|
+        transaction.client.user.id == user.id
+      end
     end
   end
 end

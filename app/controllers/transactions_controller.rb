@@ -21,8 +21,8 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new
-    @transaction.client_id = params[:id]
-    @client = Client.find(@transaction.client_id)
+    @transaction.client = Client.find(params[:id])
+    @transaction.build
     @transaction.other_processing_fees.build
     @services = get_services
     puts @client.company_name
