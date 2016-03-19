@@ -4,10 +4,23 @@ class ReportsController < ApplicationController
   def index
     add_breadcrumb "Reports", reports_path
   end
+
   def accounts_receivable
     add_breadcrumb "Reports", reports_path
     add_breadcrumb "Accounts Receivables", reports_accounts_receivable_path
-    @transactions = Transaction.pending_transactions
+
+    if params[:start] && params[:end]
+      @start = Date.parse(params[:start]).beginning_of_day
+      @end = Date.parse(params[:end]).end_of_day
+      puts @start
+      puts @end
+
+      @transactions = Transaction.filtered_pending_transactions(@start, @end)
+    else
+      puts "Wala sya params"
+      @transactions = Transaction.pending_transactions
+    end
+
   end
 
   def employees_report

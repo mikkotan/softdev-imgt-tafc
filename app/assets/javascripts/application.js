@@ -29,6 +29,7 @@
 //= require datatables
 //= require material-bonus
 //= require selectize
+//= require bootstrap-datepicker
 
 $(document).ready(function() {
   toastr.options = {

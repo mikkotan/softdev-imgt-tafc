@@ -105,6 +105,13 @@ class Transaction < ActiveRecord::Base
     Transaction.all.select {|transaction| transaction.pending? }
   end
 
+  def self.filtered_pending_transactions(startdate, enddate)
+    Transaction.where(:created_at => startdate..enddate).select {|transaction| transaction.pending? }
+  end
+
+
+
+
   def get_services
     other_processing_fees.collect {|service| service.complete_name }
   end

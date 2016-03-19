@@ -10,3 +10,7 @@ jQuery ->
 
   $('#reports').collapse 'show'
   $("#reportsnav").addClass "active"
+
+  $('#sandbox-container .input-daterange').datepicker
+    format: 'dd-mm-yyyy'
+    todayHighlight: true

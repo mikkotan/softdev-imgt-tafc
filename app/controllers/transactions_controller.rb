@@ -22,7 +22,7 @@ class TransactionsController < ApplicationController
   def new
     @transaction = Transaction.new
     @transaction.client = Client.find(params[:id])
-    @transaction.build
+    @client = @transaction.client
     @transaction.other_processing_fees.build
     @services = get_services
     puts @client.company_name
@@ -37,7 +37,7 @@ class TransactionsController < ApplicationController
   def create
     add_breadcrumb "Transactions List", transactions_path
     @transaction = Transaction.new(transaction_params)
-
+    @client = Client.find(@transaction.client_id)
     unless @transaction.save
       @services = get_services
       render :new
@@ -50,7 +50,7 @@ class TransactionsController < ApplicationController
       end
     end
 
-    redirect_to session[:my_previous_url]
+    redirect_to client_path(@client.id)
   end
 
   def new_payment

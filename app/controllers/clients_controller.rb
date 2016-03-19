@@ -12,15 +12,7 @@ class ClientsController < ApplicationController
     add_breadcrumb "Clients List", clients_path
     add_breadcrumb @client.company_name, client_path
     @transactions = @client.transactions
-  end
-
-  def show_through_employee
-    @employee = User.find params[:id]
-    add_breadcrumb "Employees", employees_path
-    add_breadcrumb @employee.email, show_employee_path
-    add_breadcrumb @client.company_name
-
-    @transactions = @client.transactions
+    @transaction = Transaction.new
   end
 
   def new

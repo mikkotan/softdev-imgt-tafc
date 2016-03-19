@@ -57,6 +57,7 @@ Rails.application.routes.draw do
 
   patch 'clients/:id/transactions/:transaction_id/edit/:provisional_receipt_id' => 'provisional_receipts#update'
 
+
   resources :reports
 
   resources :transactions
