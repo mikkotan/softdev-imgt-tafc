@@ -1,2 +1,5 @@
+
 <h1 class="text-capitalize">  Edit Transaction </h1>
 <hr>
+
+<%= render partial: 'form', locals: {form_model: @transaction, action: 'update'} %>

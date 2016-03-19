@@ -21,4 +21,10 @@ class ReportsController < ApplicationController
     add_breadcrumb "Reports", reports_path
     add_breadcrumb "Transaction Reports", reports_transactions_report_path
   end
+
+  def services_report
+    @clients = Client.all
+    add_breadcrumb "Reports"
+    add_breadcrumb "Services Reports", reports_services_report_path
+  end
 end
