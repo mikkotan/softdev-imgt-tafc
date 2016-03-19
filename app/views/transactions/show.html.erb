@@ -1,32 +1,39 @@
 
-<div class="row">
-  <div class="col-md-10">
-    <h3>
-      <em>Transaction Details</em>
-    </h3>
-    <h3>Billing No: #
-      <%= @transaction.billing_num %></h3>
-    <div>
-      <% @transaction.get_fees.each do |name, value| %>
-      <h6><%= name %>:
-        <%= value || 0 %></h6>
-      <% end %>
+    <h1>
+      Transaction Details
+    </h1>
+    <hr>
+    <table class="table table-hover table-striped" id="transaction-datatable">
+      <thead>
+        <tr>
+          <% @transaction.get_fees.each do |name, value| %>
+          <th><%= name %></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        <% @transaction.get_fees.each do |name, value| %>
+          <td>
+              <%= value || 0 %></h6>
+          </td>
+        <% end %>
+      </tr>
+    </table>
 
-      <strong>
-        <h3>Total: Php
-          <%= @transaction.total_balance%></h3>
-      </strong>
-      <strong>
-        <h6>Remaining Balance: Php
-          <%= @transaction.remaining_balance %></h6>
-      </strong>
-    </div>
-  </div>
-</div>
+        <h4 style="text-align:right;">Total:  Php
+            <%= @transaction.total_balance%></h4>
 
-<div>
+        <h4  style="text-align:right;">Remaining Balance: Php
+          <%= @transaction.remaining_balance %></h4>
+
+      <input type="button" data-target="#myModal" data-toggle="modal" id="paymentFormButton" type="button">
+    </input>
+  <br>
+  <hr>
 
   <h1>Payment Log</h1>
+
   <table class="table table-hover table-striped" id="transactions-datatable">
     <thead>
       <tr>
@@ -43,7 +50,7 @@
           #
           <%= "#{payment.receipt_no}" %>
         </td>
-        <td>
+        <td class="notes">
           <em><%= payment.note %></em>
         </td>
         <td>
@@ -76,8 +83,6 @@
       <% end %>
     </tbody>
   </table>
-  <input type="button" data-target="#myModal" data-toggle="modal" id="paymentFormButton" type="button">
-</input>
 
   <!-- Modal -->
   <div aria-labelledby="myModalLabel" class="modal fade" id="myModal" role="dialog" tabindex="-1">
@@ -160,7 +165,6 @@
 
     </div>
   </div>
-</div>
 
 <script>
 window.onload = disableButton();
@@ -168,11 +172,11 @@ function disableButton() {
         if (<%= @transaction.pending? %> == true) {
           document.getElementById("paymentFormButton").value="Add Payment";
           document.getElementById("paymentFormButton").disabled = false;
-          document.getElementById("paymentFormButton").setAttribute("class", "btn btn-lg btn-primary");
+          document.getElementById("paymentFormButton").setAttribute("class", "pull-right btn btn-lg btn-primary");
         } else if (<%= @transaction.pending? %>  == false) {
           document.getElementById("paymentFormButton").value="Fully Paid";
           document.getElementById("paymentFormButton").disabled = true;
-          document.getElementById("paymentFormButton").setAttribute("class", "btn btn-lg btn-success");
+          document.getElementById("paymentFormButton").setAttribute("class", "pull-right btn btn-lg btn-success");
         }
       }
   function payQuarter() {

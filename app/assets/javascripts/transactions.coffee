@@ -2,8 +2,14 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery ->
-  t = $("#transactions-datatable").DataTable({
+  $("#transactions-datatable").DataTable({
     pagingType: "full_numbers",
+    sPaginationType: "bootstrap"
+    })
+
+  $("#transaction-datatable").DataTable({
+    pagingType: "full_numbers",
+    aaSorting : "[[]]",
     sPaginationType: "bootstrap"
     })
 

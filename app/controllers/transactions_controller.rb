@@ -22,11 +22,8 @@ class TransactionsController < ApplicationController
   def new
     @transaction = Transaction.new
     @transaction.client = Client.find(params[:id])
-    @transaction.build
-    @transaction.other_processing_fees.build
+    @client = @transaction.client
     @services = get_services
-    puts @client.company_name
-    puts @client.id
     add_breadcrumb "Clients List", clients_path
     add_breadcrumb @client.company_name, client_path {@client.id}
     add_breadcrumb "New Transaction", new_transaction_path {@transaction.client_id}
