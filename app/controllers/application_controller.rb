@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   rescue_from CanCan::AccessDenied do |_exception|
-    flash[:alert] = 'You are unauthorized! Login Please'
+    flash[:alert] = 'You are unauthorized!'
     redirect_to '/login'
   end
 

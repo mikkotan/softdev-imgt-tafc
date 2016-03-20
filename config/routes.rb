@@ -13,13 +13,13 @@ Rails.application.routes.draw do
 
   get 'logout' => 'sessions#destroy', as: 'logout'
 
+  # employee
   get 'employees' => 'users#employees', as: 'employees'
-
   get 'employees/:id' => 'users#show_employee', as: 'show_employee'
 
-  get 'employees/:id/new-client' => 'clients#new', as: 'employee_new_client'
+  get 'employees/:id/new_client' => 'clients#new', as: 'employee_new_client'
 
-  get 'employees/:id/client/:client_id' => 'clients#show_through_employee', as: 'show_through_employee'
+  get 'employees/:employee_id/client/:id' => 'clients#show_through_employee', as: 'show_through_employee'
 
   get 'home' => 'home#index', as: 'home'
 

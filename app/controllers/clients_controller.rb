@@ -1,5 +1,5 @@
 class ClientsController < ApplicationController
-  before_action :find_client, only: [:show, :edit, :destroy, :update]
+  before_action :find_client, only: [:show, :edit, :destroy, :update, :show_through_employee]
   after_filter 'save_my_previous_url', only: [:new]
   load_and_authorize_resource
   add_breadcrumb "Home", :root_path
@@ -10,9 +10,17 @@ class ClientsController < ApplicationController
 
   def show
     add_breadcrumb "Clients List", clients_path
-    add_breadcrumb @client.company_name, client_path
+    add_breadcrumb @client.company_name
     @transactions = @client.transactions
     @transaction = Transaction.new
+  end
+
+  def show_through_employee
+    @employee = User.find(params[:employee_id])
+    add_breadcrumb "Employees", employees_path
+    add_breadcrumb @employee.email, show_employee_path
+    add_breadcrumb @client.company_name
+    @transactions = @client.transactions
   end
 
   def new
