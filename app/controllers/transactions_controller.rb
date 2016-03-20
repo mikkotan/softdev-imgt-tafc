@@ -9,35 +9,33 @@ class TransactionsController < ApplicationController
   end
 
   def show
-    @transaction = Transaction.find(params[:transaction_id])
+    @transaction = Transaction.find(params[:id])
     @payments = get_payments(@transaction.id)
     @client = Client.find(@transaction.client_id)
     @provisional_receipt = ProvisionalReceipt.new
+
     add_breadcrumb "Clients List", clients_path
-    add_breadcrumb @client.company_name, client_path {@client.id}
-    # add_breadcrumb "Transaction No. #{@transaction.billing_num}", transaction_path {@client.id}, {@transaction.id}
-    add_breadcrumb "Transaction No. #{@transaction.billing_num}", transaction_path {@client.id @transaction.id}
+    add_breadcrumb @client.company_name, client_path(@client.id)
+    add_breadcrumb "Transaction No. #{@transaction.billing_num}", transaction_path(@client.id, @transaction.id)
   end
 
   def new
     @transaction = Transaction.new
-    @transaction.client = Client.find(params[:id])
+    @transaction.client = Client.find(params[:client_id])
     @client = @transaction.client
+
     @transaction.other_processing_fees.build
     @services = get_services
-    puts @client.company_name
-    puts @client.id
+
     add_breadcrumb "Clients List", clients_path
-    add_breadcrumb @client.company_name, client_path {@client.id}
-    add_breadcrumb "New Transaction", new_transaction_path {@transaction.client_id}
-
-
+    add_breadcrumb @client.company_name, client_path(@client.id)
+    add_breadcrumb "New Transaction"
   end
 
   def create
-    add_breadcrumb "Transactions List", transactions_path
     @transaction = Transaction.new(transaction_params)
     @client = Client.find(@transaction.client_id)
+
     unless @transaction.save
       @services = get_services
       render :new
@@ -50,6 +48,7 @@ class TransactionsController < ApplicationController
       end
     end
 
+    add_breadcrumb "Transactions List", transactions_path
     redirect_to client_path(@client.id)
   end
 
