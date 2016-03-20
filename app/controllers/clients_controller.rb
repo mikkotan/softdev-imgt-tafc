@@ -9,30 +9,34 @@ class ClientsController < ApplicationController
   end
 
   def show
-    add_breadcrumb "Clients List", clients_path
+    if params[:employee_id]
+      @employee = User.find(params[:employee_id])
+      add_breadcrumb "Employees", employees_path
+      add_breadcrumb @employee.email, show_employee_path(params[:employee_id])
+    else
+      add_breadcrumb "Clients List", clients_path
+    end
+
     add_breadcrumb @client.company_name
     @transactions = @client.transactions
     @transaction = Transaction.new
   end
 
-  def show_through_employee
-    @employee = User.find(params[:employee_id])
-    add_breadcrumb "Employees", employees_path
-    add_breadcrumb @employee.email, show_employee_path
-    add_breadcrumb @client.company_name
-    @transactions = @client.transactions
-  end
-
   def new
-    add_breadcrumb "Clients List", clients_path
-    add_breadcrumb "New Client", new_client_path
     @employees = get_employees
     @client = Client.new
 
-    if params[:id]
-      @client.user_id = params[:id]
+    if params[:employee_id]
+      @employee = User.find(params[:employee_id])
+      add_breadcrumb "Employees", employees_path
+      add_breadcrumb @employee.email, show_employee_path(params[:employee_id])
+      @client.user_id = params[:employee_id]
       @withparams = true
+    else
+      add_breadcrumb "Clients List", clients_path
     end
+
+    add_breadcrumb "New Client"
   end
 
   def create

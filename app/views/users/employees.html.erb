@@ -33,6 +33,14 @@
 
           </button>
           <ul class="dropdown-menu">
+            <li class="text-primary">
+              <% if can? :add, Client %>
+              <%= link_to employee_new_client_path(user) do %>
+              <i class='glyphicon glyphicon-plus text-primary'></i>
+              Add Client
+              <% end %>
+              <% end %>
+            </li>
             <li class="text-info">
               <% if can? :show_employee, user %>
               <%= link_to show_employee_path(user) do %>

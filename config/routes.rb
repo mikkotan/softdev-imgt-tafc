@@ -17,9 +17,8 @@ Rails.application.routes.draw do
   get 'employees' => 'users#employees', as: 'employees'
   get 'employees/:id' => 'users#show_employee', as: 'show_employee'
 
-  get 'employees/:id/new_client' => 'clients#new', as: 'employee_new_client'
-
-  get 'employees/:employee_id/client/:id' => 'clients#show_through_employee', as: 'show_through_employee'
+  get 'employees/:employee_id/new_client' => 'clients#new', as: 'employee_new_client'
+  get 'employees/:employee_id/client/:id' => 'clients#show', as: 'show_through_employee'
 
   get 'home' => 'home#index', as: 'home'
 
