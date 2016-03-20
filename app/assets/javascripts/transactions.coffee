@@ -7,11 +7,9 @@ jQuery ->
     sPaginationType: "bootstrap"
     })
 
-  
-
   $('#transactions').collapse 'show'
 
-  $('#selectize').selectize
+  $select = $('#selectize').selectize
     plugins: [ 'remove_button' ]
     delimiter: ','
     persist: false
