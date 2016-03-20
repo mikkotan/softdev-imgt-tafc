@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
   get 'employees/:id/new-client' => 'clients#new', as: 'employee_new_client'
 
+  get 'employees/:id/client/:client_id' => 'clients#show_through_employee', as: 'show_through_employee'
+
   get 'home' => 'home#index', as: 'home'
 
   # root 'users#index'
@@ -42,6 +44,7 @@ Rails.application.routes.draw do
 
   get 'clients/:id/transactions/:transaction_id/full_payment' => 'transactions#full_payment', as: 'transaction_fullpayment'
 
+  get 'clients/:id/transactions/:transaction_id/edit' => 'transactions#edit', as: 'edit_transaction'
   post ':id/fees/new' => 'fees#create', as:'new_fee'
 
   get 'clients/:id/transactions/:transaction_id/new_payment' => 'provisional_receipts#new', as: 'new_provisional_receipts'
@@ -49,6 +52,11 @@ Rails.application.routes.draw do
   get 'clients/:id/transactions/:transaction_id/edit/:provisional_receipt_id' => 'provisional_receipts#edit', as: 'edit_provisional_receipts'
 
   get 'clients/:id/transactions/:transaction_id' => 'transactions#show', as: 'transaction'
+
+  get 'reports/services_report' => 'reports#services_report', as: "reports_services_report"
+
+  patch 'clients/:id/transactions/:transaction_id/edit/:provisional_receipt_id' => 'provisional_receipts#update'
+
 
   resources :reports
 

@@ -11,4 +11,5 @@ jQuery ->
   })
 
   $('#clients').collapse 'show'
-  
+
+  $("#clientsnav").addClass "active"

@@ -13,6 +13,7 @@ jQuery ->
 
 
   $('#services').collapse 'show'
+  $("#servicesnav").addClass "active"
 
 
 

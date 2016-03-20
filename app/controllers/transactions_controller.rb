@@ -21,8 +21,8 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new
-    @transaction.client_id = params[:id]
-    @client = Client.find(@transaction.client_id)
+    @transaction.client = Client.find(params[:id])
+    @client = @transaction.client
     @transaction.other_processing_fees.build
     @services = get_services
     puts @client.company_name
@@ -37,7 +37,7 @@ class TransactionsController < ApplicationController
   def create
     add_breadcrumb "Transactions List", transactions_path
     @transaction = Transaction.new(transaction_params)
-
+    @client = Client.find(@transaction.client_id)
     unless @transaction.save
       @services = get_services
       render :new
@@ -50,7 +50,7 @@ class TransactionsController < ApplicationController
       end
     end
 
-    redirect_to session[:my_previous_url]
+    redirect_to client_path(@client.id)
   end
 
   def new_payment
@@ -67,13 +67,27 @@ class TransactionsController < ApplicationController
   end
 
   def edit
-    add_breadcrumb "Transactions List", transactions_path
-    add_breadcrumb "Edit Transaction(add Transaction name here)", edit_transaction_path
+    @services = get_services
+    services_id = {}
+    @services.each do |service|
+        services_id[service.complete_name] = service.id
+    end
+    puts services_id
+
+
+    @transaction = Transaction.find params[:transaction_id]
+    @selected_services = @transaction.other_processing_fees.collect { |x| services_id[x.complete_name] }
+    puts @selected_services
+    @client = Client.find params[:id]
+
+
+
+    add_breadcrumb "Clients List", clients_path
+    add_breadcrumb @client.company_name, client_path {@client.id}
+    add_breadcrumb "Edit Transaction No. #{@transaction.billing_num}", transaction_path {@client.id @transaction.id}
   end
 
   def update
-    add_breadcrumb "Transactions List", transactions_path
-    add_breadcrumb "Edit Transaction(add Transaction name here)", edit_transaction_path
     @user = User.find(params[:id])
 
     respond_to do |format|

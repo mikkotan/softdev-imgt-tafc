@@ -11,3 +11,4 @@ jQuery ->
   });
 
   $('#employees').collapse 'show';
+  $("#employeesnav").addClass "active"

@@ -44,7 +44,8 @@ class ProvisionalReceiptsController < ApplicationController
   end
 
   def update
-    @transaction = Transaction.find @provisional_receipt.transaction_id
+    @provisional_receipt = ProvisionalReceipt.find params[:provisional_receipt_id]
+    @transaction = Transaction.find params[:transaction_id]
     @client = Client.find @transaction.client_id
     if @provisional_receipt.update(provisional_receipt_params)
       flash[:success] = 'Payment successfully updated.'

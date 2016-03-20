@@ -9,7 +9,7 @@ class Service < ActiveRecord::Base
 
   before_save :no_type_becomes_none
 
-  accepts_nested_attributes_for :related_costs
+  accepts_nested_attributes_for :related_costs, :allow_destroy => true
 
   def complete_name
     return name if service_type == 'none'
