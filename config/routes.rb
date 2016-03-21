@@ -22,10 +22,12 @@ Rails.application.routes.draw do
   resources :users
 
   resources :clients do
-    resources :transactions
+    resources :transactions do
+
+    end
   end
 
-  # password-related
+  # password_related
   get 'users/:id/change_password' => 'users#change_password', as: 'change_password'
   patch 'users/:id/change_password' => 'users#update_password'
   put 'users/:id/change_password' => 'users#update_password'
@@ -43,7 +45,7 @@ Rails.application.routes.draw do
 
   get 'reports/services_report' => 'reports#services_report', as: "reports_services_report"
 
-  patch 'clients/:id/transactions/:transaction_id/edit/:provisional_receipt_id' => 'provisional_receipts#update'
+  patch 'clients/:id/transactions/:transaction_id/edit/:provisional_receipt_id' => 'provisional_receipts#update', as: "edit_provisional_receipts"
 
   get 'reports/accounts_receivable'
 

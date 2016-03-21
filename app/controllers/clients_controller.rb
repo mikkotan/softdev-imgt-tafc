@@ -82,7 +82,6 @@ class ClientsController < ApplicationController
   def assign
     add_breadcrumb "Clients Lists", clients_path
     add_breadcrumb @client.company_name , clients_assign_path
-
   end
 
   private

@@ -16,7 +16,7 @@ class TransactionsController < ApplicationController
 
     add_breadcrumb "Clients List", clients_path
     add_breadcrumb @client.company_name, client_path(@client.id)
-    add_breadcrumb "Transaction No. #{@transaction.billing_num}", transaction_path(@client.id, @transaction.id)
+    add_breadcrumb "Transaction No. #{@transaction.billing_num}"
   end
 
   def new
@@ -71,32 +71,44 @@ class TransactionsController < ApplicationController
     @services.each do |service|
         services_id[service.complete_name] = service.id
     end
-    puts services_id
 
-
-    @transaction = Transaction.find params[:transaction_id]
+    @transaction = Transaction.find params[:id]
     @selected_services = @transaction.other_processing_fees.collect { |x| services_id[x.complete_name] }
-    puts @selected_services
-    @client = Client.find params[:id]
-
-
+    @client = @transaction.client
 
     add_breadcrumb "Clients List", clients_path
-    add_breadcrumb @client.company_name, client_path {@client.id}
-    add_breadcrumb "Edit Transaction No. #{@transaction.billing_num}", transaction_path {@client.id @transaction.id}
+    add_breadcrumb @client.company_name, client_path(@client.id)
+    add_breadcrumb "Edit Transaction No. #{@transaction.billing_num}"
   end
 
   def update
-    @user = User.find(params[:id])
+    @transaction = Transaction.find params[:id]
 
-    respond_to do |format|
-      if @transaction.update_attributes(params[:transaction])
-        format.html { redirect_to(@transaction, :notice => 'Transaction was successfully updated.') }
-        format.json { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.json { respond_with_bip(@user) }
+    if @transaction.update_info transaction_params
+      @transaction.other_processing_fees = []
+      if params[:selectize]
+        params[:selectize].each do |value|
+          @transaction.other_processing_fees << Service.find(value).make
+        end
       end
+
+      flash[:success] = 'Successfully updated transaction.'
+      redirect_to(@transaction)
+    else
+      @services = get_services
+      services_id = {}
+      @services.each do |service|
+          services_id[service.complete_name] = service.id
+      end
+      @selected_services = @transaction.other_processing_fees.collect { |x| services_id[x.complete_name] }
+      @client = @transaction.client
+
+      add_breadcrumb "Clients List", clients_path
+      add_breadcrumb @client.company_name, client_path(@client.id)
+      add_breadcrumb "Edit Transaction No. #{@transaction.billing_num}"
+
+      flash[:error] = 'Something went wrong when updating transaction.'
+      render :edit
     end
   end
 

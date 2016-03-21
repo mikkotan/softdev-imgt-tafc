@@ -109,10 +109,15 @@ class Transaction < ActiveRecord::Base
     Transaction.where(:created_at => startdate..enddate).select {|transaction| transaction.pending? }
   end
 
-
-
-
-  def get_services
+  def service_names
     other_processing_fees.collect {|service| service.complete_name }
+  end
+
+  def update_info(params)
+    nice = true
+    params.each do |key, value|
+      nice &&= update_column key, value
+    end
+    nice
   end
 end

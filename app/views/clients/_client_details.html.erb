@@ -2,7 +2,7 @@
 <hr>
 
 <div class="pull-right">
-  <%= link_to new_transaction_path(@client.id) do %>
+  <%= link_to new_client_transaction_path(@client.id) do %>
    <button class='btn btn-info btn-sm' role='button'>
      <i class='glyphicon glyphicon-briefcase'></i> Add Transaction
    </button>
@@ -44,7 +44,7 @@
             </button>
             <ul class="dropdown-menu">
               <li class="text-info">
-                  <%= link_to client_transaction_path(transaction.client_id, transaction.id) do %>
+                  <%= link_to transaction do %>
                   <i class='glyphicon glyphicon-briefcase text-info'></i> Details
                   <% end %>
               </li>

@@ -119,7 +119,7 @@ RSpec.describe Transaction, type: :model do
     a.other_processing_fees << Service.make(1)
     a.other_processing_fees << Service.make(2)
 
-    expect(a.get_services).to eq ['Service A', 'Service B']
+    expect(a.service_names).to eq ['Service A', 'Service B']
   end
 
   describe 'fees related stuff' do
