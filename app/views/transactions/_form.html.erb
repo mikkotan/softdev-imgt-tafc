@@ -1,4 +1,4 @@
-<!-- <%= javascript_include_tag 'judge_validation','data-turbolinks-track' =>true %> -->
+<%= javascript_include_tag 'judge_validation','data-turbolinks-track' =>true %>
 <%= form_for form_model, url: {action: action}, builder: Judge::FormBuilder do |f| %>
 <% if form_model.errors.any? %>
 <%= render partial: "shared/error_messages", locals: {form_model: form_model} %>
@@ -15,13 +15,13 @@
   </div>
 
   <div class="form-group">
-    <%=  f.label :vat, class:'control-label', for:'inputVat' %>
-    <%= f.text_field :vat, validate: true, class: 'form-control', type: 'number', id:'inputVat', placeholder:'Insert VAT here...' %>
+    <%= f.label :vat, class:"control-label", for:"inputVat" %>
+    <%= f.text_field :vat, validate: true, class: "form-control", type: "number", id:"inputVat", placeholder:"Insert VAT here..."  %>
   </div>
 
   <div class="form-group">
-    <%= f.label :percentage, class:'control-label', for:'inputPercentage' %>
-    <%= f.text_field :percentage, validate: true, class: 'form-control', type: 'number', id:'inputPercentage', placeholder:'Insert Percentage here...' %>
+    <%= f.label :percentage, class:"control-label", for:"inputPercentage" %>
+    <%= f.text_field :percentage, validate: true, class: "form-control", type: "number", id:"inputPercentage", placeholder:"Insert Percentage here..."%>
   </div>
 
   <div class="form-group">
@@ -52,7 +52,7 @@
   <label>Services:
   </label>
   <div class="form-group">
-    <%= select_tag "selectize", options_from_collection_for_select(@services, :id, :display ), class:"form-control selectize input-lg", multiple: true, placeholder:"Click here to see list of available services..."%>
+    <%= select_tag "selectize", options_from_collection_for_select(@services, :id, :complete_name, @selected_services), class:"form-control selectize input-lg", multiple: true, placeholder:"Click here to see list of available services..."%>
   </div>
   <div class="form-group">
     <%= f.label :discount, class:"control-label", for:"inputDiscount" %>
@@ -67,6 +67,8 @@
 <div class="actions col-md-6 pull-right">
   <%= f.submit action.capitalize + " Transaction", class: "btn btn-primary btn-md btn-block" %>
 </div>
+
+<% end %>
 
 <script>
   document.getElementById("inputVat").onblur = function () {
@@ -83,5 +85,3 @@
       $("#inputVat").prop("disabled", false);}
   };
 </script>
-
-<% end %>
