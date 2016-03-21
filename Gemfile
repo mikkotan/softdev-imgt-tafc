@@ -76,3 +76,6 @@ gem 'judge'
 
 #alerts
 gem 'twitter-bootstrap-rails-confirm'
+
+#masked input
+gem 'maskedinput-rails'

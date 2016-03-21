@@ -31,6 +31,7 @@
 //= require selectize
 //= require bootstrap-datepicker
 //= require twitter/bootstrap/rails/confirm
+//= require maskedinput
 
 $(document).ready(function() {
   toastr.options = {
