@@ -3,29 +3,46 @@
       Transaction Details
     </h1>
     <hr>
-    <table class="table table-hover table-striped" id="transaction-datatable">
+    <table class="table table-hover table-striped" >
       <thead>
         <tr>
-          <% @transaction.get_fees.each do |name, value| %>
-          <th><%= name %></th>
-          <% end %>
+          <th>Name </th>
+          <th>Price </th>
         </tr>
       </thead>
       <tbody>
-        <tr>
+
         <% @transaction.get_fees.each do |name, value| %>
+        <tr>
+          <td><%= name %></td>
           <td>
-              <%= value || 0 %></h6>
+            Php <%= value || 0 %>
           </td>
+
+        </tr>
         <% end %>
-      </tr>
+
+        <tr>
+          <td>
+            <p class="pull-right">Total:</p>
+          </td>
+          <td>
+            Php
+                <%= @transaction.total_balance%>
+          </td>
+
+        </tr>
+        <tr>
+          <td>
+            <p class="pull-right">  Remaining Balance:</p>
+          </td>
+          <td>
+              Php
+              <%= @transaction.remaining_balance %>
+          </td>
+
+        </tr>
     </table>
-
-        <h4 style="text-align:right;">Total:  Php
-            <%= @transaction.total_balance%></h4>
-
-        <h4  style="text-align:right;">Remaining Balance: Php
-          <%= @transaction.remaining_balance %></h4>
 
       <input type="button" data-target="#myModal" data-toggle="modal" id="paymentFormButton" type="button">
     </input>
