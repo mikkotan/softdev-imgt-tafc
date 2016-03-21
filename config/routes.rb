@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   resources :clients do
     resources :transactions do
-
+      post 'pay' => 'transactions#pay', as: 'pay'
     end
   end
 

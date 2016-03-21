@@ -3,13 +3,5 @@ class ProvisionalReceipt < ActiveRecord::Base
 
   validates :receipt_no, presence: true, uniqueness: true
   validates :amount_paid, numericality: { greater_than_or_equal_to: 0 }
-  # serialize :paid_items, Hash
-
-  # validate :amount_paid_must_be_equal_to_sum_of_paid_items
-  #
-  # def amount_paid_must_be_equal_to_sum_of_paid_items
-  #   unless paid_items.values.inject(:+) == amount_paid
-  #     errors.add(:amount_paid, "must be equal to sum of paid_items")
-  #   end
-  # end
+  
 end
