@@ -4,8 +4,15 @@ class Transaction < ActiveRecord::Base
   has_many :other_processing_fees, class_name: "Service"
   has_many :provisional_receipts
 
-  validates :billing_num, presence: true, uniqueness: true
-  validates :retainers_fee, presence: true
+  validates :billing_num, numericality: { greater_than_or_equal_to: 0 }, presence: true, uniqueness: true
+  validates :retainers_fee, numericality: { greater_than_or_equal_to: 0 }, presence: true
+  validates :withholding_1601e, numericality: { greater_than_or_equal_to: 0 }
+  validates :withholding_1601c, numericality: { greater_than_or_equal_to: 0 }
+  validates :employee_benefit_sss, numericality: { greater_than_or_equal_to: 0 }
+  validates :employee_benefit_pag_ibig, numericality: { greater_than_or_equal_to: 0 }
+  validates :employee_benefit_philhealth, numericality: { greater_than_or_equal_to: 0 }
+  validates :vat, numericality: { greater_than_or_equal_to: 0 }
+  validates :percentage, numericality: { greater_than_or_equal_to: 0 }
   validate :can_not_have_values_for_both_vat_and_percentage
   validate :can_not_have_services_that_are_templates
 

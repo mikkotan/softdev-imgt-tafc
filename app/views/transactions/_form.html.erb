@@ -1,4 +1,4 @@
-<!-- <%= javascript_include_tag 'judge_validation','data-turbolinks-track' =>true %> -->
+<%= javascript_include_tag 'judge_validation','data-turbolinks-track' =>true %>
 <%= form_for form_model, url: {action: action}, builder: Judge::FormBuilder do |f| %>
 <% if form_model.errors.any? %>
 <%= render partial: "shared/error_messages", locals: {form_model: form_model} %>
