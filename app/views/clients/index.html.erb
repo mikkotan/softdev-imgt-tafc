@@ -34,6 +34,11 @@
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
+            <li class="text-primary">
+                <%= link_to new_client_transaction_path(client) do %>
+                <i class='glyphicon glyphicon-plus text-primary'></i> New Transaction
+                <% end %>
+            </li>
             <li class="text-info">
                 <%= link_to client_path(client) do %>
                 <i class='glyphicon glyphicon-briefcase text-info'></i> Details

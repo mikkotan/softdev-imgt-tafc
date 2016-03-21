@@ -119,7 +119,7 @@ RSpec.describe Transaction, type: :model do
     a.other_processing_fees << Service.make(1)
     a.other_processing_fees << Service.make(2)
 
-    expect(a.get_services).to eq ['Service A', 'Service B']
+    expect(a.service_names).to eq ['Service A', 'Service B']
   end
 
   describe 'fees related stuff' do
@@ -152,75 +152,6 @@ RSpec.describe Transaction, type: :model do
           'Percentage' => 0,
           'Other Processing Fees' => 5750 }
         expect(transaction.get_fees).to eq result
-      end
-    end
-  end
-
-  describe 'paying with provisional receipts' do
-    let(:transaction) do
-      create :service # monthly_fee = 5000
-      create :service, name: 'Service B', monthly_fee: 750
-
-      a = create :full_transaction
-
-      a.other_processing_fees << Service.make(1)
-      a.other_processing_fees << Service.make(2)
-      a # total_balance = 8450
-    end
-
-    context 'when customer makes a full payment' do
-      before(:each) do
-        transaction.pay_in_full("002")
-      end
-
-      it 'should have a remaining balance of zero' do
-        expect(transaction.remaining_balance).to eq 0
-      end
-
-      it 'should have a provisional receipt containing all the fees paid' do
-        result = { 'Retainers Fee' => 500,
-          'Employee Benefit SSS' => 300,
-          'Employee Benefit PhilHealth' => 100,
-          'Employee Benefit Pag-ibig' => 200,
-          'Withholding 1601C ' => 500,
-          'Withholding 1601E' => 300,
-          'VAT' => 800,
-          'Percentage' => 0,
-          'Other Processing Fees' => 5750 }
-
-        expect(transaction.provisional_receipts[0].paid_items).to eq result
-      end
-
-      it 'should not allow any more payments to be made' do
-        expect { transaction.pay_in_full "002" }.to raise_exception(RuntimeError)
-
-        expect { transaction.pay("002", { 'VAT' => 800 }) }.to raise_exception(RuntimeError)
-      end
-
-      it 'should update the individual balances of each fee to zero' do
-        transaction.current_remaining_fee_balances.each do |fee, balance|
-          expect(balance).to eq 0
-        end
-      end
-    end
-
-    context 'when customer makes a partial payment to VAT' do
-      before(:each) do
-        transaction.pay("002", { 'VAT' => 800 })
-      end
-
-      it 'should have a provisional receipt containing all the fees paid' do
-        result = { 'VAT' => 800 }
-
-        expect(transaction.provisional_receipts[0].paid_items).to eq result
-      end
-
-      it 'should update the individual balance of VAT to zero' do
-        expect(transaction.current_remaining_fee_balances['VAT']).to eq 0
-      end
-
-      it 'should update the remaining balance' do
-        expect(transaction.remaining_balance).to eq 7650
       end
     end
   end

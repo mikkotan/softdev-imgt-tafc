@@ -38,6 +38,8 @@ gem 'bootstrap-kaminari-views'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bootswatch-rails'
 
+#datepicker
+gem 'bootstrap-datepicker-rails'
 
 # toastr_rails
 gem 'toastr-rails'
@@ -72,4 +74,5 @@ gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-ra
 gem 'best_in_place', '~> 3.0.1'
 gem 'judge'
 
-#gantt charting
+#alerts
+gem 'twitter-bootstrap-rails-confirm'

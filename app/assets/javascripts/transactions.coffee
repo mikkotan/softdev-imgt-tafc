@@ -7,18 +7,17 @@ jQuery ->
     sPaginationType: "bootstrap"
     })
 
-  $("#transaction-datatable").DataTable({
+  $("#invoice-datatable").DataTable({
     pagingType: "full_numbers",
     aaSorting : "[[]]",
     sPaginationType: "bootstrap"
     })
 
-
   $("#transactionsnav").addClass "active"
 
   $('#transactions').collapse 'show'
 
-  $('#selectize').selectize
+  $select = $('#selectize').selectize
     plugins: [ 'remove_button' ]
     delimiter: ','
     persist: false

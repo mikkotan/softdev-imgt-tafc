@@ -87,10 +87,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def clients
-    @clients = @user.clients
-  end
-
   private
 
   def user_params

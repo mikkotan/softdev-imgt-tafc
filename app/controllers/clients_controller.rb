@@ -1,5 +1,5 @@
 class ClientsController < ApplicationController
-  before_action :find_client, only: [:show, :edit, :destroy, :update]
+  before_action :find_client, only: [:show, :edit, :destroy, :update, :show_through_employee]
   after_filter 'save_my_previous_url', only: [:new]
   load_and_authorize_resource
   add_breadcrumb "Home", :root_path
@@ -9,30 +9,34 @@ class ClientsController < ApplicationController
   end
 
   def show
-    add_breadcrumb "Clients List", clients_path
-    add_breadcrumb @client.company_name, client_path
-    @transactions = @client.transactions
-  end
+    if params[:employee_id]
+      @employee = User.find(params[:employee_id])
+      add_breadcrumb "Employees", employees_path
+      add_breadcrumb @employee.email, show_employee_path(params[:employee_id])
+    else
+      add_breadcrumb "Clients List", clients_path
+    end
 
-  def show_through_employee
-    @employee = User.find params[:id]
-    add_breadcrumb "Employees", employees_path
-    add_breadcrumb @employee.email, show_employee_path
     add_breadcrumb @client.company_name
-
     @transactions = @client.transactions
+    @transaction = Transaction.new
   end
 
   def new
-    add_breadcrumb "Clients List", clients_path
-    add_breadcrumb "New Client", new_client_path
     @employees = get_employees
     @client = Client.new
 
-    if params[:id]
-      @client.user_id = params[:id]
+    if params[:employee_id]
+      @employee = User.find(params[:employee_id])
+      add_breadcrumb "Employees", employees_path
+      add_breadcrumb @employee.email, show_employee_path(params[:employee_id])
+      @client.user_id = params[:employee_id]
       @withparams = true
+    else
+      add_breadcrumb "Clients List", clients_path
     end
+
+    add_breadcrumb "New Client"
   end
 
   def create
@@ -78,7 +82,6 @@ class ClientsController < ApplicationController
   def assign
     add_breadcrumb "Clients Lists", clients_path
     add_breadcrumb @client.company_name , clients_assign_path
-
   end
 
   private

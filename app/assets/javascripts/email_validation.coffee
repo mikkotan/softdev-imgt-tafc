@@ -27,7 +27,6 @@ jQuery ->
 
 
 $(document).ready (event) ->
-
   judge.eachValidators['email'] = (options, messages) ->
     validation = judge.pending()
     judge.get judge.urlFor(this, 'email'),

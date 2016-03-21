@@ -9,31 +9,32 @@ class TransactionsController < ApplicationController
   end
 
   def show
-    @transaction = Transaction.find(params[:transaction_id])
+    @transaction = Transaction.find(params[:id])
     @payments = get_payments(@transaction.id)
     @client = Client.find(@transaction.client_id)
     @provisional_receipt = ProvisionalReceipt.new
+
     add_breadcrumb "Clients List", clients_path
-    add_breadcrumb @client.company_name, client_path {@client.id}
-    # add_breadcrumb "Transaction No. #{@transaction.billing_num}", transaction_path {@client.id}, {@transaction.id}
-    add_breadcrumb "Transaction No. #{@transaction.billing_num}", transaction_path {@client.id @transaction.id}
+    add_breadcrumb @client.company_name, client_path(@client.id)
+    add_breadcrumb "Transaction No. #{@transaction.billing_num}"
   end
 
   def new
     @transaction = Transaction.new
-    @transaction.client = Client.find(params[:id])
+    @transaction.client = Client.find(params[:client_id])
     @client = @transaction.client
+
+    @transaction.other_processing_fees.build
     @services = get_services
+    
     add_breadcrumb "Clients List", clients_path
-    add_breadcrumb @client.company_name, client_path {@client.id}
-    add_breadcrumb "New Transaction", new_transaction_path {@transaction.client_id}
-
-
+    add_breadcrumb @client.company_name, client_path(@client.id)
+    add_breadcrumb "New Transaction"
   end
 
   def create
-    add_breadcrumb "Transactions List", transactions_path
     @transaction = Transaction.new(transaction_params)
+    @client = Client.find(@transaction.client_id)
 
     unless @transaction.save
       @services = get_services
@@ -47,7 +48,8 @@ class TransactionsController < ApplicationController
       end
     end
 
-    redirect_to session[:my_previous_url]
+    add_breadcrumb "Transactions List", transactions_path
+    redirect_to client_path(@client.id)
   end
 
   def new_payment
@@ -69,39 +71,66 @@ class TransactionsController < ApplicationController
     @services.each do |service|
         services_id[service.complete_name] = service.id
     end
-    puts services_id
 
-
-    @transaction = Transaction.find params[:transaction_id]
+    @transaction = Transaction.find params[:id]
     @selected_services = @transaction.other_processing_fees.collect { |x| services_id[x.complete_name] }
-    puts @selected_services
-    @client = Client.find params[:id]
-
-
+    @client = @transaction.client
 
     add_breadcrumb "Clients List", clients_path
-    add_breadcrumb @client.company_name, client_path {@client.id}
-    add_breadcrumb "Edit Transaction No. #{@transaction.billing_num}", transaction_path {@client.id @transaction.id}
+    add_breadcrumb @client.company_name, client_path(@client.id)
+    add_breadcrumb "Edit Transaction No. #{@transaction.billing_num}"
   end
 
   def update
-    @user = User.find(params[:id])
+    @transaction = Transaction.find params[:id]
 
-    respond_to do |format|
-      if @transaction.update_attributes(params[:transaction])
-        format.html { redirect_to(@transaction, :notice => 'Transaction was successfully updated.') }
-        format.json { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.json { respond_with_bip(@user) }
+    if @transaction.update_info transaction_params
+      @transaction.other_processing_fees = []
+      if params[:selectize]
+        params[:selectize].each do |value|
+          @transaction.other_processing_fees << Service.find(value).make
+        end
       end
+
+      flash[:success] = 'Successfully updated transaction.'
+      redirect_to(@transaction)
+    else
+      @services = get_services
+      services_id = {}
+      @services.each do |service|
+          services_id[service.complete_name] = service.id
+      end
+      @selected_services = @transaction.other_processing_fees.collect { |x| services_id[x.complete_name] }
+      @client = @transaction.client
+
+      add_breadcrumb "Clients List", clients_path
+      add_breadcrumb @client.company_name, client_path(@client.id)
+      add_breadcrumb "Edit Transaction No. #{@transaction.billing_num}"
+
+      flash[:error] = 'Something went wrong when updating transaction.'
+      render :edit
     end
+  end
+
+  def pay
+    @transaction = Transaction.find params[:transaction_id]
+
+    a = payment_params
+    @transaction.pay a[:receipt_no], a[:amount_paid], a[:note]
+
+    redirect_to @transaction
   end
 
   def destroy
   end
 
   private
+
+  def payment_params
+    params.require(:provisional_receipt).permit(:receipt_no,
+                                                :amount_paid,
+                                                :note)
+  end
 
   def transaction_params
     params.require(:transaction).permit(:billing_num,

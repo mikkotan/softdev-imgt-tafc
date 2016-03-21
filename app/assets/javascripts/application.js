@@ -29,6 +29,8 @@
 //= require datatables
 //= require material-bonus
 //= require selectize
+//= require bootstrap-datepicker
+//= require twitter/bootstrap/rails/confirm
 
 $(document).ready(function() {
   toastr.options = {
@@ -61,3 +63,13 @@ function remove_fields (link){
   $(link).previous("input[type=hidden]").value = "1";
   $(link).up(".fields").hide();
 }
+
+$.fn.twitter_bootstrap_confirmbox.defaults = {
+    fade: true,
+    title: "Confirmation", // if title equals null window.top.location.origin is used
+    cancel: "Cancel",
+    cancel_class: "btn cancel",
+    proceed: "DELETE",
+    proceed_class: "btn proceed btn-danger",
+    modal_class: ""
+};

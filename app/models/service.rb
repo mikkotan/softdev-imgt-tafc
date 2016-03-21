@@ -48,7 +48,7 @@ class Service < ActiveRecord::Base
     service = Service.find id
     service.make
   end
-
+  
   def +(another_service)
     total_cost + another_service.total_cost
   end

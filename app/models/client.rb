@@ -29,7 +29,7 @@ class Client < ActiveRecord::Base
     hash_result = {}
 
     transactions.each do |transaction|
-      transaction.get_services.each do |service|
+      transaction.service_names.each do |service|
         if hash_result[service]
           hash_result[service] += 1
         else
@@ -38,7 +38,6 @@ class Client < ActiveRecord::Base
       end
     end
 
-    puts hash_result
     hash_result
   end
 end

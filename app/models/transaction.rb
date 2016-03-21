@@ -37,7 +37,7 @@ class Transaction < ActiveRecord::Base
 
   def total_balance
     if discount
-      (get_fees.values.inject(0) { |sum, value| sum + (value || 0) }) * (1-(discount/100))
+      (get_fees.values.inject(0) { |sum, value| sum + (value || 0) }) * ( 1 - ( discount / 100 ) )
     else
       get_fees.values.inject(0) { |sum, value| sum + (value || 0) }
     end
@@ -59,36 +59,12 @@ class Transaction < ActiveRecord::Base
       'Other Processing Fees' => total_of_processing_fees }
   end
 
-  def pay_in_full(receipt_no)
-    raise 'Transaction is already paid for.' if remaining_balance == 0
-
-    provisional_receipts << ProvisionalReceipt.create(
-      receipt_no: receipt_no,
-      amount_paid: remaining_balance,
-      paid_items: current_remaining_fee_balances
-    )
-  end
-
   def remaining_balance
     total_balance - provisional_receipts.inject(0){|sum, receipt| sum + receipt.amount_paid}
   end
 
   def pending?
     remaining_balance != 0
-  end
-
-  def current_remaining_fee_balances
-    fees = get_fees
-
-    provisional_receipts.each do |receipt|
-      fees.each do |name, value|
-        if receipt.paid_items[name]
-          fees[name] = value - receipt.paid_items[name]
-        end
-      end
-    end
-
-    fees
   end
 
   def pay(receipt_no, amount_paid, note)
@@ -105,7 +81,19 @@ class Transaction < ActiveRecord::Base
     Transaction.all.select {|transaction| transaction.pending? }
   end
 
-  def get_services
+  def self.filtered_pending_transactions(startdate, enddate)
+    Transaction.where(:created_at => startdate..enddate).select {|transaction| transaction.pending? }
+  end
+
+  def service_names
     other_processing_fees.collect {|service| service.complete_name }
+  end
+
+  def update_info(params)
+    nice = true
+    params.each do |key, value|
+      nice &&= update_column key, value
+    end
+    nice
   end
 end
