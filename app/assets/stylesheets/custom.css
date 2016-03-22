@@ -119,6 +119,7 @@ body {
 #main-content {
   margin-left: 2.5%;
   margin-right: 2%;
+
 }
 
 /**/
@@ -201,4 +202,8 @@ footer {
 }
 #sidebar {
   height:100%;
+}
+#notes {
+   word-wrap: break-word;
+   width: 25px;
 }

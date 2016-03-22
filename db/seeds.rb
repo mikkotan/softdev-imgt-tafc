@@ -30,16 +30,6 @@ user = User.create(password: 'password',
                    role: 'employee'
                   )
 
-Client.create(company_name: 'ACME Inc.',
-              owner: 'Kalbo',
-              representative: 'Michael',
-              address: '32 Ledesma St.',
-              tel_num: '337-6608',
-              email: 'starjirachi1@yahoo.com',
-              tin_num: '21312312-2312321',
-              status: 'active',
-              user: user
-             )
 
 client = Client.create(company_name: 'ACME Inc.',
                        owner: 'Kalbo',

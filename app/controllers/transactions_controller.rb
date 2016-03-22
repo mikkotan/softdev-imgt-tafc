@@ -26,7 +26,7 @@ class TransactionsController < ApplicationController
 
     @transaction.other_processing_fees.build
     @services = get_services
-
+    
     add_breadcrumb "Clients List", clients_path
     add_breadcrumb @client.company_name, client_path(@client.id)
     add_breadcrumb "New Transaction"

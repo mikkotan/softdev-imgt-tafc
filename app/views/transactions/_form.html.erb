@@ -71,24 +71,17 @@
 <% end %>
 
 <script>
-
-
-
   document.getElementById("inputVat").onblur = function () {
-      if (this.value.length > 0) {
-          document.getElementById("inputPercentage").disabled=true;
-      }else {
-          document.getElementById("inputPercentage").disabled = false;
-      }
+    if (this.value.length > 0) {
+      $("#inputPercentage").prop("disabled", true);
+    } else {
+      $("#inputPercentage").prop("disabled", false);}
   };
 
   document.getElementById("inputPercentage").onblur = function () {
-      if (this.value.length > 0) {
-          document.getElementById("inputVat").disabled=true;
-
-      }else {
-          document.getElementById("inputVat").disabled = false;
-      }
+    if (this.value.length > 0) {
+      $("#inputVat").prop("disabled", true);
+    } else {
+      $("#inputVat").prop("disabled", false);}
   };
-
 </script>
