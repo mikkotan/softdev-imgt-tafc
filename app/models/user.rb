@@ -34,6 +34,10 @@ class User < ActiveRecord::Base
     nice
   end
 
+  def get_filtered_total_sales(startdate, enddate)
+    transactions.where(:created_at => startdate..enddate).inject(0) {|sum, cost| sum + cost.total_balance}
+  end
+
   def name
     [first_name, last_name].join ' '
   end

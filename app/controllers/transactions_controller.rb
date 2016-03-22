@@ -81,6 +81,11 @@ class TransactionsController < ApplicationController
     add_breadcrumb "Edit Transaction No. #{@transaction.billing_num}"
   end
 
+  def edit_for_modal
+    @provisional_receipt = ProvisionalReceipt.find params[:provisional_receipts_id]
+    render :partial=>'edit_modal'
+  end
+
   def update
     @transaction = Transaction.find params[:id]
 

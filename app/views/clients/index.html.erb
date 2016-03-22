@@ -1,6 +1,14 @@
 <h1> Clients</h1>
 <hr>
 
+<div class="pull-right">
+  <%= link_to new_client_path do %>
+   <button class='btn btn-info btn-sm' role='button'>
+     <i class='glyphicon glyphicon-briefcase'></i> New Client
+   </button>
+  <% end %>
+</div>
+
 <table id="clientdatatable" class="table table-hover table-striped">
   <thead>
     <tr>
@@ -15,7 +23,9 @@
     <% @clients.each do |client| %>
     <tr>
       <td class="text-capitalize">
-        <%= "#{client.company_name}" %>
+        <%= link_to client_path(client) do %>
+          <%= "#{client.company_name}" %>
+        <% end %>
       </td>
       <td>
         <% if client.user %>

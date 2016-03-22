@@ -45,6 +45,7 @@ Rails.application.routes.draw do
 
   get 'reports/services_report' => 'reports#services_report', as: "reports_services_report"
 
+  get 'clients/:id/transactions/:transaction_id/edit/:provisional_receipts_id' => 'transactions#edit_for_modal', as: "edit_modal_provisional_receipts"
   patch 'clients/:id/transactions/:transaction_id/edit/:provisional_receipt_id' => 'provisional_receipts#update', as: "edit_provisional_receipts"
 
   get 'reports/accounts_receivable'

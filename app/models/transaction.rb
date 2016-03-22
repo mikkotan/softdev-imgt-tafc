@@ -82,12 +82,17 @@ class Transaction < ActiveRecord::Base
   end
 
   def self.filtered_pending_transactions(startdate, enddate)
-    Transaction.where(:created_at => startdate..enddate).select {|transaction| transaction.pending? }
+    where(:created_at => startdate..enddate)
   end
 
   def service_names
     other_processing_fees.collect {|service| service.complete_name }
   end
+
+  def filtered_service_names(startdate, enddate)
+    other_processing_fees.where(:created_at => startdate..enddate).collect {|service| service.complete_name }
+  end
+
 
   def update_info(params)
     nice = true

@@ -1,6 +1,22 @@
 <h1 class="text-capitalize"> Employees Reports </h1>
 <hr>
+<% if @start && @end %>
+  <h6>Showing Employee Sales Report from <em><%= @start.strftime("%d %b. %Y") %></em> to <em><%= @end.strftime("%d %b. %Y") %></em>. </h6>
+<% end %>
 
+<div class="row" id="sandbox-container">
+  <%= form_tag reports_employees_report_path, :method => 'get' do %>
+    <div class="col-md-6 input-daterange input-group" id="datepicker">
+      <div class="form-group">
+        <%= text_field_tag :start, params[:start], class: "input-sm form-control" %>
+        <%= text_field_tag :end, params[:end], class: "input-sm form-control" %>
+      </div>
+    </div>
+    <%= submit_tag "Filter", :name => nil %>
+  <% end %>
+  <div class="col-md-6">
+  </div>
+</div>
 
 <table id="reports-datatable" class="table table-hover table-striped">
   <thead>
@@ -20,7 +36,11 @@
           <%= employee.clients.size %>
         </td>
         <td>
-          Php <%= number_with_precision(employee.total_sales, :precision => 2, :delimiter => ',') %>
+          <% if @start && @end %>
+            Php <%= number_with_precision(employee.get_filtered_total_sales(@start, @end), :precision => 2, :delimiter => ',') %>
+          <% else %>
+            Php <%= number_with_precision(employee.total_sales, :precision => 2, :delimiter => ',') %>
+          <% end %>
         </td>
       </tr>
     <% end %>

@@ -25,6 +25,10 @@ class Client < ActiveRecord::Base
     user.name
   end
 
+  def filtered_total_balance_of_transaction(startdate, enddate)
+    transactions.filtered_pending_transactions(startdate, enddate).inject(0) { |sum, transaction| sum + transaction.total_balance}
+  end
+
   def services
     hash_result = {}
 
@@ -40,4 +44,22 @@ class Client < ActiveRecord::Base
 
     hash_result
   end
+
+  def filtered_services(startdate, enddate)
+    hash_result = {}
+
+    transactions.each do |transaction|
+      transaction.filtered_service_names(startdate, enddate).each do |service|
+        if hash_result[service]
+          hash_result[service] += 1
+        else
+          hash_result[service] = 1
+        end
+      end
+    end
+
+    hash_result
+  end
+
+
 end

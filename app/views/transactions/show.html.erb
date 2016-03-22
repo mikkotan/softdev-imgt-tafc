@@ -81,82 +81,13 @@
 
   <!-- Modal -->
   <div aria-labelledby="myModalLabel" class="modal fade" id="myModal" role="dialog" tabindex="-1">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h3 class="modal-title" id="myModalLabel">Payment Form</h3>
-          <hr>
-          <div class="row">
-            <div class="col-md-4">
-              <h5>Billing Number:</h5>
-            </div>
-            <div class="col-md-8">
-              <h5 class="pull-right">
-                #<%= @transaction.billing_num%></h5>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-4">
-              <h5>Total:</h5>
-            </div>
-            <div class="col-md-8">
-              <h5 class="pull-right">
-                Php
-                <%= @transaction.total_balance%></h5>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-4">
-              <h5>Remaining Balance:</h5>
-            </div>
-            <div class="col-md-8">
-              <h5 class="pull-right">
-                Php
-                <%= @transaction.remaining_balance %></h5>
-            </div>
-          </div>
-        </div>
-        <%= form_for @provisional_receipt, url: client_transaction_pay_path(@transaction.client.id, @transaction.id) do |f| %>
-          <div class="modal-body">
-
-            <!-- form for payments -->
-
-            <div class="form-group">
-              <%= f.label :receipt_no, class:"control-label", for:"inputReceiptNumber" %>
-              <%= f.text_field :receipt_no, class: "form-control", required: "required", id:"inputReceiptNumber", placeholder: "Insert Receipt number here..." %>
-            </div>
-            <div aria-label="..." class="btn-group pull-right" role="group">
-              <button class="btn btn-default" onclick="payQuarter()" type="button">25%</button>
-              <button class="btn btn-default" onclick="payHalf()" type="button">50%</button>
-              <button class="btn btn-default" onclick="payFull()" type="button">Full</button>
-            </div>
-            <div class="form-group">
-              <%= f.label :amount_paid, class:"control-label", for:"inputAmountPaid" %>
-              <%= f.text_field :amount_paid, class: "form-control", required: "required", id:"inputAmountPaid", placeholder: "Insert Amount here..." %>
-            </div>
-
-            <div class="form-group">
-              <%= f.label :note, class:"control-label", for:"inputNote" %>
-              <%= f.text_field :note, class: "form-control", required: "required", id:"inputNote", placeholder: "Insert Note for payment here..." %>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-danger" data-dismiss="modal" type="button">Close</button>
-            <div class="actions col-md-6 pull-right">
-              <%= f.submit "Submit", class: "btn btn-primary btn-md btn-block" %>
-            </div>
-          </div>
-        <% end %>
-
-        <!-- end form for payments -->
-      </div>
-
-    </div>
+    <%= render "transactions/new_modal"%>
   </div>
+
+  <div aria-labelledby="myModalLabel" class="modal fade" id="editModal" role="dialog" tabindex="-1">
+    <%= render "transactions/edit_modal" %>
+  </div>
+
 </div>
 
 <script>
