@@ -7,7 +7,7 @@ class Client < ActiveRecord::Base
   validates :owner, presence: true
   validates :address, presence: true
   validates :tel_num, presence: true
-  validates :tin_num, presence: true
+  validates :tin_num, presence: true, tin_num: true
 
   def self.search(query)
     where('company_name like ?', "%#{query}%")
