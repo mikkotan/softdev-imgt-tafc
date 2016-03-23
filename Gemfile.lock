@@ -63,6 +63,8 @@ GEM
     bootstrap-kaminari-views (0.0.5)
       kaminari (>= 0.13)
       rails (>= 3.1)
+    bootstrap-modal-rails (2.2.5)
+      railties (>= 3.1)
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
     bootswatch-rails (3.3.5)
@@ -295,6 +297,7 @@ DEPENDENCIES
   best_in_place (~> 3.0.1)
   bootstrap-datepicker-rails
   bootstrap-kaminari-views
+  bootstrap-modal-rails
   bootstrap-sass (~> 3.2.0)
   bootswatch-rails
   breadcrumbs_on_rails

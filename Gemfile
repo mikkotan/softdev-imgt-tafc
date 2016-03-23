@@ -79,3 +79,6 @@ gem 'twitter-bootstrap-rails-confirm'
 
 #masked input
 gem 'maskedinput-rails'
+
+#modal
+gem 'bootstrap-modal-rails'
