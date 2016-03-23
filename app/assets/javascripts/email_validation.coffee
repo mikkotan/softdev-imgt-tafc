@@ -38,3 +38,16 @@ $(document).ready (event) ->
         return
     validation
   return
+
+$(document).ready (event) ->
+  judge.eachValidators['tin_num'] = (options, messages) ->
+    validation = judge.pending()
+    judge.get judge.urlFor(this, 'tin_num'),
+      success: (status, headers, text) ->
+        validation.close text
+        return
+      error: (status, headers, text) ->
+        validation.close [ 'Request error: ' + status ]
+        return
+    validation
+  return

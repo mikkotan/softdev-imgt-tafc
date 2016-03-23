@@ -67,6 +67,32 @@ function remove_fields (link){
   $(link).up(".fields").hide();
 }
 
+<<<<<<< HEAD
+$.rails.allowAction = function(link){
+    if (link.data("confirm") == undefined){
+        return true;
+    }
+    $.rails.showConfirmationDialog(link);
+    return false;
+}
+//User click confirm button
+$.rails.confirmed = function(link){
+    link.data("confirm", null);
+    link.trigger("click.rails");
+}
+//Display the confirmation dialog
+$.rails.showConfirmationDialog = function(link){
+    var message = link.data("confirm");
+    $.fn.SimpleModal({
+        model: "modal",
+        title: "Please confirm",
+        contents: message
+    }).addButton("Confirm", "button alert", function(){
+        $.rails.confirmed(link);
+        this.hideModal();
+    }).addButton("Cancel", "button secondary").showModal();
+}
+=======
 $.fn.twitter_bootstrap_confirmbox.defaults = {
     fade: true,
     title: "Confirmation", // if title equals null window.top.location.origin is used
@@ -76,3 +102,4 @@ $.fn.twitter_bootstrap_confirmbox.defaults = {
     proceed_class: "btn proceed btn-danger",
     modal_class: ""
 };
+>>>>>>> 8ef1bfbb9f06ba7d1dd611dcda951dbbc995f799
