@@ -72,14 +72,14 @@
 
 <script>
   document.getElementById("inputVat").onblur = function () {
-    if (this.value.length > 0) {
+    if (this.value.length > 1) {
       $("#inputPercentage").prop("disabled", true);
     } else {
       $("#inputPercentage").prop("disabled", false);}
   };
 
   document.getElementById("inputPercentage").onblur = function () {
-    if (this.value.length > 0) {
+    if (this.value.length > 1) {
       $("#inputVat").prop("disabled", true);
     } else {
       $("#inputVat").prop("disabled", false);}
