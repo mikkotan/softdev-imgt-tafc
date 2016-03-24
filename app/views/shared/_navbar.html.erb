@@ -30,7 +30,7 @@
         <% if current_user %>
         <li class="dropdown">
           <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown" href="#" id="user-dropdown" role="button">
-            <%= current_user ? "Logged in as #{current_user.email}" : "" %>
+            <%= current_user ? "Logged in as #{current_user.name}" : "" %>
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
