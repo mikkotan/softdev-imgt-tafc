@@ -75,7 +75,7 @@ gem 'best_in_place', '~> 3.0.1'
 gem 'judge'
 
 #alerts
-gem 'twitter-bootstrap-rails-confirm'
+gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
 
 #masked input
 gem 'maskedinput-rails'
