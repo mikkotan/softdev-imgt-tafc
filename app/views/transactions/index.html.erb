@@ -20,11 +20,13 @@
       <%= "#{transaction.client.company_name}" %>
     </td>
       <td>
-        P<%= transaction.total_balance %>
+        Php <%= transaction.total_balance %>
       </td>
       <td>
         <% if transaction.pending? %>
-          <button type="button" class="btn btn-danger">Pending</button>
+          <button type="button" class="btn btn-danger">
+            Pending - Php <%= number_with_precision(transaction.remaining_balance, :precision => 2, :delimeter => ',') %>
+          </button>
         <% else %>
           <button type="button" class="btn btn-success">Paid</button>
         <% end %>

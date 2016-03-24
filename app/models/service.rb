@@ -20,6 +20,10 @@ class Service < ActiveRecord::Base
     monthly_fee + related_costs.inject(0) { |sum, item| sum + item.value }
   end
 
+  def display
+    return "#{complete_name} - P#{total_cost}"
+  end
+
   def make
     @new_thing = dup
     @new_thing.is_template = false
@@ -44,7 +48,7 @@ class Service < ActiveRecord::Base
     service = Service.find id
     service.make
   end
-  
+
   def +(another_service)
     total_cost + another_service.total_cost
   end

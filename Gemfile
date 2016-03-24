@@ -74,4 +74,8 @@ gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-ra
 gem 'best_in_place', '~> 3.0.1'
 gem 'judge'
 
-#gantt charting
+#alerts
+gem 'twitter-bootstrap-rails-confirm'
+
+#masked input
+gem 'maskedinput-rails'

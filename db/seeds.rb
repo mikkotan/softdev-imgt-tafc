@@ -22,6 +22,15 @@ User.create(password: 'tantantan',
             role: 'owner'
            )
 
+ User.create(password: 'password',
+             email: 'admin@gmail.com',
+             password_confirmation: 'password',
+             first_name: 'Michael',
+             last_name: 'Tan',
+             role: 'owner'
+            )
+
+
 user = User.create(password: 'password',
                    email: 'keia123@gmail.com',
                    password_confirmation: 'password',
@@ -30,29 +39,8 @@ user = User.create(password: 'password',
                    role: 'employee'
                   )
 
-Client.create(company_name: 'ACME Inc.',
-              owner: 'Kalbo',
-              representative: 'Michael',
-              address: '32 Ledesma St.',
-              tel_num: '337-6608',
-              email: 'starjirachi1@yahoo.com',
-              tin_num: '21312312-2312321',
-              status: 'active',
-              user: user
-             )
 
-client = Client.create(company_name: 'ACME Inc.',
-                       owner: 'Kalbo',
-                       representative: 'Michael',
-                       address: '32 Ledesma St.',
-                       tel_num: '337-6608',
-                       email: 'starjirachi1@yahoo.com',
-                       tin_num: '21312312-2312321',
-                       status: 'active',
-                       user: user
-                      )
 
-trans1 = Transaction.create(billing_num: '111', retainers_fee: 300, vat: 150, percentage: 300, client: client)
 
 srv = Service.create(name: 'DTI Registration and Renewal',
                      monthly_fee: 1500
