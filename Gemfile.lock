@@ -1,8 +1,15 @@
 GIT
-  remote: git://github.com/rweng/jquery-datatables-rails.git
-  revision: 9eee0a1975b5a22e50bdc73fcca7db7f8a12c143
+  remote: git://github.com/ifad/data-confirm-modal.git
+  revision: a2018ab8893cdeeeffaae407368ed1a20ea72b30
   specs:
-    jquery-datatables-rails (3.3.0)
+    data-confirm-modal (1.1.0)
+      railties (>= 3.0)
+
+GIT
+  remote: git://github.com/rweng/jquery-datatables-rails.git
+  revision: b8e6b6fa51e0074ea44b4771a68b1817a14023fc
+  specs:
+    jquery-datatables-rails (3.4.0)
       actionpack (>= 3.1)
       jquery-rails
       railties (>= 3.1)
@@ -63,6 +70,8 @@ GEM
     bootstrap-kaminari-views (0.0.5)
       kaminari (>= 0.13)
       rails (>= 3.1)
+    bootstrap-modal-rails (2.2.5)
+      railties (>= 3.1)
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
     bootswatch-rails (3.3.5)
@@ -141,6 +150,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    maskedinput-rails (1.4.0.0)
     mime-types (2.99.1)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
@@ -188,7 +198,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rainbow (2.1.0)
-    rake (11.0.1)
+    rake (11.1.1)
     rdoc (4.2.2)
       json (~> 1.4)
     reek (3.11)
@@ -243,9 +253,8 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     selectize-rails (0.12.1)
-    selenium-webdriver (2.52.0)
+    selenium-webdriver (2.53.0)
       childprocess (~> 0.5)
-      multi_json (~> 1.0)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
     sexp_processor (4.7.0)
@@ -270,7 +279,7 @@ GEM
       coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    tzinfo-data (1.2016.1)
+    tzinfo-data (1.2016.2)
       tzinfo (>= 1.0.0)
     uglifier (2.7.2)
       execjs (>= 0.3.0)
@@ -294,12 +303,14 @@ DEPENDENCIES
   best_in_place (~> 3.0.1)
   bootstrap-datepicker-rails
   bootstrap-kaminari-views
+  bootstrap-modal-rails
   bootstrap-sass (~> 3.2.0)
   bootswatch-rails
   breadcrumbs_on_rails
   cancancan
   capybara
   coffee-rails (~> 4.1.0)
+  data-confirm-modal!
   database_cleaner
   factory_girl_rails
   jbuilder (~> 2.0)
@@ -308,6 +319,7 @@ DEPENDENCIES
   jquery-turbolinks
   judge
   kaminari (~> 0.16.1)
+  maskedinput-rails
   rails (= 4.2.3)
   rails_best_practices
   rspec-rails

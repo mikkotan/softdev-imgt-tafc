@@ -19,7 +19,7 @@
       </td>
       <td>
         <% if client.user %>
-          <%= client.user_email %>
+          <%= client.user_name %>
         <% else  %>
           <span>Not assigned</span>
         <% end %>
@@ -51,7 +51,7 @@
             </li>
             <li class="text-danger">
               <% if can? :destroy, client %>
-              <%= link_to client, method: :delete, data: {confirm: 'Are you sure?'} do %>
+              <%= link_to client, method: :delete, data: {confirm: 'Do you want to delete this client?', verify: 'Delete', verify_text: 'Type "Delete" to confirm'} do %>
               <i class='glyphicon glyphicon-trash text-danger'></i>
               Delete
               <% end %>

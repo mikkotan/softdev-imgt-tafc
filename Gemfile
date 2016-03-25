@@ -74,4 +74,11 @@ gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-ra
 gem 'best_in_place', '~> 3.0.1'
 gem 'judge'
 
-#gantt charting
+#alerts
+gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
+
+#masked input
+gem 'maskedinput-rails'
+
+#modal
+gem 'bootstrap-modal-rails'

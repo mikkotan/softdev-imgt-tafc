@@ -30,12 +30,16 @@
 //= require material-bonus
 //= require selectize
 //= require bootstrap-datepicker
+//= require maskedinput
+//= require bootstrap-modal
+//= require bootstrap-modalmanager
+//= require data-confirm-modal
 
 $(document).ready(function() {
   toastr.options = {
     "closeButton": false,
     "debug": false,
-    "positionClass": "toast-bottom-right",
+    "positionClass": "toast-bottom-left",
     "onclick": null,
     "showDuration": "300",
     "hideDuration": "1000",

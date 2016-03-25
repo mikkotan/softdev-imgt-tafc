@@ -4,8 +4,15 @@ class Transaction < ActiveRecord::Base
   has_many :other_processing_fees, class_name: "Service"
   has_many :provisional_receipts
 
-  validates :billing_num, presence: true, uniqueness: true
-  validates :retainers_fee, presence: true
+  validates :billing_num, numericality: { greater_than_or_equal_to: 0 }, presence: true, uniqueness: true
+  validates :retainers_fee, numericality: { greater_than_or_equal_to: 0 }, presence: true
+  validates :withholding_1601e, numericality: { greater_than_or_equal_to: 0 }
+  validates :withholding_1601c, numericality: { greater_than_or_equal_to: 0 }
+  validates :employee_benefit_sss, numericality: { greater_than_or_equal_to: 0 }
+  validates :employee_benefit_pag_ibig, numericality: { greater_than_or_equal_to: 0 }
+  validates :employee_benefit_philhealth, numericality: { greater_than_or_equal_to: 0 }
+  validates :vat, numericality: { greater_than_or_equal_to: 0 }
+  validates :percentage, numericality: { greater_than_or_equal_to: 0 }
   validate :can_not_have_values_for_both_vat_and_percentage
   validate :can_not_have_services_that_are_templates
 
@@ -37,7 +44,7 @@ class Transaction < ActiveRecord::Base
 
   def total_balance
     if discount
-      (get_fees.values.inject(0) { |sum, value| sum + (value || 0) }) * (1-(discount/100))
+      (get_fees.values.inject(0) { |sum, value| sum + (value || 0) }) * ( 1 - ( discount / 100 ) )
     else
       get_fees.values.inject(0) { |sum, value| sum + (value || 0) }
     end
@@ -59,36 +66,12 @@ class Transaction < ActiveRecord::Base
       'Other Processing Fees' => total_of_processing_fees }
   end
 
-  def pay_in_full(receipt_no)
-    raise 'Transaction is already paid for.' if remaining_balance == 0
-
-    provisional_receipts << ProvisionalReceipt.create(
-      receipt_no: receipt_no,
-      amount_paid: remaining_balance,
-      paid_items: current_remaining_fee_balances
-    )
-  end
-
   def remaining_balance
     total_balance - provisional_receipts.inject(0){|sum, receipt| sum + receipt.amount_paid}
   end
 
   def pending?
     remaining_balance != 0
-  end
-
-  def current_remaining_fee_balances
-    fees = get_fees
-
-    provisional_receipts.each do |receipt|
-      fees.each do |name, value|
-        if receipt.paid_items[name]
-          fees[name] = value - receipt.paid_items[name]
-        end
-      end
-    end
-
-    fees
   end
 
   def pay(receipt_no, amount_paid, note)

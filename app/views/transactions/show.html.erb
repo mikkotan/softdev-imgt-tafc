@@ -1,32 +1,56 @@
 
-<div class="row">
-  <div class="col-md-10">
-    <h3>
-      <em>Transaction Details</em>
-    </h3>
-    <h3>Billing No: #
-      <%= @transaction.billing_num %></h3>
-    <div>
-      <% @transaction.get_fees.each do |name, value| %>
-      <h6><%= name %>:
-        <%= value || 0 %></h6>
-      <% end %>
+    <h1>
+      Transaction Details
+    </h1>
+    <hr>
+    <table class="table table-hover table-striped">
+      <thead>
+        <tr>
+          <th>Name </th>
+          <th>Price </th>
+        </tr>
+      </thead>
+      <tbody>
 
-      <strong>
-        <h3>Total: Php
-          <%= @transaction.total_balance%></h3>
-      </strong>
-      <strong>
-        <h6>Remaining Balance: Php
-          <%= @transaction.remaining_balance %></h6>
-      </strong>
-    </div>
-  </div>
-</div>
+        <% @transaction.get_fees.each do |name, value| %>
+        <tr>
+          <td><%= name %></td>
+          <td>
+            Php <%= value || 0 %>
+          </td>
 
-<div>
+        </tr>
+        <% end %>
+
+        <tr>
+          <td>
+          <b>  <p class="pull-right">Total:</p></b>
+          </td>
+          <td><b>
+            Php
+                <%= @transaction.total_balance%></b>
+          </td>
+
+        </tr>
+        <tr>
+          <td>
+          <b>  <p class="pull-right">  Remaining Balance:</p></b>
+          </td>
+          <td><b>
+              Php
+              <%= @transaction.remaining_balance %></b>
+          </td>
+
+        </tr>
+    </table>
+
+      <input type="button" data-target="#myModal" data-toggle="modal" id="paymentFormButton" type="button">
+    </input>
+  <br>
+  <hr>
 
   <h1>Payment Log</h1>
+
   <table class="table table-hover table-striped" id="transactions-datatable">
     <thead>
       <tr>
@@ -43,7 +67,7 @@
           #
           <%= "#{payment.receipt_no}" %>
         </td>
-        <td>
+        <td class="notes">
           <em><%= payment.note %></em>
         </td>
         <td>
@@ -76,8 +100,6 @@
       <% end %>
     </tbody>
   </table>
-  <input type="button" data-target="#myModal" data-toggle="modal" id="paymentFormButton" type="button">
-</input>
 
   <!-- Modal -->
   <div aria-labelledby="myModalLabel" class="modal fade" id="myModal" role="dialog" tabindex="-1">
@@ -120,47 +142,43 @@
             </div>
           </div>
         </div>
-        <div class="modal-body">
+        <%= form_for @provisional_receipt, url: client_transaction_pay_path(@transaction.client.id, @transaction.id) do |f| %>
+          <div class="modal-body">
 
-          <!-- form for payments -->
-          <%= form_for @provisional_receipt do |f| %>
+            <!-- form for payments -->
 
-          <div class="form-group">
-            <%= f.label :receipt_no, class:"control-label", for:"inputReceiptNumber" %>
-            <%= f.text_field :receipt_no, class: "form-control", required: "required", id:"inputReceiptNumber", placeholder: "Insert Receipt number here..." %>
-          </div>
-          <div aria-label="..." class="btn-group pull-right" role="group">
-            <button class="btn btn-default" onclick="payQuarter()" type="button">25%</button>
-            <button class="btn btn-default" onclick="payHalf()" type="button">50%</button>
-            <button class="btn btn-default" onclick="payFull()" type="button">Full</button>
-          </div>
-          <div class="form-group">
-            <%= f.label :amount_paid, class:"control-label", for:"inputAmountPaid" %>
-            <%= f.text_field :amount_paid, class: "form-control", required: "required", id:"inputAmountPaid", placeholder: "Insert Amount here..." %>
-          </div>
+            <div class="form-group">
+              <%= f.label :receipt_no, class:"control-label", for:"inputReceiptNumber" %>
+              <%= f.text_field :receipt_no, class: "form-control", required: "required", id:"inputReceiptNumber", placeholder: "Insert Receipt number here..." %>
+            </div>
+            <div aria-label="..." class="btn-group pull-right" role="group">
+              <button class="btn btn-default" onclick="payQuarter()" type="button">25%</button>
+              <button class="btn btn-default" onclick="payHalf()" type="button">50%</button>
+              <button class="btn btn-default" onclick="payFull()" type="button">Full</button>
+            </div>
+            <div class="form-group">
+              <%= f.label :amount_paid, class:"control-label", for:"inputAmountPaid" %>
+              <%= f.text_field :amount_paid, class: "form-control", required: "required", id:"inputAmountPaid", placeholder: "Insert Amount here..." %>
+            </div>
 
-          <div class="form-group">
-            <%= f.label :note, class:"control-label", for:"inputNote" %>
-            <%= f.text_field :note, class: "form-control", required: "required", id:"inputNote", placeholder: "Insert Note for payment here..." %>
+            <div class="form-group">
+              <%= f.label :note, class:"control-label", for:"inputNote" %>
+              <%= f.text_field :note, class: "form-control", required: "required", id:"inputNote", placeholder: "Insert Note for payment here..." %>
+            </div>
           </div>
-
-          <%= f.hidden_field :transaction_id, class: "form-control",value: @transaction.id %>
-
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-danger" data-dismiss="modal" type="button">Close</button>
-          <div class="actions col-md-6 pull-right">
-            <%= f.submit "Submit", class: "btn btn-primary btn-md btn-block" %>
+          <div class="modal-footer">
+            <button class="btn btn-danger" data-dismiss="modal" type="button">Close</button>
+            <div class="actions col-md-6 pull-right">
+              <%= f.submit "Submit", class: "btn btn-primary btn-md btn-block" %>
+            </div>
           </div>
-          <% end %>
-        </div>
+        <% end %>
 
         <!-- end form for payments -->
       </div>
 
     </div>
   </div>
-</div>
 
 <script>
 window.onload = disableButton();
@@ -168,11 +186,11 @@ function disableButton() {
         if (<%= @transaction.pending? %> == true) {
           document.getElementById("paymentFormButton").value="Add Payment";
           document.getElementById("paymentFormButton").disabled = false;
-          document.getElementById("paymentFormButton").setAttribute("class", "btn btn-lg btn-primary");
+          document.getElementById("paymentFormButton").setAttribute("class", "pull-right btn btn-lg btn-primary");
         } else if (<%= @transaction.pending? %>  == false) {
           document.getElementById("paymentFormButton").value="Fully Paid";
           document.getElementById("paymentFormButton").disabled = true;
-          document.getElementById("paymentFormButton").setAttribute("class", "btn btn-lg btn-success");
+          document.getElementById("paymentFormButton").setAttribute("class", "pull-right btn btn-lg btn-success");
         }
       }
   function payQuarter() {

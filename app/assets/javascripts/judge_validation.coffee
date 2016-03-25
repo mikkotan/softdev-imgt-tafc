@@ -16,3 +16,4 @@ jQuery ->
           x.attr('data-container', 'body')
           x.popover('show')
       }
+

@@ -26,7 +26,7 @@ class TransactionsController < ApplicationController
 
     @transaction.other_processing_fees.build
     @services = get_services
-
+    
     add_breadcrumb "Clients List", clients_path
     add_breadcrumb @client.company_name, client_path(@client.id)
     add_breadcrumb "New Transaction"
@@ -112,10 +112,25 @@ class TransactionsController < ApplicationController
     end
   end
 
+  def pay
+    @transaction = Transaction.find params[:transaction_id]
+
+    a = payment_params
+    @transaction.pay a[:receipt_no], a[:amount_paid], a[:note]
+
+    redirect_to @transaction
+  end
+
   def destroy
   end
 
   private
+
+  def payment_params
+    params.require(:provisional_receipt).permit(:receipt_no,
+                                                :amount_paid,
+                                                :note)
+  end
 
   def transaction_params
     params.require(:transaction).permit(:billing_num,
