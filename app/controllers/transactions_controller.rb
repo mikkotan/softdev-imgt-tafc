@@ -26,10 +26,16 @@ class TransactionsController < ApplicationController
 
     @transaction.other_processing_fees.build
     @services = get_services
-    
+
     add_breadcrumb "Clients List", clients_path
     add_breadcrumb @client.company_name, client_path(@client.id)
     add_breadcrumb "New Transaction"
+    @last_transaction = Transaction.last
+    if @last_transaction == nil
+      @transaction.billing_num = '00001'
+    else
+      @transaction.billing_num = @last_transaction.billing_num.succ
+    end
   end
 
   def create

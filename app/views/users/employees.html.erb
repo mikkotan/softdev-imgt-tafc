@@ -1,6 +1,17 @@
 <h1> Employees </h1>
 <hr>
 
+<div class="pull-right">
+  <% if can? :new, @user %>
+  <%= link_to new_user_path  do %>
+  <button class='btn btn-info btn-sm' role='button'>
+    <i class='glyphicon glyphicon-plus'></i>
+    ADD Employee
+  </button>
+  <% end %>
+  <% end %>
+</div>
+
 <table class="table table-hover table-striped" id="datatable">
   <thead>
     <tr>
