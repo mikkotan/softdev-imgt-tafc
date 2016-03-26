@@ -16,7 +16,6 @@ class ClientsController < ApplicationController
     else
       add_breadcrumb "Clients List", clients_path
     end
-
     add_breadcrumb @client.company_name
     @transactions = @client.transactions
     @transaction = Transaction.new

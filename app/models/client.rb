@@ -25,6 +25,10 @@ class Client < ActiveRecord::Base
     user.name
   end
 
+  def transaction_count
+    transactions.size
+  end
+
   def services
     hash_result = {}
 
@@ -37,6 +41,7 @@ class Client < ActiveRecord::Base
         end
       end
     end
+
 
     hash_result
   end

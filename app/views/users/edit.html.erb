@@ -24,10 +24,12 @@
   <% if can? :manage, User %>
   <%= f.radio_button :role, 'owner', :checked => (@user.role == 'owner' ? true : false), class: "radio-inline" %>
   <%= label :role, 'owner' %>
+    <br>
   <%= f.radio_button :role, 'manager', :checked => (@user.role == 'manager' ? true : false), class: "radio-inline" %>
   <%= label :role, 'manager' %>
+    <br>
   <%= f.radio_button :role, 'employee',:checked => (@user.role == 'employee' ? true : false), class: "radio-inline" %>
-  <%= label :role, 'employee' %>
+  <%= label :role, 'employee' %> 
   <% end %>
 
   </div>

@@ -27,8 +27,7 @@
           <b>  <p class="pull-right">Total:</p></b>
           </td>
           <td><b>
-            Php
-                <%= @transaction.total_balance%></b>
+              Php <%= number_with_precision(@transaction.total_balance, :precision => 2, :delimiter => ',') %>
           </td>
 
         </tr>
@@ -37,8 +36,7 @@
           <b>  <p class="pull-right">  Remaining Balance:</p></b>
           </td>
           <td><b>
-              Php
-              <%= @transaction.remaining_balance %></b>
+            Php <%= number_with_precision(@transaction.remaining_balance, :precision => 2, :delimiter => ',') %>
           </td>
 
         </tr>

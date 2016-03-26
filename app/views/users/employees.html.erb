@@ -3,12 +3,12 @@
 
 <div class="pull-right">
   <% if can? :new, @user %>
-  <%= link_to new_user_path  do %>
-  <button class='btn btn-info btn-sm' role='button'>
-    <i class='glyphicon glyphicon-plus'></i>
-    ADD Employee
-  </button>
-  <% end %>
+    <%= link_to new_user_path  do %>
+      <button class='btn btn-info btn-sm' role='button'>
+        <i class='glyphicon glyphicon-plus'></i>
+        ADD Employee
+      </button>
+    <% end %>
   <% end %>
 </div>
 
@@ -46,34 +46,34 @@
           <ul class="dropdown-menu">
             <li class="text-primary">
               <% if can? :add, Client %>
-              <%= link_to employee_new_client_path(user) do %>
-              <i class='glyphicon glyphicon-plus text-primary'></i>
-              Add Client
-              <% end %>
+                <%= link_to employee_new_client_path(user) do %>
+                  <i class='glyphicon glyphicon-plus text-primary'></i>
+                  Add Client
+                <% end %>
               <% end %>
             </li>
             <li class="text-info">
               <% if can? :show_employee, user %>
-              <%= link_to show_employee_path(user) do %>
-              <i class='glyphicon glyphicon-briefcase text-info'></i>
-              Details
-              <% end %>
+                <%= link_to show_employee_path(user) do %>
+                  <i class='glyphicon glyphicon-briefcase text-info'></i>
+                  Details
+                <% end %>
               <% end %>
             </li>
             <li class="text-info">
               <% if can? :edit, user %>
-              <%= link_to edit_user_path(user) do %>
-              <i class='glyphicon glyphicon-edit text-info'></i>
-              Edit Profile
-              <% end %>
+                <%= link_to edit_user_path(user) do %>
+                  <i class='glyphicon glyphicon-edit text-info'></i>
+                  Edit Profile
+                <% end %>
               <% end %>
             </li>
             <li class="text-warning">
-              <% if can? :change_password, user %>
-              <%= link_to change_password_path(user) do %>
-              <i class='glyphicon glyphicon-remove text-warning'></i>
-              Change Password
-              <% end %>
+                <% if can? :change_password, user %>
+                  <%= link_to change_password_path(user) do %>
+                  <i class='glyphicon glyphicon-remove text-warning'></i>
+                  Change Password
+                <% end %>
               <% end %>
             </li>
             <li class="text-danger">

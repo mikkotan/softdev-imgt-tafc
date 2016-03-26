@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   def show_employee
     @employee = User.find(params[:id])
     @clients = @employee.clients
+  
     add_breadcrumb "Employees", employees_path
     add_breadcrumb @employee.email, show_employee_path
   end

@@ -11,7 +11,7 @@
 
   <div class="form-group">
     <%= f.label :retainers_fee, class:"control-label", for:"inputRetainersFee" %>
-    <%= f.text_field :retainers_fee, validate: true, class: "form-control", type:"number", required: "required", id:"inputRetainersFee", placeholder: "Insert Retainers Fee here..." %>
+    <%= f.text_field :retainers_fee, validate: true, class: "form-control", type:"number", id:"inputRetainersFee", placeholder: "Insert Retainers Fee here..." %>
   </div>
 
   <div class="form-group">
@@ -26,27 +26,27 @@
 
   <div class="form-group">
     <%= f.label :withholding_1601c, class:"control-label", for:"inputWithHolding1601c" %>
-    <%= f.text_field :withholding_1601c, validate: true, class: "form-control", type: "number",  required: "required", id:"inputWithHolding1601c", placeholder: "Insert Withholding 1601c here..."  %>
+    <%= f.text_field :withholding_1601c, validate: true, class: "form-control", type: "number", id:"inputWithHolding1601c", placeholder: "Insert Withholding 1601c here..."  %>
   </div>
 
   <div class="form-group">
     <%= f.label :withholding_1601e, class:"control-label", for:"inputWithHolding1601e" %>
-    <%= f.text_field :withholding_1601e, validate: true, class: "form-control", type: "number",  required: "required", id:"inputWithHolding1601e", placeholder: "Insert Withholding 1601e here..."  %>
+    <%= f.text_field :withholding_1601e, validate: true, class: "form-control", type: "number",   id:"inputWithHolding1601e", placeholder: "Insert Withholding 1601e here..."  %>
   </div>
 
   <div class="form-group">
     <%= f.label :employee_benefit_sss, class:"control-label", for:"inputEmployeeBenefitSSS" %>
-    <%= f.text_field :employee_benefit_sss, validate: true, class: "form-control", type: "number",  required: "required", id:"inputEmployeeBenefitSSS", placeholder: "Insert Employee Benefit SSS here..."  %>
+    <%= f.text_field :employee_benefit_sss, validate: true, class: "form-control", type: "number",  id:"inputEmployeeBenefitSSS", placeholder: "Insert Employee Benefit SSS here..."  %>
   </div>
 
   <div class="form-group">
     <%= f.label :employee_benefit_philhealth, class:"control-label", for:"inputEmployeeBenefitPhilHealth" %>
-    <%= f.text_field :employee_benefit_philhealth, validate: true, class: "form-control", type: "number",  required: "required", id:"inputEmployeeBenefitPhilHealth", placeholder: "Insert Employee Benefit PhilHealth here..."  %>
+    <%= f.text_field :employee_benefit_philhealth, validate: true, class: "form-control", type: "number",  id:"inputEmployeeBenefitPhilHealth", placeholder: "Insert Employee Benefit PhilHealth here..."  %>
   </div>
 
   <div class="form-group">
     <%= f.label :employee_benefit_pag_ibig, class:"control-label", for:"inputEmployeeBenefitPagibig" %>
-    <%= f.text_field :employee_benefit_pag_ibig, validate: true, class: "form-control", type: "number",  required: "required", id:"inputEmployeeBenefitPagibig", placeholder: "Insert Employee Benefit Pag ibig here..."  %>
+    <%= f.text_field :employee_benefit_pag_ibig, validate: true, class: "form-control", type: "number",  id:"inputEmployeeBenefitPagibig", placeholder: "Insert Employee Benefit Pag ibig here..."  %>
   </div>
 
   <label>Services:
@@ -56,7 +56,7 @@
   </div>
   <div class="form-group">
     <%= f.label :discount, class:"control-label", for:"inputDiscount" %>
-    <%= f.text_field :discount, validate: true, class: "form-control", type: "number",  required: "required", id:"inputDiscount", placeholder: "Insert Discount in percent here..."  %>
+    <%= f.text_field :discount, validate: true, class: "form-control", type: "number",  id:"inputDiscount", placeholder: "Insert Discount in percent here..."  %>
   </div>
 
   <div class="form-group">
@@ -73,14 +73,14 @@
 <script>
 
   document.getElementById("inputVat").onblur = function () {
-    if (this.value.length > 1) {
+    if (this.value.length > 0) {
       $("#inputPercentage").prop("disabled", true);
     } else {
       $("#inputPercentage").prop("disabled", false);}
   };
 
   document.getElementById("inputPercentage").onblur = function () {
-    if (this.value.length > 1) {
+    if (this.value.length > 0) {
       $("#inputVat").prop("disabled", true);
     } else {
       $("#inputVat").prop("disabled", false);}
