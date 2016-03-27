@@ -61,7 +61,7 @@ class ClientsController < ApplicationController
     if @client.destroyed?
       flash[:success] = 'Client successfully deleted.'
     else
-      flash[:error] = 'Client WAS NOT deleted.'
+      flash[:error] = 'Client WAS NOT deleted. This client may still have transactions.'
     end
     redirect_to clients_path
   end

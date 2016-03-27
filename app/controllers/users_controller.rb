@@ -79,7 +79,7 @@ class UsersController < ApplicationController
     if @user.destroyed?
       flash[:success] = 'User successfully deleted.'
     else
-      flash[:error] = 'User WAS NOT deleted.'
+      flash[:error] = 'User WAS NOT deleted. This user may still have clients.'
     end
     if role == 'employee'
       redirect_to show_employee_path(@user)

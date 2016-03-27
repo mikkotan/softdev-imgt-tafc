@@ -1,0 +1,12 @@
+<div class="nested-fields">
+  <div class="form-group">
+    <%= f.label :id, "Services: " %>
+    <%= f.select :id, options_from_collection_for_select(@services, :id, :display), class: "form-control selectize input-lg", multiple: false, placeholder: "Click here to see list of available services..." %>
+  </div>
+  <div class="form-group">
+    <%= f.label :discount, class:"control-label", for:"inputDiscount" %>
+    <%= f.text_field :discount, validate: true, class: "form-control", id: "inputDiscount", type: "number", placeholder: "Insert Discount on this Service"%>
+  </div>
+
+  <%= link_to_remove_association "remove fee", f%>
+</div>
