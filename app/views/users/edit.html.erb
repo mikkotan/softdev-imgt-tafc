@@ -20,8 +20,8 @@
   <%= f.text_field :email, class: "form-control", type: "email", required: "required", id:"inputEmail", placeholder: "sample@gmail.com, example@yahoo.com" %>
 </div>
 
-    <h5>Role:</h5>
   <% if can? :manage, User %>
+    <h5>Role:</h5>
   <%= f.radio_button :role, 'owner', :checked => (@user.role == 'owner' ? true : false), class: "radio-inline" %>
   <%= label :role, 'owner' %>
     <br>
@@ -29,7 +29,7 @@
   <%= label :role, 'manager' %>
     <br>
   <%= f.radio_button :role, 'employee',:checked => (@user.role == 'employee' ? true : false), class: "radio-inline" %>
-  <%= label :role, 'employee' %> 
+  <%= label :role, 'employee' %>
   <% end %>
 
   </div>

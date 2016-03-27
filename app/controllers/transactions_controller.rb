@@ -91,7 +91,7 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.find params[:id]
 
     if @transaction.update_info transaction_params
-      @transaction.other_processing_fees = []
+      @transaction.other_processing_fees.each { |x| x.destroy }
       if params[:selectize]
         params[:selectize].each do |value|
           @transaction.other_processing_fees << Service.find(value).make

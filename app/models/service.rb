@@ -2,7 +2,7 @@ class Service < ActiveRecord::Base
   include Modules::InfoHashable
 
   belongs_to :tx, class_name: "Transaction", foreign_key: 'transaction_id'
-  has_many :related_costs
+  has_many :related_costs, :dependent => :destroy
   validates :name, presence: true
   validates :monthly_fee, numericality: { greater_than_or_equal_to: 0 }
   validate :template_status_must_match_all_template_statuses_of_related_costs
@@ -23,7 +23,7 @@ class Service < ActiveRecord::Base
   def display
     return "#{complete_name} - P#{total_cost}"
   end
-  
+
   def make
     @new_thing = dup
     @new_thing.is_template = false
@@ -48,7 +48,7 @@ class Service < ActiveRecord::Base
     service = Service.find id
     service.make
   end
-  
+
   def +(another_service)
     total_cost + another_service.total_cost
   end

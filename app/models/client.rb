@@ -1,6 +1,6 @@
 class Client < ActiveRecord::Base
   belongs_to :user
-  has_many :transactions
+  has_many :transactions, :dependent => :restrict_with_error
   has_many :other_processing_fees, through: :transactions, class_name: "Service"
   validates :email, :allow_blank => true,:uniqueness => { :case_sensitive => false }, email: true
   validates :company_name, presence: true

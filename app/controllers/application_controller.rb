@@ -12,6 +12,11 @@ class ApplicationController < ActionController::Base
     redirect_to session.delete(:return_to)
   end
 
+  rescue_from ActiveRecord::ReadOnlyRecord do |_exception|
+    flash[:alert] = 'You can\'t update this record with payments!'
+    redirect_to transactions_path
+  end
+
   private
   def save_current_url
     session[:return_to] = request.referer

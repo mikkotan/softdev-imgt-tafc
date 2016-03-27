@@ -1,8 +1,8 @@
 class Transaction < ActiveRecord::Base
   belongs_to :client
 
-  has_many :other_processing_fees, class_name: 'Service'
-  has_many :provisional_receipts
+  has_many :other_processing_fees, class_name: 'Service', :dependent => :restrict_with_error
+  has_many :provisional_receipts, :dependent => :restrict_with_error
 
   validates :billing_num, numericality: { greater_than_or_equal_to: 0 }, presence: true, uniqueness: true
   validates :retainers_fee, numericality: { greater_than_or_equal_to: 0 }, presence: true, allow_blank: true
@@ -95,10 +95,16 @@ class Transaction < ActiveRecord::Base
   end
 
   def update_info(params)
+    raise ActiveRecord::ReadOnlyRecord if readonly?
     nice = true
     params.each do |key, value|
       nice &&= update_column key, value
     end
     nice
+  end
+
+  def readonly?
+    puts "HELLLLOOOOO"
+    !provisional_receipts.empty?
   end
 end
