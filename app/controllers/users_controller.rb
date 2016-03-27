@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   def show_employee
     @employee = User.find(params[:id])
     @clients = @employee.clients
-  
+
     add_breadcrumb "Employees", employees_path
     add_breadcrumb @employee.email, show_employee_path
   end
@@ -50,9 +50,9 @@ class UsersController < ApplicationController
     if @user.destroyed?
       flash[:success] = 'User successfully deleted.'
     else
-      flash[:error] = 'User WAS NOT deleted.'
+      flash[:error] = 'User WAS NOT deleted. This user may still have clients.'
     end
-    redirect_to root_url
+    redirect_to employees_path
   end
 
   def create
