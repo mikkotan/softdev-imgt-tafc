@@ -60,7 +60,13 @@ class UsersController < ApplicationController
   def update
     if @user.update_info edit_user_params
       flash[:success] = 'Successfully updated profile.'
-      redirect_to '/home'
+      if role == 'employee'
+        redirect_to show_employee_path(@user)
+      elsif role == 'manager'
+        redirect_to show_manager_path(@user)
+      elsif role == 'owner'
+        redirect_to show_owner_path(@user)
+      end
     else
       flash[:error] = 'Something went wrong when updating profile.'
       render :edit
@@ -68,23 +74,34 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    role = @user.role
     @user.destroy
-
     if @user.destroyed?
       flash[:success] = 'User successfully deleted.'
     else
       flash[:error] = 'User WAS NOT deleted.'
     end
-    redirect_to root_url
+    if role == 'employee'
+      redirect_to show_employee_path(@user)
+    elsif role == 'manager'
+      redirect_to show_manager_path(@user)
+    elsif role == 'owner'
+      redirect_to show_owner_path(@user)
+    end
   end
 
   def create
-    add_breadcrumb "Employees", employees_path
     add_breadcrumb "New User", new_user_path
     @user = User.new(user_params)
     if @user.save
       flash[:success] = 'User successfully created.'
-      redirect_to employees_path
+      if @user.role == 'employee'
+        redirect_to show_employee_path(@user)
+      elsif @user.role == 'manager'
+        redirect_to show_manager_path(@user)
+      elsif @user.role == 'owner'
+        redirect_to show_owner_path(@user)
+      end
     else
       flash[:error] = 'User WAS NOT created.'
       render :new
@@ -100,7 +117,13 @@ class UsersController < ApplicationController
     if User.authenticate(@user.email, params[:user][:old_password]) || can?(:manage, User)
       if @user.update(user_params)
         flash[:success] = 'Successfully updated password.'
-        redirect_to root_url
+        if @user.role == 'employee'
+          redirect_to show_employee_path(@user)
+        elsif @user.role == 'manager'
+          redirect_to show_manager_path(@user)
+        elsif @user.role == 'owner'
+          redirect_to show_owner_path(@user)
+        end
       else
         flash[:error] = 'Something went wrong.'
         render :change_password

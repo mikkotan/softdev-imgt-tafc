@@ -1,9 +1,11 @@
-
     <h1>
       Transaction Details
     </h1>
     <hr>
     <table class="table table-hover table-striped">
+      <h2>  <%= "#{@transaction.client.company_name}" %> </h2>
+      <h3> Billing #: <%= "#{@transaction.billing_num}" %> </h3>
+
       <thead>
         <tr>
           <th>Name </th>

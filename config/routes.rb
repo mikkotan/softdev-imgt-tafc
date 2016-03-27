@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   mount Judge::Engine => '/judge'
 
   get 'home' => 'home#index', as: 'home'
-
+  
   # employee
   get 'employees' => 'users#employees', as: 'employees'
   get 'employees/:id' => 'users#show_employee', as: 'show_employee'
