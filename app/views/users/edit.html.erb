@@ -1,4 +1,4 @@
-<h1> Edit Employee  </h1>
+<h1> Edit User  </h1>
 <hr>
 <%= form_for @user, url: {action: 'update'} do |f| %>
 <% if @user.errors.any? %>
@@ -29,7 +29,7 @@
   <%= label :role, 'manager' %>
     <br>
   <%= f.radio_button :role, 'employee',:checked => (@user.role == 'employee' ? true : false), class: "radio-inline" %>
-  <%= label :role, 'employee' %> 
+  <%= label :role, 'employee' %>
   <% end %>
 
   </div>

@@ -7,6 +7,16 @@ Rails.application.routes.draw do
   get 'employees' => 'users#employees', as: 'employees'
   get 'employees/:id' => 'users#show_employee', as: 'show_employee'
 
+  #managers
+  get 'managers' => 'users#managers', as: 'managers'
+  get 'managers/:id' => 'users#show_manager', as: 'show_manager'
+
+
+  #owners
+  get 'owners' => 'users#owners', as: 'owners'
+  get 'owners/:id' => 'users#show_owner', as: 'show_owner'
+
+
   # employee options
   get 'employees/:employee_id/new_client' => 'clients#new', as: 'employee_new_client'
   get 'employees/:employee_id/client/:id' => 'clients#show', as: 'show_through_employee'

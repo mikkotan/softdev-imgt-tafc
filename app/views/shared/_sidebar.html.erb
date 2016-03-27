@@ -11,11 +11,13 @@
 
     <li id="employeesnav">
       <%= link_to employees_path do %>
-        <i class='glyphicon glyphicon-user'></i> Employees
+        <i class='glyphicon glyphicon-user'></i> Users
       <% end %>
     </li>
     <div class="sublinks collapse" id="employees">
-      <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Index"), employees_path  %>
+      <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Employees"), employees_path  %>
+      <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Managers"), managers_path  %>
+      <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Owners"), owners_path  %>
       <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Add"), new_user_path %>
     </div>
 

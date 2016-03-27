@@ -9,15 +9,38 @@ class UsersController < ApplicationController
   def employees
     add_breadcrumb "Employees", employees_path
     @employees = get_employees
+  end
 
+  def managers
+    add_breadcrumb "Managers", managers_path
+    @managers = get_managers
+  end
+
+  def owners
+    add_breadcrumb "Owners", owners_path
+    @owners = get_owners
   end
 
   def show_employee
     @employee = User.find(params[:id])
     @clients = @employee.clients
-  
+
     add_breadcrumb "Employees", employees_path
     add_breadcrumb @employee.email, show_employee_path
+  end
+
+  def show_manager
+    @manager = User.find(params[:id])
+
+    add_breadcrumb "Managers", managers_path
+    add_breadcrumb @manager.email, show_manager_path
+  end
+
+  def show_owner
+    @owner = User.find(params[:id])
+
+    add_breadcrumb "Owner", owners_path
+    add_breadcrumb @owner.email, show_owner_path
   end
 
   def show

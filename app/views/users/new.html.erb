@@ -1,4 +1,4 @@
-<h1> Add Employee </h1>
+<h1> Add User </h1>
 <hr>
 <%= javascript_include_tag 'email_validation','data-turbolinks-track' =>true %>
 
@@ -44,7 +44,7 @@
     <%= f.radio_button :role, 'manager' %>
     <%= label :role, 'manager' %>
     <br>
-    <%= f.radio_button :role, 'employee', :checked => true%>
+    <%= f.radio_button :role, 'employee' %>
     <%= label :role, 'employee' %>
   </div>
 <div class="row">
