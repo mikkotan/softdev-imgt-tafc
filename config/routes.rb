@@ -19,8 +19,10 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create', as: 'check_login'
   get 'logout' => 'sessions#destroy', as: 'logout'
 
+  # the various users
   resources :users
 
+  # clients and their transactions
   resources :clients do
     resources :transactions do
       post 'pay' => 'transactions#pay', as: 'pay'
@@ -31,15 +33,6 @@ Rails.application.routes.draw do
   get 'users/:id/change_password' => 'users#change_password', as: 'change_password'
   patch 'users/:id/change_password' => 'users#update_password'
   put 'users/:id/change_password' => 'users#update_password'
-
-
-
-  # get 'clients/:id/new_transaction' => 'transactions#new', as: 'new_transaction'
-  # get 'clients/:id/transactions/:transaction_id/full_payment' => 'transactions#full_payment', as: 'transaction_fullpayment'
-  # get 'clients/:id/transactions/:transaction_id/edit' => 'transactions#edit', as: 'edit_transaction'
-  # get 'clients/:id/transactions/:transaction_id/new_payment' => 'provisional_receipts#new', as: 'new_provisional_receipts'
-  # get 'clients/:id/transactions/:transaction_id/edit/:provisional_receipt_id' => 'provisional_receipts#edit', as: 'edit_provisional_receipts'
-  # get 'clients/:id/transactions/:transaction_id' => 'transactions#show', as: 'transaction'
 
   post ':id/fees/new' => 'fees#create', as:'new_fee'
 
@@ -55,11 +48,11 @@ Rails.application.routes.draw do
 
   resources :reports
 
-  resources :transactions
+  resources :transactions, except: :new
 
   resources :fees
 
   resources :services
 
-  resources :provisional_receipts
+  resources :provisional_receipts, except: [:new, :create]
 end

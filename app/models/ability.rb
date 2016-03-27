@@ -14,6 +14,7 @@ class Ability
       can [:edit, :update, :change_password, :update_password], User, id: user.id
       can :read, Client, user_id: user.id
       can :manage, Transaction, :client => { :user_id => user.id }
+      can :new, Transaction
     end
   end
 end

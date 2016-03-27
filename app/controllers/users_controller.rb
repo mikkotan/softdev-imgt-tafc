@@ -36,10 +36,10 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_info edit_user_params
-      flash[:success] = 'Successfully updated profile.'
+      flash[:success] = 'Profile successfully updated.'
       redirect_to '/home'
     else
-      flash[:error] = 'Something went wrong when updating profile.'
+      flash[:error] = 'Profile WAS NOT updated.'
       render :edit
     end
   end

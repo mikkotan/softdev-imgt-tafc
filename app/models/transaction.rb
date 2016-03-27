@@ -104,7 +104,6 @@ class Transaction < ActiveRecord::Base
   end
 
   def readonly?
-    puts "HELLLLOOOOO"
     !provisional_receipts.empty?
   end
 end
