@@ -6,37 +6,38 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(password: 'password',
-            email: 'starjirachi1@yahoo.com',
-            password_confirmation: 'password',
-            first_name: 'Anfernee Joan',
-            last_name: 'Ng',
+User.create(password: 'adminpassword',
+            email: 'admin@gmail.com',
+            password_confirmation: 'adminpassword',
+            first_name: 'Christina',
+            last_name: 'Gemora',
             role: 'owner'
            )
 
-User.create(password: 'tantantan',
-            email: 'tantantan@yahoo.com',
-            password_confirmation: 'tantantan',
-            first_name: 'Michael Tan',
-            last_name: 'Tan',
-            role: 'owner'
+User.create(password: 'managerpassword',
+            email: 'manager@gmail.com',
+            password_confirmation: 'managerpassword',
+            first_name: 'Manager',
+            last_name: 'Manager',
+            role: 'manager'
            )
 
-user = User.create(password: 'password',
-                   email: 'keia123@gmail.com',
-                   password_confirmation: 'password',
-                   first_name: 'Keia Joy',
-                   last_name: 'Harder',
+user = User.create(password: 'employeepassword',
+                   email: 'employee1@gmail.com',
+                   password_confirmation: 'employeepassword',
+                   first_name: 'Anfernee',
+                   last_name: 'Ng',
                    role: 'employee'
                   )
 
 
+
 client = Client.create(company_name: 'ACME Inc.',
-                       owner: 'Kalbo',
-                       representative: 'Michael',
+                       owner: 'Juan Dela Cruz',
+                       representative: 'Juanito Lopez',
                        address: '32 Ledesma St.',
                        tel_num: '337-6608',
-                       email: 'starjirachi1@gmail.com',
+                       email: 'ACMEINC@gmail.com',
                        tin_num: '213-232-232-321',
                        status: 'active',
                        user_id: 3

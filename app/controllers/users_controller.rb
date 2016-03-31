@@ -60,11 +60,11 @@ class UsersController < ApplicationController
   def update
     if @user.update_info edit_user_params
       flash[:success] = 'Profile successfully updated.'
-      if role == 'employee'
+      if @user.role == 'employee'
         redirect_to show_employee_path(@user)
-      elsif role == 'manager'
+      elsif @user.role == 'manager'
         redirect_to show_manager_path(@user)
-      elsif role == 'owner'
+      elsif @user.role == 'owner'
         redirect_to show_owner_path(@user)
       end
     else
