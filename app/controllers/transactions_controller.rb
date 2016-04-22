@@ -4,8 +4,13 @@ class TransactionsController < ApplicationController
   add_breadcrumb "Home", :root_path
 
   def index
+    user = User.find current_user
+    if user.role == 'employee'
+      @transactions = user.transactions
+    else
+      @transactions = Transaction.all
+    end
     add_breadcrumb "Transactions List", transactions_path
-    @transactions = Transaction.all
   end
 
   def show
@@ -26,10 +31,16 @@ class TransactionsController < ApplicationController
 
     @transaction.other_processing_fees.build
     @services = get_services
-    
+
     add_breadcrumb "Clients List", clients_path
     add_breadcrumb @client.company_name, client_path(@client.id)
     add_breadcrumb "New Transaction"
+    @last_transaction = Transaction.last
+    if @last_transaction == nil
+      @transaction.billing_num = '00001'
+    else
+      @transaction.billing_num = @last_transaction.billing_num.succ
+    end
   end
 
   def create
@@ -90,14 +101,14 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.find params[:id]
 
     if @transaction.update_info transaction_params
-      @transaction.other_processing_fees = []
+      @transaction.other_processing_fees.each { |x| x.destroy }
       if params[:selectize]
         params[:selectize].each do |value|
           @transaction.other_processing_fees << Service.find(value).make
         end
       end
 
-      flash[:success] = 'Successfully updated transaction.'
+      flash[:success] = 'Transaction successfully updated.'
       redirect_to(@transaction)
     else
       @services = get_services
@@ -112,7 +123,7 @@ class TransactionsController < ApplicationController
       add_breadcrumb @client.company_name, client_path(@client.id)
       add_breadcrumb "Edit Transaction No. #{@transaction.billing_num}"
 
-      flash[:error] = 'Something went wrong when updating transaction.'
+      flash[:error] = 'Transaction WAS NOT updated.'
       render :edit
     end
   end
@@ -127,6 +138,16 @@ class TransactionsController < ApplicationController
   end
 
   def destroy
+    @transaction = Transaction.find params[:id]
+    @transaction.destroy
+
+    if @transaction.destroyed?
+      flash[:success] = 'Transaction successfully deleted.'
+    else
+      flash[:error] = 'Transaction WAS NOT deleted. This transaction may still have payments.'
+    end
+
+    redirect_to transactions_path
   end
 
   private

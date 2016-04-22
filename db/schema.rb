@@ -16,10 +16,10 @@ ActiveRecord::Schema.define(version: 20160121041112) do
   create_table "clients", force: :cascade do |t|
     t.string   "company_name"
     t.string   "owner"
-    t.string   "representative", default: "none"
+    t.string   "representative"
     t.text     "address"
     t.string   "tel_num"
-    t.string   "email",          default: "none"
+    t.string   "email"
     t.string   "tin_num"
     t.string   "status"
     t.integer  "user_id"

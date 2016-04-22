@@ -9,14 +9,38 @@ class UsersController < ApplicationController
   def employees
     add_breadcrumb "Employees", employees_path
     @employees = get_employees
+  end
 
+  def managers
+    add_breadcrumb "Managers", managers_path
+    @managers = get_managers
+  end
+
+  def owners
+    add_breadcrumb "Owners", owners_path
+    @owners = get_owners
   end
 
   def show_employee
     @employee = User.find(params[:id])
     @clients = @employee.clients
+
     add_breadcrumb "Employees", employees_path
     add_breadcrumb @employee.email, show_employee_path
+  end
+
+  def show_manager
+    @manager = User.find(params[:id])
+
+    add_breadcrumb "Managers", managers_path
+    add_breadcrumb @manager.email, show_manager_path
+  end
+
+  def show_owner
+    @owner = User.find(params[:id])
+
+    add_breadcrumb "Owner", owners_path
+    add_breadcrumb @owner.email, show_owner_path
   end
 
   def show
@@ -35,32 +59,49 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_info edit_user_params
-      flash[:success] = 'Successfully updated profile.'
-      redirect_to '/home'
+      flash[:success] = 'Profile successfully updated.'
+      if @user.role == 'employee'
+        redirect_to show_employee_path(@user)
+      elsif @user.role == 'manager'
+        redirect_to show_manager_path(@user)
+      elsif @user.role == 'owner'
+        redirect_to show_owner_path(@user)
+      end
     else
-      flash[:error] = 'Something went wrong when updating profile.'
+      flash[:error] = 'Profile WAS NOT updated.'
       render :edit
     end
   end
 
   def destroy
+    role = @user.role
     @user.destroy
-
     if @user.destroyed?
       flash[:success] = 'User successfully deleted.'
     else
-      flash[:error] = 'User WAS NOT deleted.'
+      flash[:error] = 'User WAS NOT deleted. This user may still have clients.'
     end
-    redirect_to root_url
+    if role == 'employee'
+      redirect_to show_employee_path(@user)
+    elsif role == 'manager'
+      redirect_to show_manager_path(@user)
+    elsif role == 'owner'
+      redirect_to show_owner_path(@user)
+    end
   end
 
   def create
-    add_breadcrumb "Employees", employees_path
     add_breadcrumb "New User", new_user_path
     @user = User.new(user_params)
     if @user.save
       flash[:success] = 'User successfully created.'
-      redirect_to employees_path
+      if @user.role == 'employee'
+        redirect_to show_employee_path(@user)
+      elsif @user.role == 'manager'
+        redirect_to show_manager_path(@user)
+      elsif @user.role == 'owner'
+        redirect_to show_owner_path(@user)
+      end
     else
       flash[:error] = 'User WAS NOT created.'
       render :new
@@ -76,7 +117,13 @@ class UsersController < ApplicationController
     if User.authenticate(@user.email, params[:user][:old_password]) || can?(:manage, User)
       if @user.update(user_params)
         flash[:success] = 'Successfully updated password.'
-        redirect_to root_url
+        if @user.role == 'employee'
+          redirect_to show_employee_path(@user)
+        elsif @user.role == 'manager'
+          redirect_to show_manager_path(@user)
+        elsif @user.role == 'owner'
+          redirect_to show_owner_path(@user)
+        end
       else
         flash[:error] = 'Something went wrong.'
         render :change_password

@@ -1,0 +1,93 @@
+<h1> Owners </h1>
+<hr>
+
+<div class="pull-right">
+  <% if can? :new, @user %>
+    <%= link_to new_user_path  do %>
+      <button class='btn btn-info btn-sm' role='button'>
+        <i class='glyphicon glyphicon-plus'></i>
+        ADD Owner
+      </button>
+    <% end %>
+  <% end %>
+</div>
+
+<table class="table table-hover table-striped" id="datatable">
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Email
+      </th>
+      <th style="width: 30px">
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @owners.each do |user| %>
+    <tr>
+       <td class="text-capitalize">
+         <%= "#{user.last_name}, #{user.first_name}" %>
+       </td>
+       <td>
+         <%= user.email %>
+      </td>
+      <td>
+        <div class="dropdown text-center">
+          <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+
+              <span aria-hidden="true" class="glyphicon glyphicon-wrench"></span>
+              Options
+              <span class="caret"></span>
+
+          </button>
+          <ul class="dropdown-menu">
+            <!-- <li class="text-primary">
+              <% if can? :add, Client %>
+                <%= link_to employee_new_client_path(user) do %>
+                  <i class='glyphicon glyphicon-plus text-primary'></i>
+                  Add Client
+                <% end %>
+              <% end %>
+            </li> -->
+            <li class="text-info">
+              <% if can? :show_owner, user %>
+                <%= link_to show_owner_path(user) do %>
+                  <i class='glyphicon glyphicon-briefcase text-info'></i>
+                  Details
+                <% end %>
+              <% end %>
+            </li>
+            <li class="text-info">
+              <% if can? :edit, user %>
+                <%= link_to edit_user_path(user) do %>
+                  <i class='glyphicon glyphicon-edit text-info'></i>
+                  Edit Profile
+                <% end %>
+              <% end %>
+            </li>
+            <li class="text-warning">
+                <% if can? :change_password, user %>
+                  <%= link_to change_password_path(user) do %>
+                  <i class='glyphicon glyphicon-remove text-warning'></i>
+                  Change Password
+                <% end %>
+              <% end %>
+            </li>
+            <li class="text-danger">
+              <% if can? :destroy, user %>
+              <%= link_to user, method: :delete, data: {confirm: 'Are you sure?', verify: 'Delete', verify_text: 'Type "Delete" to confirm'} do %>
+              <i class='glyphicon glyphicon-trash text-danger'></i>
+              Delete
+              <% end %>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,4 +1,4 @@
-<h1> Add Employee </h1>
+<h1> Add User </h1>
 <hr>
 <%= javascript_include_tag 'email_validation','data-turbolinks-track' =>true %>
 
@@ -30,15 +30,15 @@
     </div>
     <div class="form-group">
       <%= f.label :first_name, class:"control-label", for:"inputFirstName" %>
-      <%= f.text_field :first_name, validate: true, class: "form-control", type: "text", pattern: "^[A-Za-z ]+$", required: "required", id:"inputFirstName", placeholder: "First Name goes here..."  %>
+      <%= f.text_field :first_name, validate: true, class: "form-control", type: "text", required: "required", id:"inputFirstName", placeholder: "First Name goes here..."  %>
     </div>
     <div class="form-group">
       <%= f.label :last_name, class:"control-label", for:"inputLastName" %>
-      <%= f.text_field :last_name, validate: true, class: "form-control", type: "text", pattern: "^[A-Za-z ]+$", required: "required", id:"inputLastName", placeholder: "Last Name goes here..." %>
+      <%= f.text_field :last_name, validate: true, class: "form-control", type: "text", required: "required", id:"inputLastName", placeholder: "Last Name goes here..." %>
     </div>
 
     <h5>Role:</h5>
-    <%= f.radio_button :role, 'owner', :checked => true%>
+    <%= f.radio_button :role, 'owner'%>
     <%= label :role, 'owner' %>
     <br>
     <%= f.radio_button :role, 'manager' %>

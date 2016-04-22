@@ -3,6 +3,53 @@
 <hr>
 
 <div class="pull-right">
+  <%= link_to edit_client_path(@client.id) do %>
+    <button class='btn btn-primary btn-sm' role='button'>
+      <i class='glyphicon glyphicon-edit'></i> Edit Profile
+    </button>
+  <% end %>
+</div>
+
+
+<table class="table table-hover table-striped">
+<tbody>
+
+    <tr>
+      <th>Owner</th>
+      <th> <%= @client.owner %></th>
+    </tr>
+    <tr>
+      <th>Representative</th>
+      <th> <%= @client.representative %></th>
+    </tr>
+    <tr>
+      <th>Address</th>
+      <th> <%= @client.address %> </th>
+    </tr>
+    <tr>
+      <th>Telephone Number</th>
+      <th> <%= @client.tel_num %> </th>
+    </tr>
+    <tr>
+      <th>Email Address</th>
+      <th> <%= @client.email  %></th>
+    </tr>
+    <tr>
+      <th>Tin Number</th>
+      <th> <%= @client.tin_num %></th>
+    </tr>
+    <tr>
+      <th>Employee-in-charge</th>
+      <th> <%= @client.user_name %></th>
+    </tr>
+  </tbody>
+
+</table>
+</hr>
+<h1 class="text-capitalize"> Transactions</h1>
+
+
+<div class="pull-right">
   <%= link_to new_client_transaction_path(@client.id) do %>
    <button class='btn btn-info btn-sm' role='button'>
      <i class='glyphicon glyphicon-briefcase'></i> Add Transaction

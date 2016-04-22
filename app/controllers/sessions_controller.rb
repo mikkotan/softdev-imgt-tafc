@@ -9,15 +9,19 @@ class SessionsController < ApplicationController
     user = User.authenticate(params[:email], params[:password])
     if user
       session[:user_id] = user.id
-      flash[:success] = "Logged In!"
-      redirect_to '/home'
+      flash[:success] = "Hello " + user.name + "!"
+      if user.role == 'employee'
+        redirect_to show_employee_path(user)
+      else
+        redirect_to '/home'
+      end
     else
       flash[:error] = 'Invalid Email or Password!'
       @email = post_params[:email]
       render 'new'
     end
   end
-   
+
   def destroy
     session[:user_id] = nil
     flash[:success] = 'Successfully Logged Out!'

@@ -1,6 +1,6 @@
 class Client < ActiveRecord::Base
   belongs_to :user
-  has_many :transactions
+  has_many :transactions, :dependent => :restrict_with_error
   has_many :other_processing_fees, through: :transactions, class_name: "Service"
   validates :email, :allow_blank => true,:uniqueness => { :case_sensitive => false }, email: true
   validates :company_name, presence: true
@@ -29,6 +29,10 @@ class Client < ActiveRecord::Base
     transactions.filtered_pending_transactions(startdate, enddate).inject(0) { |sum, transaction| sum + transaction.total_balance}
   end
 
+  def transaction_count
+    transactions.size
+  end
+
   def services
     hash_result = {}
 
@@ -41,6 +45,7 @@ class Client < ActiveRecord::Base
         end
       end
     end
+
 
     hash_result
   end

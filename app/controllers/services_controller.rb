@@ -54,6 +54,7 @@ class ServicesController < ApplicationController
     else
       flash[:error] = 'Service WAS NOT deleted.'
     end
+    
     redirect_to services_path
   end
 

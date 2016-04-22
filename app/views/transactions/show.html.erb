@@ -1,9 +1,11 @@
-
     <h1>
       Transaction Details
     </h1>
     <hr>
     <table class="table table-hover table-striped">
+      <h2>  <%= "#{@transaction.client.company_name}" %> </h2>
+      <h3> Billing #: <%= "#{@transaction.billing_num}" %> </h3>
+
       <thead>
         <tr>
           <th>Name </th>
@@ -27,8 +29,7 @@
           <b>  <p class="pull-right">Total:</p></b>
           </td>
           <td><b>
-            Php
-                <%= @transaction.total_balance%></b>
+              Php <%= number_with_precision(@transaction.total_balance, :precision => 2, :delimiter => ',') %>
           </td>
 
         </tr>
@@ -37,8 +38,7 @@
           <b>  <p class="pull-right">  Remaining Balance:</p></b>
           </td>
           <td><b>
-              Php
-              <%= @transaction.remaining_balance %></b>
+            Php <%= number_with_precision(@transaction.remaining_balance, :precision => 2, :delimiter => ',') %>
           </td>
 
         </tr>

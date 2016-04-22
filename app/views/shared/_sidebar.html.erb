@@ -9,15 +9,19 @@
       <% end %>
     </li>
 
+    <% if can? :manage, User %>
     <li id="employeesnav">
-      <%= link_to employees_path do %>
-        <i class='glyphicon glyphicon-user'></i> Employees
+      <%= link_to users_path do %>
+        <i class='glyphicon glyphicon-user'></i> Users
       <% end %>
     </li>
     <div class="sublinks collapse" id="employees">
-      <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Index"), employees_path  %>
-      <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Add"), new_user_path %>
+      <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Employees"), employees_path  %>
+      <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Managers"), managers_path  %>
+      <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Owners"), owners_path  %>
+      <%= side_child_link raw("<i class='glyphicon glyphicon-plus'></i> Add"), new_user_path %>
     </div>
+    <% end %>
 
     <li id="clientsnav">
       <%= link_to clients_path do %>
@@ -27,7 +31,9 @@
 
     <div class="sublinks collapse" id="clients">
       <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Index"), clients_path %>
-      <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Add"), new_client_path %>
+      <% if can? :create, Client %>
+      <%= side_child_link raw("<i class='glyphicon glyphicon-plus'></i> Add"), new_client_path %>
+      <% end %>
     </div>
 
     <li id="transactionsnav">
@@ -40,6 +46,7 @@
       <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Index"), transactions_path %>
     </div>
 
+    <% if can? :manage, Service %>
     <li id="servicesnav">
       <%= link_to services_path do %>
         <i class='glyphicon glyphicon-list-alt'></i> Services
@@ -48,8 +55,9 @@
 
     <div class="sublinks collapse" id="services">
       <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Index"), services_path %>
-      <%= side_child_link raw("<i class='glyphicon glyphicon-chevron-right'></i> Add"), new_service_path %>
+      <%= side_child_link raw("<i class='glyphicon glyphicon-plus'></i> Add"), new_service_path %>
     </div>
+    <% end %>
 
     <li id="reportsnav">
       <%= link_to reports_path do %>

@@ -2,16 +2,25 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  before_action :save_current_url
 
-  helper_method :employees
+  helper_method :get_employees
   helper_method :current_user
 
   rescue_from CanCan::AccessDenied do |_exception|
     flash[:alert] = 'You are unauthorized!'
-    redirect_to '/login'
+    redirect_to session.delete(:return_to)
+  end
+
+  rescue_from ActiveRecord::ReadOnlyRecord do |_exception|
+    flash[:alert] = 'You can\'t update this record with payments!'
+    redirect_to transactions_path
   end
 
   private
+  def save_current_url
+    session[:return_to] = request.referer
+  end
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -19,6 +28,14 @@ class ApplicationController < ActionController::Base
 
   def get_employees
     @employees = User.where('role = ?', 'employee')
+  end
+
+  def get_managers
+    @managers = User.where('role = ?', 'manager')
+  end
+
+  def get_owners
+    @owners = User.where('role = ?', 'owner')
   end
 
   def get_services

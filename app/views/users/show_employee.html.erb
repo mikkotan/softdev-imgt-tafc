@@ -1,56 +1,69 @@
-<h5>Your are currently viewing the profile of
-  <%= @employee.email %></h5>
+<h1 class="text-capitalize"><%= "#{@employee.last_name}, #{@employee.first_name}" %></h1>
 
-<strong>
-  <h3 class="text-capitalize"><%= "#{@employee.last_name}, #{@employee.first_name}" %></h3>
-</strong>
-<hr>
-
-<% @clients.each do |client| %>
-
-<h4 class="text-capitalize"><%= "#{client.company_name}" %></h4>
-<!--<div class="pull-right">-->
-<!--
-    <% if can? :show_employee, client %>-->
-<!--<%= link_to raw("<button class='btn btn-info btn-sm'  role='button'><i class='glyphicon glyphicon-briefcase'></i> Details </button>"), show_employee_path(client) %>-->
-<!--
-    <% end %>-->
-<!--
-    <% if can? :edit, client %>-->
-<!--<%= link_to raw("<button class='btn btn-info btn-sm'  role='button'><i class='glyphicon glyphicon-edit'></i> Edit Profile</button>"), edit_user_path(client) %>-->
-<!--
-    <% end %>-->
-<!--
-    <% if can? :destroy, client %>-->
-<!--<%= link_to raw("<button class='btn btn-danger btn-sm'  role='button'><i class='glyphicon glyphicon-trash'></i> Delete</button>"), client, method: :delete, data: {confirm: 'Are you sure?'} %>-->
-<!--
-    <% end %>-->
-<!--
-    <% if can? :change_password, client %>-->
-<!--<%= link_to raw("<button class='btn btn-warning btn-sm'  role='button'><i class='glyphicon glyphicon-remove'></i> Change Password</button>"), change_password_path(client) %>-->
-<!--
-    <% end %>-->
-<!--</div>-->
-<p>
-  Owner:
-  <%= client.owner %>
-</p>
-<p>
-  Representative:
-  <%= client.representative %>
-</p>
-Status:
-<p>
-  <%= client.status %>
-</p>
 <div class="pull-right">
-  <%= link_to show_through_employee_path(@employee.id, client.id) do %>
-  <button class='btn btn-info btn-sm' role='button'>
+  <% if can? :edit, @user %>
+  <%= link_to edit_user_path(@user) do %>
+  <button class='btn btn-primary btn-sm' role='button'>
     <i class='glyphicon glyphicon-edit'></i>
-    Client Profile
+    Edit Profile
   </button>
   <% end %>
+  <% end %>
+
+  <% if can? :change_password, @user %>
+  <%= link_to change_password_path(@user) do %>
+  <button class='btn btn-warning btn-sm' role='button'>
+    <i class='glyphicon glyphicon-remove'></i>
+    Change Password
+  </button>
+  <% end %>
+  <% end %>
 </div>
-<br>
 <hr>
-<% end %>
+
+<h3><%= @employee.email %></h3>
+<hr>
+
+<h2>Clients</h2>
+<hr>
+
+<div>
+  <table class="table table-hover table-striped" id="clientdatatable">
+    <thead>
+      <tr>
+        <th>Company Name</th>
+        <th>Owner</th>
+        <th>No. Of Transactions</th>
+        <th>Status</th>
+        <th style="width: 30px"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @clients.each do |client| %>
+      <tr>
+        <td class="text-capitalize">
+          <%= client.company_name %>
+        </td>
+        <td class="text-capitalize">
+          <%= client.owner %>
+        </td>
+        <td>
+            <%= client.transaction_count %>
+        </td>
+        <td>
+          <%= client.status %>
+        </td>
+        <td>
+          <%= link_to show_through_employee_path(@employee.id, client.id) do %>
+          <button class='btn btn-info btn-sm' role='button'>
+            <i class='glyphicon glyphicon-edit'></i>
+            View Profile
+          </button>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>

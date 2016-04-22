@@ -1,11 +1,15 @@
 <h1> Clients</h1>
 <hr>
 
+
 <div class="pull-right">
-  <%= link_to new_client_path do %>
-   <button class='btn btn-info btn-sm' role='button'>
-     <i class='glyphicon glyphicon-briefcase'></i> New Client
-   </button>
+  <% if can? :new, @client %>
+  <%= link_to new_client_path  do %>
+  <button class='btn btn-info btn-sm' role='button'>
+    <i class='glyphicon glyphicon-plus'></i>
+    ADD Client
+  </button>
+  <% end %>
   <% end %>
 </div>
 
@@ -61,10 +65,10 @@
             </li>
             <li class="text-danger">
               <% if can? :destroy, client %>
-              <%= link_to client, method: :delete, data: {confirm: 'Do you want to delete this client?', verify: 'Delete', verify_text: 'Type "Delete" to confirm'} do %>
-              <i class='glyphicon glyphicon-trash text-danger'></i>
-              Delete
-              <% end %>
+                <%= link_to client, method: :delete, data: {confirm: 'Do you want to delete this client?', verify: 'Delete', verify_text: 'Type "Delete" to confirm'} do %>
+                  <i class='glyphicon glyphicon-trash text-danger'></i>
+                  Delete
+                <% end %>
               <% end %>
             </li>
           </ul>

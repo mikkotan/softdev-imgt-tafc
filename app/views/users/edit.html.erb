@@ -1,4 +1,4 @@
-<h1> Edit Employee  </h1>
+<h1> Edit User  </h1>
 <hr>
 <%= form_for @user, url: {action: 'update'} do |f| %>
 <% if @user.errors.any? %>
@@ -20,12 +20,14 @@
   <%= f.text_field :email, class: "form-control", type: "email", required: "required", id:"inputEmail", placeholder: "sample@gmail.com, example@yahoo.com" %>
 </div>
 
-    <h5>Role:</h5>
   <% if can? :manage, User %>
+    <h5>Role:</h5>
   <%= f.radio_button :role, 'owner', :checked => (@user.role == 'owner' ? true : false), class: "radio-inline" %>
   <%= label :role, 'owner' %>
+    <br>
   <%= f.radio_button :role, 'manager', :checked => (@user.role == 'manager' ? true : false), class: "radio-inline" %>
   <%= label :role, 'manager' %>
+    <br>
   <%= f.radio_button :role, 'employee',:checked => (@user.role == 'employee' ? true : false), class: "radio-inline" %>
   <%= label :role, 'employee' %>
   <% end %>

@@ -16,7 +16,6 @@ class ClientsController < ApplicationController
     else
       add_breadcrumb "Clients List", clients_path
     end
-
     add_breadcrumb @client.company_name
     @transactions = @client.transactions
     @transaction = Transaction.new
@@ -47,7 +46,7 @@ class ClientsController < ApplicationController
     @client = Client.new(client_params)
     if @client.save
       flash[:success] = 'Client successfully added.'
-      redirect_to clients_path
+      redirect_to client_path(@client)
     else
       flash[:notice] = 'Client WAS NOT added.'
       render :new
@@ -66,7 +65,7 @@ class ClientsController < ApplicationController
     if @client.destroyed?
       flash[:success] = 'Client successfully deleted.'
     else
-      flash[:error] = 'Client WAS NOT deleted.'
+      flash[:error] = 'Client WAS NOT deleted. This client may still have transactions.'
     end
     redirect_to clients_path
   end
@@ -76,7 +75,7 @@ class ClientsController < ApplicationController
     add_breadcrumb "Edit Client" + @client.company_name, edit_client_path
     if @client.update(client_params)
       flash[:success] = 'Client successfully updated.'
-      redirect_to clients_path
+      redirect_to client_path(@client)
     else
       flash[:error] = 'Client WAS NOT edited.'
       render :edit
