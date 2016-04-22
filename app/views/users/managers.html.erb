@@ -78,7 +78,7 @@
             </li>
             <li class="text-danger">
               <% if can? :destroy, user %>
-              <%= link_to user, method: :delete, data: {confirm: 'Are you sure?'} do %>
+              <%= link_to user, method: :delete, data: {confirm: 'Are you sure?', verify: 'Delete', verify_text: 'Type "Delete" to confirm'} do %>
               <i class='glyphicon glyphicon-trash text-danger'></i>
               Delete
               <% end %>
