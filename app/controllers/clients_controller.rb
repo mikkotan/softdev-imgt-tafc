@@ -24,6 +24,10 @@ class ClientsController < ApplicationController
 
   def new
     @employees = get_employees
+    puts "************************"
+    puts @employees
+    puts "************************"
+    puts "************************"
     @client = Client.new
 
     if params[:employee_id]
